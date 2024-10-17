@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Especialidad.cs" />
     <Compile Include="EstadoTurno.cs" />
+    <Compile Include="Perfil.cs" />
     <Compile Include="Turno.cs" />
     <Compile Include="PersonalMedico.cs" />
     <Compile Include="Usuario.cs" />
