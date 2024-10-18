@@ -11,7 +11,9 @@ namespace Dominio
         public int Id_PersonalMedico { get; set; }
         public string Legajo { get; set; }
         public List<Especialidad> Especialidades { get; set; }
-        public Agenda DiasYHorarios { get; set; }
+        public List<Turno> Turnos { get; set; } //La agenda es un listado de los turnos que un médico por día
+       
+        //public Agenda DiasYHorarios { get; set; } 
 
     }
 }
