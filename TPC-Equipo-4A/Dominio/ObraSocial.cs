@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class ObraSocial
     {
-        int id { get; set; }
+        int Id { get; set; }
         string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string Telefono { get; set; }

@@ -1,8 +1,12 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TPC_Equipo_4A._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+        <div style="display:flex; align-self:center; padding:2em; background-image:url(https://noergia.com/wp-content/uploads/2019/03/slider-principal-768x361.jpg); background-repeat:no-repeat; background-size:cover; height:400px; width:90%; ">
 
-    <main>
+        <h1>Clinica</h1>
+
+    </div>  
+<%--    <main>
         <section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">ASP.NET</h1>
             <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
@@ -39,6 +43,6 @@
                 </p>
             </section>
         </div>
-    </main>
+    </main>--%>
 
 </asp:Content>
