@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class EstadoTurno
+    public class PersonalAdministrativo : Usuario
     {
-        public int Id_EstadoTurno { get; set; }
-        public string Descripcion { get; set; }
+        public int Id_PersonalAdministrativo { get; set; }
     }
 }

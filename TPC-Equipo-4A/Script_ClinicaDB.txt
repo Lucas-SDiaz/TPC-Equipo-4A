@@ -1,0 +1,82 @@
+CREATE TABLE Usuarios (
+    ID_Usuario BIGINT PRIMARY KEY IDENTITY(1,1),
+    Nombre VARCHAR(100) NOT NULL, 
+    Apellido VARCHAR(100) NOT NULL,
+    Email VARCHAR(100) NOT NULL,
+    Contraseña VARCHAR(100) NOT NULL,
+    TipoUsuario CHAR(1) NOT NULL, -- S 'Administrador Sistema', M 'Médico', A 'Administrador'
+    Estado BIT DEFAULT 1 -- 1 = Activo, 0 = Inactivo
+)
+
+CREATE TABLE SystemAdmin(
+    ID_Usuario BIGINT FOREIGN KEY REFERENCES Usuarios(ID_Usuario),
+    ID BIGINT PRIMARY KEY IDENTITY(1,1),
+    Legajo AS ('S' + CAST(ID AS VARCHAR)) PERSISTED, -- Calcula el legajo
+    Estado BIT DEFAULT 1 -- 1 = Activo, 0 = Inactivo
+)
+create table Especialidades (
+    ID_Especialidad bigint primary key identity(1, 1),
+    Nombre_E varchar(1000) not null
+)
+
+
+CREATE TABLE Medicos (
+    ID_Usuario BIGINT NOT NULL FOREIGN KEY REFERENCES Usuarios(ID_Usuario),
+    ID_Medico BIGINT PRIMARY KEY IDENTITY(1, 1),
+    Legajo AS ('M' + CAST(ID_Medico AS VARCHAR)) PERSISTED, -- Calcula el legajo
+    Estado BIT DEFAULT 1 -- 1 = Activo, 0 = Inactivo
+)
+CREATE TABLE MedicosEspecialidades (
+    ID_Medico BIGINT FOREIGN KEY REFERENCES Medicos(ID_Medico),
+    ID_Especialidad BIGINT FOREIGN KEY REFERENCES Especialidades(ID_Especialidad),
+    PRIMARY KEY (ID_Medico, ID_Especialidad) -- Combinación única
+)
+CREATE TABLE Administrativos (
+    ID_Usuario BIGINT NOT NULL FOREIGN KEY REFERENCES Usuarios(ID_Usuario),
+    ID_Administrativo BIGINT PRIMARY KEY IDENTITY(1, 1),
+    Legajo AS ('A' + CAST(ID_Administrativo AS VARCHAR)) PERSISTED, -- Calcula el legajo
+    Estado BIT DEFAULT 1 -- 1 = Activo, 0 = Inactivo
+);
+
+-- CREATE TABLE ObraSocial (
+--     ID_ObraSocial BIGINT PRIMARY KEY IDENTITY(1,1),
+--     Nombre VARCHAR(100) NOT NULL 
+-- )
+
+
+CREATE TABLE Pacientes (
+    ID_Paciente BIGINT PRIMARY KEY IDENTITY(1,1),
+    Nombre VARCHAR(100) NOT NULL, 
+    Apellido VARCHAR(100) NOT NULL,
+    DNI VARCHAR(20) UNIQUE NOT NULL,
+    Email VARCHAR(100) UNIQUE NOT NULL,
+    --ObraSocial BIGINT FOREIGN KEY REFERENCES ObraSocial(ID_ObraSocial), 
+    FechaNacimiento DATE NOT NULL,
+    Estado BIT DEFAULT 1 -- 1 = Activo, 0 = Inactivo
+)
+CREATE TABLE TelefonosPacientes(
+    ID_Tel BIGINT PRIMARY KEY IDENTITY(1,1),
+    Numero VARCHAR(50) NOT NULL,
+    ID_Paciente BIGINT NOT NULL FOREIGN KEY REFERENCES Pacientes(ID_Paciente),
+    TipoTelefono CHAR(1) NOT NULL CHECK (TipoTelefono IN ('C', 'T')), -- C (Celular), T (Fijo)
+)
+
+CREATE TABLE Turnos(
+    ID_Turno BIGINT PRIMARY KEY IDENTITY(1, 1),
+    Paciente BIGINT NOT NULL FOREIGN KEY REFERENCES Pacientes(ID_Paciente),
+    Medico BIGINT NOT NULL FOREIGN KEY REFERENCES Medicos(ID_Medico),
+    Fecha DATE NOT NULL,
+    Hora TIME NOT NULL, 
+    Estado VARCHAR(100) NOT NULL, 
+    Observaciones VARCHAR(1000), 
+)
+
+CREATE TABLE JornadasMedicos(
+    ID_Jornada BIGINT PRIMARY KEY IDENTITY(1, 1),
+    Medico BIGINT NOT NULL FOREIGN KEY REFERENCES Medicos(ID_Medico),
+    DiaSemana TINYINT NOT NULL, --1 LUNES, 2 MARTES, 3 MIERCOLES....
+    HoraEntrada TIME NOT NULL,
+    HoraSalida TIME NOT NULL
+)
+
+
