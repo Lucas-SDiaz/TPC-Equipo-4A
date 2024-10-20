@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,9 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            PacienteNegocio pacienteNegocio = new PacienteNegocio();
+            dgvPacientes.DataSource = pacienteNegocio.listarConSP();
+            dgvPacientes.DataBind();
         }
     }
 }
