@@ -2,6 +2,7 @@
 
 <!DOCTYPE html>
 
+
 <html lang="es">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -83,10 +84,10 @@
           </ul>
         </li>--%>
                     </ul>
-                    <form class="d-flex" role="search">
+                    <%--<form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Busqueda" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>
+                    </form>--%>
                 </div>
             </div>
         </nav>
@@ -104,3 +105,26 @@
     </asp:PlaceHolder>
 </body>
 </html>
+    <style>
+    html, body {
+    height: 100%;
+    margin: 0;
+    }
+
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .body-content {
+        flex: 1;
+    }
+
+    footer {
+        background-color: #f8f9fa; 
+        text-align: center;
+        padding: 10px 0;
+        width: 100%;
+    }
+</style>

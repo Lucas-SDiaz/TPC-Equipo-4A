@@ -16,5 +16,10 @@ namespace TPC_Equipo_4A
             dgvPacientes.DataSource = pacienteNegocio.listarConSP();
             dgvPacientes.DataBind();
         }
+
+        protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
