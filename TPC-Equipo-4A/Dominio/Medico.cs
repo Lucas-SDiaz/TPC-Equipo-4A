@@ -12,7 +12,7 @@ namespace Dominio
         public List<Especialidad> Especialidades { get; set; }
         public List<JornadaMedicos> HorariosLaborables { get; set; }
         public List<Turno> TurnosAsignados { get; set; } //La agenda es un listado de los turnos que un médico por día
-       
+        public List<HorariodeTrabajo> HorarioDeTrabajo { get; set; }
 
     }
 }

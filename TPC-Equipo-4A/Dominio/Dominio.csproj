@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HorariodeTrabajo.cs" />
     <Compile Include="JornadaMedico.cs" />
     <Compile Include="Especialidad.cs" />
     <Compile Include="Paciente.cs" />
