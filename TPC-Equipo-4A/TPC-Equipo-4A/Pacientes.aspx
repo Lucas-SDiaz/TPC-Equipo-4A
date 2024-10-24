@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="d-flex justify-content-between">
-        <asp:Button runat="server" ID="btnAgregarPaciente" Text="Agregar paciente" CssClass="btn btn-secondary" />
+        <asp:Button runat="server" ID="btnAgregarPaciente" Text="Agregar paciente" OnClick="btnAgregarPaciente_Click" CssClass="btn btn-secondary" />
         <div class="d-flex">
             <asp:TextBox ID="txtBuscar" CssClass="form-control me-2" runat="server" Placeholder="Buscar paciente..." Width="200px"></asp:TextBox>
             <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-outline-secondary" />

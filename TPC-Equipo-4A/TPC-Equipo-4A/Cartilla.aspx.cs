@@ -1,4 +1,5 @@
-﻿using Negocio;
+﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace TPC_Equipo_4A
         protected void Page_Load(object sender, EventArgs e)
         {
             MedicoNegocio medicoNegocio= new MedicoNegocio();
-            dgvMedicos.DataSource = medicoNegocio.listarConSP();
+            Session.Add("listaMedicos", medicoNegocio.listarConSP());
+            dgvMedicos.DataSource = Session["listaMedicos"];
             dgvMedicos.DataBind();
         }
 
@@ -21,5 +23,13 @@ namespace TPC_Equipo_4A
         {
 
         }
+
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            List<Medico> lista = (List<Medico>)Session["listaMedicos"];
+            dgvMedicos.DataSource = lista.FindAll(x => x.NombreYApellido.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            dgvMedicos.DataBind();
+        }
+        
     }
 }

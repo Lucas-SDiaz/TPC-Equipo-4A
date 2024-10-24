@@ -21,5 +21,10 @@ namespace TPC_Equipo_4A
         {
 
         }
+
+        protected void btnAgregarPaciente_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AgregarPaciente.aspx");
+        }
     }
 }

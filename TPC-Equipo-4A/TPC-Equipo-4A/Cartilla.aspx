@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between">
         <div class="d-flex">
             <asp:TextBox ID="txtBuscar" CssClass="form-control me-2" runat="server" Placeholder="Buscar médico..." Width="200px"></asp:TextBox>
-            <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-outline-secondary" />
+            <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-outline-secondary" OnClick="btnBuscar_Click" />
         </div>
         <asp:DropDownList ID="ddlFiltro" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFiltro_SelectedIndexChanged" CssClass="btn btn-secondary btn-sm dropdown-toggle">
             <asp:ListItem Text="Predeterminado" Value="Predeterminado"></asp:ListItem>
@@ -13,15 +13,15 @@
         </asp:DropDownList>
     </div>
     <hr />
-    <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false">
-        <Columns>
-            <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
-            <asp:BoundField HeaderText="Email" DataField="Email" />
-            <asp:BoundField HeaderText="Especialidad" DataField="Especialidades" />
-            <asp:CommandField ShowSelectButton="true" SelectText="Ver turnos" />
-<%--            <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />--%>
-        </Columns>
-    </asp:GridView>
+        <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false">
+            <columns>
+                <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
+                <asp:BoundField HeaderText="Email" DataField="Email" />
+                <asp:BoundField HeaderText="Especialidad" DataField="Especialidades" />
+                <asp:CommandField ShowSelectButton="true" SelectText="Ver turnos" />
+                <%--            <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />--%>
+            </columns>
+        </asp:GridView>
     <style>
         .tableCustom {
             border-radius: 9px;
