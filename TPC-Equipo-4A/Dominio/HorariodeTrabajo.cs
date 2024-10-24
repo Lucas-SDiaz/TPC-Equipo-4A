@@ -15,5 +15,18 @@ namespace Dominio
         public DateTime HoraSalida { get; set; }
 
         public string FechaYHora
+        {
+            get
+            {
+                return $"Entrada: {HoraEntrada.ToString("yyyy-MM-dd HH:mm:ss")}, Salida: {HoraSalida.ToString("yyyy-MM-dd HH:mm:ss")}";
+            }
+        }
+        public string Hora
+        {
+            get
+            {
+                return $"Entrada: {HoraEntrada.ToString("HH:mm:ss")}, Salida: {HoraSalida.ToString("HH:mm:ss")}";
+            }
+        }
     }
 }
