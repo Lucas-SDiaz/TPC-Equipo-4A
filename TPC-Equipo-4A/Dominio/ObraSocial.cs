@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class PersonalAdministrativo : Usuario
+    public class ObraSocial
     {
-        public int Id_PersonalAdministrativo { get; set; }
-        public int Legajo { get; set; }
+        public int IdObraSocial { get; set; }
+        public string Nombre { get; set; } 
     }
 }

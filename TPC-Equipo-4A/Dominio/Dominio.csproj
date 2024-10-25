@@ -76,11 +76,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HorariodeTrabajo.cs" />
+    <Compile Include="Administrador.cs" />
+    <Compile Include="Domicilio.cs" />
+    <Compile Include="HistoriaClinica.cs" />
     <Compile Include="JornadaMedico.cs" />
     <Compile Include="Especialidad.cs" />
+    <Compile Include="ObraSocial.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="Perfil.cs" />
+    <Compile Include="Persona.cs" />
     <Compile Include="PersonalAdministrativo.cs" />
     <Compile Include="Turno.cs" />
     <Compile Include="Medico.cs" />
