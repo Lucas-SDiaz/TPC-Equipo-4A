@@ -11,9 +11,11 @@ namespace Dominio
         public int Id_Domicilio { get; set; }
         public string Calle { get; set; }
         public int Numero { get; set; }
+        public string Piso { get; set; }
+        public string Depto { get; set; }
         public string Ciudad { get; set; }
         public string Provincia { get; set; }
         public string CodigoPostal { get; set; }
-        public string Pais { get; set; }
+        //public string Pais { get; set; }
     }
 }

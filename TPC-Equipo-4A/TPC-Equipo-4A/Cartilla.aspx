@@ -16,8 +16,8 @@
         <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false">
             <columns>
                 <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
-                <asp:BoundField HeaderText="Email" DataField="Email" />
-                <asp:BoundField HeaderText="Especialidad" DataField="Especialidades" />
+                <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
+                <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Descripcion" />
                 <asp:CommandField ShowSelectButton="true" SelectText="Ver turnos" />
                 <%--            <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />--%>
             </columns>

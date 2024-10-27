@@ -20,14 +20,13 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Medico aux = new Medico();
-                    aux.Id_Usuario = (int)datos.Lector.GetInt64(0);
+                    aux.Usuario = new Usuario();
+                    aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
                     aux.Id_Medico = (int)datos.Lector.GetInt64(1);
                     aux.NombreYApellido = (string)datos.Lector["Nombre Y apellido"];
-                    aux.Email = (string)datos.Lector["Email"];
-                    aux.Especialidades = new List<Especialidad>();
-                    Especialidad esp = new Especialidad();
-                    esp.Descripcion = (string)datos.Lector["Nombre_E"];
-                    aux.Especialidades.Add(esp);
+                    aux.Usuario.Email = (string)datos.Lector["Email"];
+                    aux.Especialidad = new Especialidad();
+                    aux.Especialidad.Descripcion = (string)datos.Lector["Nombre_E"];
                     lista.Add(aux);
                 }
                 return lista;

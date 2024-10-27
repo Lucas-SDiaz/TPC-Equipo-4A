@@ -1,35 +1,93 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="TPC_Equipo_4A.Login" %>
-
 <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Clínica FRGP</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e0f2ff;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <meta charset="utf-8" />
-    <title>Login - Clínica</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="styles.css" rel="stylesheet" type="text/css" />
+        .login-card {
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: #f7f9fc;
+            padding: 20px;
+            width: 20rem;
+        }
+
+        .login-card h3 {
+            color: #2c3e50;
+        }
+
+        .login-card .form-label {
+            color: #34495e;
+        }
+
+        .login-card .form-control {
+            border-radius: 10px;
+            border: 1px solid #b0c4de;
+        }
+
+        .login-card .btn-primary {
+            background-color: #3498db;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .login-card .btn-primary:hover {
+            background-color: #2980b9;
+        }
+
+        .login-card a {
+            color: #2980b9;
+        }
+
+        .login-card a:hover {
+            color: #1f618d;
+        }
+
+        .login-card .form-control:focus {
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.5);
+            border-color: #3498db;
+        }
+
+        .titulo-clinica {
+            color: #2980b9;
+            font-weight: 600;
+            font-size: 2rem;
+        }
+    </style>
 </head>
-<body class="bg-light">
-    <form id="form1" runat="server">
-        <div class="container d-flex justify-content-center align-items-center vh-100">
-            <div class="card shadow" style="width: 300px;">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Ingreso al Sistema</h5>
-                    <asp:Label ID="lblError" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
-                    <div class="form-group">
-                        <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" Placeholder="Email" required="required"></asp:TextBox>
-                    </div>
-                    <div class="form-group">
-                        <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" Placeholder="Contraseña" TextMode="Password" required="required"></asp:TextBox>
-                    </div>
-                    <asp:Button ID="btnLogin" runat="server" Text="Iniciar Sesión" CssClass="btn btn-primary btn-block" OnClick="btnLogin_Click" />
-                </div>
+<body>
+    <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+        <h1 class="titulo-clinica mb-4">Clínica FRGP</h1>
+        <div class="login-card">
+            <div class="text-center mb-4">
+                <img src="iconoClinica.ico" alt="Clinicsystem" style="width: 130px;">
             </div>
+            <h3 class="text-center mb-4">Ingreso</h3>
+            <form id="form1" runat="server">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo Electrónico</label>
+                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" required="required"></asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" required="required"></asp:TextBox>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <a href="RecuperarContraseña.aspx" class="text-decoration-none">¿Olvidó su contraseña?</a>
+                </div>
+                <asp:Button ID="btnLoguear" runat="server" CssClass="btn btn-primary w-100 mt-3" OnClick="btnLoguear_Click" Text="Iniciar Sesión" />
+            </form>
         </div>
-    </form>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

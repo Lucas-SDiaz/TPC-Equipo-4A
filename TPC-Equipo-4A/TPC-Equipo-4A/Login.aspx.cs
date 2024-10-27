@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,23 +16,46 @@ namespace TPC_Equipo_4A
 
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void btnLoguear_Click(object sender, EventArgs e)
         {
-            string email = txtEmail.Text;
-            string password = txtPassword.Text;
+            //Usuario usuario = new Usuario();
+            //usuario.Email = txtEmail.Text;
+            //usuario.Contraseña = txtPassword.Text;
+            //LoginUsuario(usuario);   ACA ESTA YA ARMADO LA VALIDACION DE INGRESO DE USUARIOS. LO COMENTO PARA INGRESAR MEDIANTE UN REDIRECT
+            Response.Redirect("Default.aspx", false);
 
-            // Lógica de autenticación (ejemplo simple)
-            //if (IsValidUser(email, password)) // Implementa esta lógica según tu necesidad
-            //{
-            //    // Redirige al usuario al dashboard o página principal
-               Response.Redirect("Default.aspx");
-            //}
-            //else
-            //{
-            //    lblError.Text = "Email o contraseña incorrectos.";
-            //    lblError.Visible = true;
-            //}
-            
+        }
+
+
+        private void LoginUsuario(Usuario usuario)
+        {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            try
+            {
+                if (negocio.Loguear(usuario))
+                {
+                    Session.Add("Usuario", usuario);
+                    if (Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Perfil != Dominio.Perfil.Administrador) 
+                    {
+                        Response.Redirect("Default.aspx", false);
+                    }
+                    else
+                    {
+                        //Response.Redirect("Default.aspx", false);
+                    }
+                }
+                else
+                {
+                    Session.Add("error", "Usuario o Contraseña Incorrectos");
+                    Response.Redirect("Error.aspx", false);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex.ToString());
+                Response.Redirect("Error.aspx", false);
+            }
         }
     }
 }

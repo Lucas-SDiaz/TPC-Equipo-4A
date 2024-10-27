@@ -22,12 +22,14 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     Paciente aux = new Paciente();
+                    aux.Usuario = new Usuario();   
                     aux.Id_Paciente = (int)datos.Lector.GetInt64(0);
+                    aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(1);
+                    aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]);
                     aux.NombreYApellido = (string)datos.Lector["Nombre Y apellido"];
                     aux.DNI = (string)datos.Lector["DNI"];
-                    aux.Email = (string)datos.Lector["Email"];
-                    aux.Celular = (string)datos.Lector["Celular"];
-                    aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]).ToString("dd-MM-yyyy");
+                    aux.Usuario.Email = (string)datos.Lector["Email"];
+                    aux.Telefono = (string)datos.Lector["Celular"];
                     lista.Add(aux);
                 }
                 return lista;

@@ -17,8 +17,8 @@
         <Columns>
             <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
             <asp:BoundField HeaderText="DNI" DataField="DNI" />
-            <asp:BoundField HeaderText="Email" DataField="Email" />
-            <asp:BoundField HeaderText="Celular" DataField="Celular" />
+            <asp:BoundField HeaderText="Email" DataField="Usuario.Email"/>
+            <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
             <asp:BoundField HeaderText="Fecha de nacimiento" DataField="FechaNacimiento" />
             <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="📝" />
             <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />

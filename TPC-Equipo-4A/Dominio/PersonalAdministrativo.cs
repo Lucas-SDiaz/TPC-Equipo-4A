@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    public class PersonalAdministrativo : Usuario
+    public class PersonalAdministrativo : PersonalClinica
     {
         public int Id_PersonalAdministrativo { get; set; }
-        public int Legajo { get; set; }
     }
 }
