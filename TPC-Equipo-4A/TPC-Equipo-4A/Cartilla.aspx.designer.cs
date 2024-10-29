@@ -33,6 +33,15 @@ namespace TPC_Equipo_4A
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
+        /// Control btnAgregarMedico.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAgregarMedico;
+
+        /// <summary>
         /// Control ddlFiltro.
         /// </summary>
         /// <remarks>
@@ -49,5 +58,14 @@ namespace TPC_Equipo_4A
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView dgvMedicos;
+
+        /// <summary>
+        /// Control dgvMedicosPersonalAdministrativo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView dgvMedicosPersonalAdministrativo;
     }
 }

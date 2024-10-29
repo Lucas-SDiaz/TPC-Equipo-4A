@@ -9,6 +9,6 @@ namespace Dominio
     public class PersonalClinica : Persona
     {
         public int Id_PersonalClinica { get; set; }
-        public int Legajo { get; set; }
+        public string Legajo { get; set; }
     }
 }

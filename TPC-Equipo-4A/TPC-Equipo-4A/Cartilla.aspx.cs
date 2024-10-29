@@ -13,10 +13,7 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MedicoNegocio medicoNegocio= new MedicoNegocio();
-            Session.Add("listaMedicos", medicoNegocio.listarConSP());
-            dgvMedicos.DataSource = Session["listaMedicos"];
-            dgvMedicos.DataBind();
+            mostrarDgvSegunPerfil();
         }
 
         protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
@@ -31,5 +28,26 @@ namespace TPC_Equipo_4A
             dgvMedicos.DataBind();
         }
         
+        protected void mostrarDgvSegunPerfil()
+        {
+            MedicoNegocio medicoNegocio = new MedicoNegocio();
+            if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Paciente)
+            {
+                Session.Add("listaMedicos", medicoNegocio.listarParaPacientesConSP());
+                dgvMedicos.DataSource = Session["listaMedicos"];
+                dgvMedicos.DataBind();
+            }
+            else if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
+            {
+                Session.Add("listaMedicos", medicoNegocio.listarParaPAdministrativoConSP());
+                dgvMedicosPersonalAdministrativo.DataSource = Session["listaMedicos"];
+                dgvMedicosPersonalAdministrativo.DataBind();
+            }
+        }
+
+        protected void btnAgregarMedico_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
