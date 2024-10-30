@@ -20,9 +20,8 @@ namespace TPC_Equipo_4A
         {
             Usuario usuario = new Usuario();
 
-            //   INGRESO COMO PERSONAL ADMINISTRATIVO
-            usuario.Email = "admin@clinica.com.ar";
-            usuario.Contraseña = "123";
+            usuario.Email = txtEmail.Text;
+            usuario.Contraseña = txtPassword.Text;
 
             //usuario.Email = txtEmail.Text;
             //usuario.Contraseña = txtPassword.Text;
