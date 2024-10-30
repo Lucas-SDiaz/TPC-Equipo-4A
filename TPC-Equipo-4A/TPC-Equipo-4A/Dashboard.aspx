@@ -18,7 +18,7 @@
                     <div class="card-body text-center">
                         <img src="iconoMedicos.ico" alt="Imagen" style="width: 100px; height: 100px;">
                         <h5 class="card-title mt-3">Médicos</h5>
-                        <a href="#" class="btn btn-primary">Ver más</a>
+                        <a href="MedicosABM.aspx" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
             </div>
