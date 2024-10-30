@@ -17,7 +17,7 @@ namespace Dominio
         public string NombreYApellido { get; set; }
         public string Telefono { get; set; }
         public string DNI { get; set; }
-        public  int Id_Usuario { get; set; }
+        public  Usuario Usuario { get; set; }
         public bool Estado { get; set; }
 
     }

@@ -19,13 +19,18 @@ namespace TPC_Equipo_4A
         protected void btnLoguear_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario();
-            usuario.Email = "administrativoclinica@gmail.com";
-            usuario.Contraseña = "turnos123";
+
+            //   INGRESO COMO PERSONAL ADMINISTRATIVO
+            usuario.Email = "admin@clinica.com.ar";
+            usuario.Contraseña = "123";
 
             //usuario.Email = txtEmail.Text;
             //usuario.Contraseña = txtPassword.Text;
             LoginUsuario(usuario);   //ACA ESTA YA ARMADO LA VALIDACION DE INGRESO DE USUARIOS. LO COMENTO PARA INGRESAR MEDIANTE UN REDIRECT
 
+
+            // INGRESO PROVISORIO
+                        //Response.Redirect("Default.aspx", false);
         }
 
 
@@ -41,9 +46,9 @@ namespace TPC_Equipo_4A
                     {
                         Response.Redirect("Default.aspx", false);
                     }
-                    else
+                    else if(Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Administrador)
                     {
-
+                        Response.Redirect("Dashboard.aspx", false);
                         //Response.Redirect("Default.aspx", false);  ACA LO TENDRIA QUE REDIRECCIONAR A LA MASTER DE ADMINISTRADOR DE SISTEMA
                     }
                 }
