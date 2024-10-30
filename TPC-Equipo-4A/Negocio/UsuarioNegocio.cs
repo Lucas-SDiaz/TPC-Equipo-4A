@@ -44,5 +44,32 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public int Guardar(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setQuery("INSERT INTO Usuarios (ID_Perfil, Email, Contraseña, Estado)  VALUES (@ID_Perfil, @Email, @Contraseña, @Estado)");
+                datos.setParameters("@ID_Perfil", (int)usuario.Perfil);
+                datos.setParameters("@Email", usuario.Email);
+                datos.setParameters("@Contraseña", usuario.Contraseña);
+                datos.setParameters("@Estado", '1');
+
+                int idUsuarioGenerado = (int)datos.ejecutarScalar();
+                usuario.Id_Usuario = idUsuarioGenerado;
+
+                return idUsuarioGenerado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
     }
 }

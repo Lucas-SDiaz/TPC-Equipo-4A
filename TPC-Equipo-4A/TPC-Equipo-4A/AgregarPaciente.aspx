@@ -9,33 +9,37 @@
 <div class="col-md-6">
     <h4>Información Personal</h4>
     <div class="mb-3 text-start">
-        <label for="inputNombre" class="form-label">Nombre</label>
-        <asp:TextBox ID="inputNombre" runat="server" CssClass="form-control" required></asp:TextBox>
+        <label for="lblNombre" class="form-label">Nombre</label>
+        <asp:TextBox ID="txtNombre" runat="server" CssClass="form-control" required></asp:TextBox>
     </div>
     <div class="mb-3 text-start">
-        <label for="inputApellido" class="form-label">Apellido</label>
-        <asp:TextBox ID="inputApellido" runat="server" CssClass="form-control" required></asp:TextBox>
+        <label for="lblApellido" class="form-label">Apellido</label>
+        <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" required></asp:TextBox>
     </div>
     <div class="mb-3 text-start">
-        <label for="inputDNI" class="form-label">DNI</label>
-        <asp:TextBox ID="inputDNI" runat="server" CssClass="form-control" required></asp:TextBox>
+        <label for="lblDNI" class="form-label">DNI</label>
+        <asp:TextBox ID="txtDNI" runat="server" CssClass="form-control" required></asp:TextBox>
     </div>
     <div class="mb-3 text-start">
-        <label for="inputEmail" class="form-label">Email</label>
-        <asp:TextBox ID="inputEmail" runat="server" CssClass="form-control" TextMode="Email" required></asp:TextBox>
+        <label for="lblFNac" class="form-label">Fecha de Nacimiento</label>
+        <asp:TextBox ID="txtFNac" runat="server" CssClass="form-control" TextMode="Date" required></asp:TextBox>
     </div>
     <div class="mb-3 text-start">
-        <label for="inputFNac" class="form-label">Fecha de Nacimiento</label>
-        <asp:TextBox ID="inputFNac" runat="server" CssClass="form-control" TextMode="Date" required></asp:TextBox>
+        <label for="lblTelefono" class="form-label">Teléfono</label>
+        <asp:TextBox ID="txtTelefono" runat="server" CssClass="form-control" required></asp:TextBox>
     </div>
     <div class="mb-3 text-start">
-        <label for="inputCelular" class="form-label">Celular</label>
-        <asp:TextBox ID="inputCelular" runat="server" CssClass="form-control" required></asp:TextBox>
-    </div>
+    <label for="lblEmail" class="form-label">Email</label>
+    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" required></asp:TextBox>
+</div>
     <div class="mb-3 text-start">
-        <label for="inputTel" class="form-label">Teléfono</label>
-        <asp:TextBox ID="inputTel" runat="server" CssClass="form-control" required></asp:TextBox>
-    </div>
+    <label for="lblPassword" class="form-label">Contraseña</label>
+    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" required placeholder="Ingrese una contraseña"></asp:TextBox>
+</div>
+<div class="mb-3 text-start">
+    <label for="lblConfirmPassword" class="form-label">Confirmar Contraseña</label>
+    <asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" required placeholder="Confirme su contraseña"></asp:TextBox>
+</div>
 </div>
 
    </div>  
@@ -45,32 +49,32 @@
  <div class="col-md-6">
      <h4>Domicilio</h4>
      <div class="mb-3 text-start">
-         <label for="inputCalle" class="form-label">Calle</label>
-         <asp:TextBox ID="inputCalle" runat="server" CssClass="form-control" required></asp:TextBox>
+         <label for="lblCalle" class="form-label">Calle</label>
+         <asp:TextBox ID="txtCalle" runat="server" CssClass="form-control" required></asp:TextBox>
      </div>
      <div class="mb-3 text-start">
-         <label for="inputNumero" class="form-label">Número</label>
-         <asp:TextBox ID="inputNumero" runat="server" CssClass="form-control" required></asp:TextBox>
+         <label for="lblNumero" class="form-label">Número</label>
+         <asp:TextBox ID="txtNumero" runat="server" CssClass="form-control" required></asp:TextBox>
      </div>
      <div class="mb-3 text-start">
-         <label for="inputPiso" class="form-label">Piso</label>
-         <asp:TextBox ID="inputPiso" runat="server" CssClass="form-control"></asp:TextBox>
+         <label for="lblPiso" class="form-label">Piso</label>
+         <asp:TextBox ID="txtPiso" runat="server" CssClass="form-control"></asp:TextBox>
      </div>
      <div class="mb-3 text-start">
-         <label for="inputDepto" class="form-label">Departamento</label>
-         <asp:TextBox ID="inputDepto" runat="server" CssClass="form-control"></asp:TextBox>
+         <label for="lblDepto" class="form-label">Departamento</label>
+         <asp:TextBox ID="txtDepto" runat="server" CssClass="form-control"></asp:TextBox>
      </div>
      <div class="mb-3 text-start">
-         <label for="inputCiudad" class="form-label">Ciudad</label>
-         <asp:TextBox ID="inputCiudad" runat="server" CssClass="form-control" required></asp:TextBox>
+         <label for="lblCiudad" class="form-label">Ciudad</label>
+         <asp:TextBox ID="txtCiudad" runat="server" CssClass="form-control" required></asp:TextBox>
      </div>
      <div class="mb-3 text-start">
-         <label for="inputProvincia" class="form-label">Provincia</label>
-         <asp:TextBox ID="inputProvincia" runat="server" CssClass="form-control" required></asp:TextBox>
+         <label for="lblProvincia" class="form-label">Provincia</label>
+         <asp:TextBox ID="txtProvincia" runat="server" CssClass="form-control" required></asp:TextBox>
      </div>
      <div class="mb-3 text-start">
-         <label for="inputCodigoPostal" class="form-label">Código Postal</label>
-         <asp:TextBox ID="inputCodigoPostal" runat="server" CssClass="form-control" required></asp:TextBox>
+         <label for="lblCodigoPostal" class="form-label">Código Postal</label>
+         <asp:TextBox ID="txtCodigoPostal" runat="server" CssClass="form-control" required></asp:TextBox>
      </div>
  </div>
     </div>
