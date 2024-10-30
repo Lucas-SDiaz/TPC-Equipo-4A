@@ -147,18 +147,9 @@
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="FormularioMedico.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
-<<<<<<< Updated upstream
     <Content Include="NuevoTurno.aspx" />
-=======
-<<<<<<< HEAD
-    <Content Include="MedicosABM.aspx" />
-=======
-    <Content Include="NuevoTurno.aspx" />
->>>>>>> bd1f17592aa33f4b91ff914de298897cdbef778d
->>>>>>> Stashed changes
     <Content Include="ObrasSociales.aspx" />
     <Content Include="Pacientes.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -254,13 +245,6 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FormularioMedico.aspx.cs">
-      <DependentUpon>FormularioMedico.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="FormularioMedico.aspx.designer.cs">
-      <DependentUpon>FormularioMedico.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -278,27 +262,12 @@
     <Compile Include="MasterAdmin.Master.designer.cs">
       <DependentUpon>MasterAdmin.Master</DependentUpon>
     </Compile>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
-    <Compile Include="MedicosABM.aspx.cs">
-      <DependentUpon>MedicosABM.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="MedicosABM.aspx.designer.cs">
-      <DependentUpon>MedicosABM.aspx</DependentUpon>
-=======
->>>>>>> Stashed changes
     <Compile Include="NuevoTurno.aspx.cs">
       <DependentUpon>NuevoTurno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="NuevoTurno.aspx.designer.cs">
       <DependentUpon>NuevoTurno.aspx</DependentUpon>
-<<<<<<< Updated upstream
-=======
->>>>>>> bd1f17592aa33f4b91ff914de298897cdbef778d
->>>>>>> Stashed changes
     </Compile>
     <Compile Include="ObrasSociales.aspx.cs">
       <DependentUpon>ObrasSociales.aspx</DependentUpon>

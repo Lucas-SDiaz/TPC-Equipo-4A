@@ -66,33 +66,5 @@ namespace Negocio
                 throw ex;
             }
         }
-        public Medico buscarMedicoID(int id)
-        {
-            try
-            {
-                Medico aux = new Medico();
-                datos.setQuery("select M.Apellido, M.Nombre, U.Email, M.DNI, T.Numero from Medicos M" +
-                              " INNER JOIN Usuarios U ON U.ID_Usuario = M.ID_Usuario" +
-                              " INNER JOIN Telefonos T ON T.ID_Usuario = M.ID_Usuario" +
-                              " WHERE M.ID_Usuario = @ID_Usuario");
-                datos.setParameters("@ID_Usuario", id);
-                datos.ejecutarLectura();
-                while (datos.Lector.Read())
-                {
-                    aux.NombreYApellido = (string)datos.Lector["Apellido"];
-                    aux.Legajo = (string)datos.Lector["Nombre"];
-                    aux.Usuario = new Usuario();
-                    aux.Usuario.Email = (string)datos.Lector["Email"];
-                    aux.DNI = (string)datos.Lector["DNI"];
-                    aux.Telefono = (string)datos.Lector["Numero"];
-                }
-                return aux;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
     }
 }
