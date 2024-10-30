@@ -19,7 +19,7 @@
         </asp:DropDownList>
     </div>
     <hr />
-            <%if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Paciente)
+            <%if (((Dominio.Usuario) Session["Usuario"]).Perfil == Dominio.Perfil.Paciente)
                 { %>
             <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false">
                 <Columns>
