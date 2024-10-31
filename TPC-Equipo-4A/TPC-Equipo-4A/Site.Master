@@ -14,8 +14,8 @@
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    
-     <%-- links para usar boosttrap5--%>
+
+    <%-- links para usar boosttrap5--%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link href="Style/styles.css" rel="stylesheet" />
@@ -47,48 +47,52 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                
+
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="Default.aspx"><img src="\Imagenes\home.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a>
+                <a class="navbar-brand" href="Default.aspx">
+                    <img src="\Imagenes\home.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <% //if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Paciente) { }%>     
+                        <%//if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Paciente) { }%>
                         <li class="nav-item">
-                            <a class="nav-link" href="Cartilla.aspx"><img src="\Imagenes\medicos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Cartilla</a>
+                            <a class="nav-link" href="Cartilla.aspx">
+                                <img src="\Imagenes\medicos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Cartilla</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Turnos.aspx"><img src="\Imagenes\turnos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Turnos</a>
+                            <a class="nav-link" href="Turnos.aspx">
+                                <img src="\Imagenes\turnos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Turnos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Pacientes.aspx"><img src="\Imagenes\pacientes.png " alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Pacientes</a>
+                            <a class="nav-link" href="Pacientes.aspx">
+                                <img src="\Imagenes\pacientes.png " alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Pacientes</a>
                         </li>
-                        <%--<li class="nav-item">
-                            <a class="nav-link" href="ObrasSociales.aspx"><img src="\Imagenes\prepagas.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Obras Sociales</a>
-                        </li>--%>
-                        <%--<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>--%>
                     </ul>
-                    <%--<form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Busqueda" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Buscar</button>
-                    </form>--%>
+              
+                </div>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                                <%if (Session["Usuario"] == null) { %>
+                                    <a class="nav-link" href="Login.aspx">
+                                    Iniciar sesión 
+                                    <img src="iconoLogin.ico" alt="Iniciar Sesión" style="width: 20px; height: 20px;">
+                                <%}else{
+                                        Session.Remove("Usuario");    %>
+                                    <a class="nav-link" href="Default.aspx">
+                                    Cerrar sesión 
+                                    <img src="iconoLogout.ico" alt="Cerrar Sesión" style="width: 20px; height: 20px;">
+                                <%} %>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -106,10 +110,10 @@
     </asp:PlaceHolder>
 </body>
 </html>
-    <style>
+<style>
     html, body {
-    height: 100%;
-    margin: 0;
+        height: 100%;
+        margin: 0;
     }
 
     body {
@@ -123,7 +127,7 @@
     }
 
     footer {
-        background-color: #f8f9fa; 
+        background-color: #f8f9fa;
         text-align: center;
         padding: 10px 0;
         width: 100%;
