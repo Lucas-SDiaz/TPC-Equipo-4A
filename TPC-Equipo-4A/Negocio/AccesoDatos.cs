@@ -74,6 +74,10 @@ namespace Negocio
 
                 throw ex;
             }
+            finally
+            {
+                conexion.Close();
+            }
         }
 
         public object ejecutarScalar()
@@ -84,14 +88,15 @@ namespace Negocio
                 conexion.Open();
                 return comando.ExecuteScalar();
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
             finally
             {
                 conexion.Close();
             }
+        }
+
+        public void clearParameters()
+        {
+            comando.Parameters.Clear();
         }
 
     }
