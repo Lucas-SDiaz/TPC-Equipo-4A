@@ -23,35 +23,33 @@ namespace TPC_Equipo_4A
 
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
-            Usuario nuevoUsuario = new Usuario();
-            nuevoUsuario.Email = txtEmail.Text;
-            nuevoUsuario.Contraseña = txtConfirmPassword.Text;
-            nuevoUsuario.Perfil = Perfil.Paciente;
+            Paciente nuevoPaciente = new Paciente();
+            PacienteNegocio nuevo = new PacienteNegocio();
 
-            UsuarioNegocio usuarioNegocio = new UsuarioNegocio();
-            int idUsuarioGenerado = usuarioNegocio.Guardar(nuevoUsuario);
-
+            nuevoPaciente.Usuario = new Usuario();
+            nuevoPaciente.Usuario.Email = txtEmail.Text;
+            nuevoPaciente.Usuario.Contraseña = txtConfirmPassword.Text;
+            nuevoPaciente.Usuario.Perfil = Perfil.Paciente;
             //--------------------------------------------------------
-            Persona nuevaPersona = new Persona();
-            nuevaPersona.Id_Persona = idUsuarioGenerado;
             string nombre = txtNombre.Text;
             string Apellido = txtApellido.Text;
-            nuevaPersona.NombreYApellido = nombre + " " + Apellido;
-            nuevaPersona.Telefono = txtTelefono.Text;
-            nuevaPersona.DNI = txtDNI.Text;
-
-            Paciente nuevoPaciente = new Paciente();
+            nuevoPaciente.NombreYApellido = nombre + " " + Apellido;
+            nuevoPaciente.Telefono = txtTelefono.Text;
+            nuevoPaciente.DNI = txtDNI.Text;
+            //--------------------------------------------------------
             nuevoPaciente.FechaNacimiento = DateTime.Parse(txtFNac.Text);
-
-            Domicilio nuevoDomicilio = new Domicilio();
-            nuevoDomicilio.Calle = txtCalle.Text;
-            nuevoDomicilio.Numero = int.Parse(txtNumero.Text);
-            nuevoDomicilio.Piso = txtPiso.Text;
-            nuevoDomicilio.Depto = txtDepto.Text;
-            nuevoDomicilio.Ciudad = txtCiudad.Text;
-            nuevoDomicilio.Provincia = txtProvincia.Text;
-            nuevoDomicilio.CodigoPostal = txtCodigoPostal.Text;
-
+            //--------------------------------------------------------
+            nuevoPaciente.Domicilio = new Domicilio();
+            nuevoPaciente.Domicilio.Calle = txtCalle.Text;
+            nuevoPaciente.Domicilio.Numero = int.Parse(txtNumero.Text);
+            nuevoPaciente.Domicilio.Piso = txtPiso.Text;
+            nuevoPaciente.Domicilio.Depto = txtDepto.Text;
+            nuevoPaciente.Domicilio.Ciudad = txtCiudad.Text;
+            nuevoPaciente.Domicilio.Provincia = txtProvincia.Text;
+            nuevoPaciente.Domicilio.CodigoPostal = txtCodigoPostal.Text;
+            //--------------------------------------------------------
+            nuevo.Agregar(nuevoPaciente);
+            Response.Redirect("Dashboard.aspx", false);
         }
     }
 }
