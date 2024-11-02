@@ -8,10 +8,10 @@ namespace Dominio
 {
     public enum Perfil
     {
-        Administrador = 0,
-        Medico = 1,
-        PersonalAdministrativo = 2,
-        Paciente = 3
+        Administrador = 1,
+        Medico = 2,
+        PersonalAdministrativo = 3,
+        Paciente = 4
     }
     public class Usuario
     {
