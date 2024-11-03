@@ -18,6 +18,7 @@
     <hr />
     <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Medico" OnSelectedIndexChanged="dgvMedicos_SelectedIndexChanged">
         <columns>
+            <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario"/>
             <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
             <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
             <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />

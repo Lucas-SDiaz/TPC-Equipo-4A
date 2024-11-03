@@ -13,10 +13,10 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            MedicoNegocio negocio = new MedicoNegocio();
             Medico med;
             if (!IsPostBack)
             {
+                MedicoNegocio negocio = new MedicoNegocio();
                 int id = int.Parse(Request.QueryString["id"]);
                 med = negocio.buscarMedicoID(id);
                 txtApellido.Text = med.NombreYApellido;
@@ -28,7 +28,27 @@ namespace TPC_Equipo_4A
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
+            if(Request.QueryString["id"] == null)
+            {
+
+            }
+            else{
+                editarRegistro();
+            }
+        }
+        private void editarRegistro()
+        {
+            MedicoNegocio negocio = new MedicoNegocio();
+            Medico medico = new Medico();
+            medico.Id_Medico = int.Parse(Request.QueryString["id"]);
+            medico.NombreYApellido = txtApellido.Text;
+            medico.Legajo = txtNombre.Text;
+            medico.DNI = txtDNI.Text;
+            medico.Usuario.Email = txtEmail.Text;
+            medico.Telefono = txtTelefono.Text;
+            //negocio.editarMedico(medico);
 
         }
     }
+
 }

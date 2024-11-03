@@ -74,8 +74,8 @@ namespace Negocio
                 datos.setQuery("select M.Apellido, M.Nombre, U.Email, M.DNI, T.Numero from Medicos M" +
                               " INNER JOIN Usuarios U ON U.ID_Usuario = M.ID_Usuario" +
                               " INNER JOIN Telefonos T ON T.ID_Usuario = M.ID_Usuario" +
-                              " WHERE M.ID_Usuario = @ID_Usuario");
-                datos.setParameters("@ID_Usuario", id);
+                              " WHERE M.ID_Medico = @ID_Medico");
+                datos.setParameters("@ID_Medico", id);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
@@ -93,6 +93,11 @@ namespace Negocio
 
                 throw ex;
             }
+        }
+
+        public void editarMedico(Medico medico)
+        {
+            //datos.setStoreProcedure();
         }
     }
 }

@@ -48,7 +48,6 @@ namespace TPC_Equipo_4A
                     else if(Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Administrador)
                     {
                         Response.Redirect("Dashboard.aspx", false);
-                        //Response.Redirect("Default.aspx", false);  ACA LO TENDRIA QUE REDIRECCIONAR A LA MASTER DE ADMINISTRADOR DE SISTEMA
                     }
                 }
                 else

@@ -31,6 +31,7 @@ namespace TPC_Equipo_4A
         protected void mostrarDgvSegunPerfil()
         {
             MedicoNegocio medicoNegocio = new MedicoNegocio();
+
             if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Paciente)
             {
                 Session.Add("listaMedicos", medicoNegocio.listarParaPacientesConSP());
