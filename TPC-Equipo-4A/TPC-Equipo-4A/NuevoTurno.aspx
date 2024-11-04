@@ -28,12 +28,12 @@
  <div class="col-md-6">
      <h4></h4>
     <div class="mb-3 text-start">
-        <label for="lblFNac" class="form-label">Fecha</label>
-        <asp:TextBox ID="txtFecha" runat="server" CssClass="form-control" TextMode="Date" required="true"></asp:TextBox>
+        <label for="lblFechaTurno" class="form-label">Fecha</label>
+        <asp:TextBox ID="txtFechaTurno" runat="server" CssClass="form-control" TextMode="Date" required="true"></asp:TextBox>
     </div>
     <div class="mb-3 text-start">
-        <label for="lblFNac" class="form-label">Horario</label>
-        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" required="true"></asp:TextBox>
+        <label for="lblHorario" class="form-label">Horario</label>
+        <asp:TextBox ID="txtHorario" runat="server" CssClass="form-control" required="true"></asp:TextBox>
     </div>
  </div>
     </div>
@@ -42,7 +42,7 @@
         
          
             <div class="col-12 text-center">
-                <asp:Button ID="btnAceptar" runat="server" Text="Solicitar Turno" CssClass="btn btn-primary mt-4" />
+                <asp:Button ID="btnAceptar" runat="server" Text="Solicitar Turno" CssClass="btn btn-primary mt-4" Onclick="btnAceptar_Click"/>
             </div>
         <%--</form>--%>
    

@@ -42,22 +42,22 @@ namespace TPC_Equipo_4A
         protected global::System.Web.UI.WebControls.DropDownList ddlMedico;
 
         /// <summary>
-        /// Control txtFecha.
+        /// Control txtFechaTurno.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFecha;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaTurno;
 
         /// <summary>
-        /// Control TextBox1.
+        /// Control txtHorario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox txtHorario;
 
         /// <summary>
         /// Control btnAceptar.

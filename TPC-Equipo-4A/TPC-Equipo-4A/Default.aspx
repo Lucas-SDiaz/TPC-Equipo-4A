@@ -14,21 +14,21 @@
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="\Imagenes\1.jpg" class="d-block w-100" alt="...">
+                                <img src="\Imagenes\1.jpeg" class="d-block w-100" alt="...">
                             <%--    <div class="carousel-caption d-none d-md-block">
                                     <h5>First slide label</h5>
                                     <p>Some representative placeholder content for the first slide.</p>
                                 </div--%>>
                             </div>
                             <div class="carousel-item" data-bs-interval="2000">
-                                <img src="\Imagenes\2.png" class="d-block w-100" alt="...">
+                                <img src="\Imagenes\2.jpeg" class="d-block w-100" alt="...">
                             <%--    <div class="carousel-caption d-none d-md-block">
                                     <h5>Second slide label</h5>
                                     <p>Some representative placeholder content for the second slide.</p>
                                 </div>--%>
                             </div>
                             <div class="carousel-item">
-                                <img src="\Imagenes\3.jpg" class="d-block w-100" alt="...">
+                                <img src="\Imagenes\3.jpeg" class="d-block w-100" alt="...">
                                 <%--<div class="carousel-caption d-none d-md-block">
                                     <h5>Third slide label</h5>
                                     <p>Some representative placeholder content for the third slide.</p>
@@ -48,7 +48,7 @@
             </section>
             <section class="col-md-4" aria-labelledby="librariesTitle">
                 <div class="d-grid gap-2 col-6 mx-auto">
-                    <asp:Button ID="btnSolTurno" runat="server" Text="Solicitar Turno" CssClass="btn btn-primary btn-lg" />
+                    <asp:Button ID="btnSolTurno" runat="server" Text="Solicitar Turno" CssClass="btn btn-primary btn-lg" OnClick="btnSolTurno_Click" />
                     <asp:Button ID="btnCartilla" runat="server" Text="Ver Cartilla" CssClass="btn btn-primary btn-lg" OnClick="btnCartilla_Click"/>
                 </div>
             </section>  

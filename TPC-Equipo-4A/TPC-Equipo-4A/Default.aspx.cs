@@ -18,5 +18,10 @@ namespace TPC_Equipo_4A
         {
             Response.Redirect("Cartilla.aspx");
         }
+
+        protected void btnSolTurno_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("NuevoTurno");
+        }
     }
 }
