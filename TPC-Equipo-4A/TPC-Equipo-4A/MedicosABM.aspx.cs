@@ -42,8 +42,10 @@ namespace TPC_Equipo_4A
 
         protected void dgvMedicos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            GridViewRow row = dgvMedicos.SelectedRow;
+            string id_usuario = row.Cells[0].Text;
             string id_medico = dgvMedicos.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioMedico.aspx?id=" + id_medico);
+            Response.Redirect("FormularioMedico.aspx?id_m=" + id_medico + "&id_u=" + id_usuario, false);
         }
     }
 }
