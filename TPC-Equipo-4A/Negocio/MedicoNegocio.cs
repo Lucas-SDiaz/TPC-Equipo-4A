@@ -99,12 +99,25 @@ namespace Negocio
             }
         }
 
-        public void editarMedico(Medico medico)
+        public void EditarMedico(Medico medico)
         {
             datos.setStoreProcedure("storedProcedureEditarMedico");
             datos.setParameters("@ID_Usuario", medico.Usuario.Id_Usuario);
-            datos.setParameters("@Nombre", medico.Legajo);
-            datos.setParameters("@Apellido", medico.Usuario.Id_Usuario);
+            datos.setParameters("@Nombre", medico.Nombre);
+            datos.setParameters("@Apellido", medico.Apellido);
+            datos.setParameters("@Email", medico.Usuario.Email);
+            datos.setParameters("@DNI", medico.DNI);
+            datos.setParameters("@Numero", medico.Telefono);
+            datos.ejecutarAccion();
+        }
+        public void IngresarMedico(Medico medico)
+        {
+            datos.setStoreProcedure("storedProcedureInsertarMedico");
+            datos.setParameters("@Nombre", medico.Nombre);
+            datos.setParameters("@Apellido", medico.Apellido);
+            datos.setParameters("@Email", medico.Usuario.Email);
+            datos.setParameters("@DNI", medico.DNI);
+            datos.setParameters("@Numero", medico.Telefono);
             datos.ejecutarAccion();
         }
     }

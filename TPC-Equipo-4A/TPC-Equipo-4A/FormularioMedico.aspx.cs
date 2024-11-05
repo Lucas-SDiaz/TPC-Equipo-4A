@@ -14,7 +14,7 @@ namespace TPC_Equipo_4A
         protected void Page_Load(object sender, EventArgs e)
         {
             Medico med;
-            if (!IsPostBack && Request.QueryString["id_m"] != null)
+            if (!IsPostBack && Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
             {
                 MedicoNegocio negocio = new MedicoNegocio();
                 int id = int.Parse(Request.QueryString["id_m"]);
@@ -28,28 +28,29 @@ namespace TPC_Equipo_4A
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            if(Request.QueryString["id_m"] == null)
-            {
-
-            }
-            else{
-                editarRegistro();
-            }
+            IngresarOModificarRegistro();
         }
-        private void editarRegistro()
+        private void IngresarOModificarRegistro()
         {
             MedicoNegocio negocio = new MedicoNegocio();
             Medico medico = new Medico();
-            medico.Id_Medico = int.Parse(Request.QueryString["id_m"]);
             medico.Usuario = new Usuario();
-            medico.Usuario.Id_Usuario = int.Parse(Request.QueryString["id_u"]);
             medico.Apellido = txtApellido.Text;
             medico.Nombre = txtNombre.Text;
             medico.DNI = txtDNI.Text;
             medico.Usuario.Email = txtEmail.Text;
             medico.Telefono = txtTelefono.Text;
-            negocio.editarMedico(medico);
-
+            if (Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
+            {
+                medico.Id_Medico = int.Parse(Request.QueryString["id_m"]);
+                medico.Usuario.Id_Usuario = int.Parse(Request.QueryString["id_u"]);
+                negocio.EditarMedico(medico);
+            }
+            else
+            {
+                negocio.IngresarMedico(medico);
+            }
+            Response.Redirect("MedicosABM.aspx", false);
         }
     }
 
