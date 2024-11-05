@@ -24,7 +24,7 @@ namespace TPC_Equipo_4A
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             List<Medico> lista = (List<Medico>)Session["listaMedicos"];
-            dgvMedicos.DataSource = lista.FindAll(x => x.NombreYApellido.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            dgvMedicos.DataSource = lista.FindAll(x => x.Apellido.ToUpper().Contains(txtBuscar.Text.ToUpper()) || x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
             dgvMedicos.DataBind();
         }
         

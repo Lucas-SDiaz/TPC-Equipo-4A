@@ -27,7 +27,8 @@ namespace Negocio
                     aux.Id_Paciente = (int)datos.Lector.GetInt64(0);
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(1);
                     aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]);
-                    aux.NombreYApellido = (string)datos.Lector["Nombre Y apellido"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.DNI = (string)datos.Lector["DNI"];
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.Telefono = (string)datos.Lector["Celular"];
@@ -83,12 +84,11 @@ namespace Negocio
                 datos.clearParameters();
                 datos.setParameters("@ID_Usuario", idUsuarioGenerado);
 
-                string[] nombreApellido = nuevoPaciente.NombreYApellido.Split(' ');
-                string nombre = nombreApellido[0];
-                string apellido = nombreApellido.Length > 1 ? nombreApellido[1] : "";
-
-                datos.setParameters("@Nombre", nombre);
-                datos.setParameters("@Apellido", apellido);
+                //string[] nombreApellido = nuevoPaciente.NombreYApellido.Split(' ');
+                //string nombre = nombreApellido[0];
+                //string apellido = nombreApellido.Length > 1 ? nombreApellido[1] : "";
+                datos.setParameters("@Nombre", nuevoPaciente.Nombre);
+                datos.setParameters("@Apellido", nuevoPaciente.Apellido);
                 datos.setParameters("@DNI", nuevoPaciente.DNI);
                 datos.setParameters("@FechaNacimiento", nuevoPaciente.FechaNacimiento);
                 datos.setParameters("@Estado", 1); 

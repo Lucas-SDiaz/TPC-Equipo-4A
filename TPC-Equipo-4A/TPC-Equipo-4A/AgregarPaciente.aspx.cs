@@ -31,9 +31,11 @@ namespace TPC_Equipo_4A
             nuevoPaciente.Usuario.Contraseña = txtConfirmPassword.Text;
             nuevoPaciente.Usuario.Perfil = Perfil.Paciente;
             //--------------------------------------------------------
-            string nombre = txtNombre.Text;
-            string Apellido = txtApellido.Text;
-            nuevoPaciente.NombreYApellido = nombre + " " + Apellido;
+            //string nombre = txtNombre.Text;
+            //string Apellido = txtApellido.Text;
+            //nuevoPaciente.NombreYApellido = nombre + " " + Apellido;
+            nuevoPaciente.Nombre = txtNombre.Text;
+            nuevoPaciente.Apellido = txtApellido.Text;
             nuevoPaciente.Telefono = txtTelefono.Text;
             nuevoPaciente.DNI = txtDNI.Text;
             //--------------------------------------------------------

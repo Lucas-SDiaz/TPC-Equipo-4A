@@ -20,11 +20,14 @@
         <columns>
             <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario"/>
             <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
-            <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
+<%--            <asp:BoundField HeaderText="Apellido" DataField="Apellido" />--%>
+            <asp:BoundField HeaderText="Nombre y apellido" DataField="NombreCompleto" />
+<%--            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />--%>
             <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
             <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
             <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Descripcion" />
             <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="📝" />
+            <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />
         </columns>
     </asp:GridView>
     <style>

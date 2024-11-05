@@ -19,8 +19,8 @@ namespace TPC_Equipo_4A
                 MedicoNegocio negocio = new MedicoNegocio();
                 int id = int.Parse(Request.QueryString["id_m"]);
                 med = negocio.buscarMedicoID(id);
-                txtApellido.Text = med.NombreYApellido;
-                txtNombre.Text = med.Legajo;
+                txtApellido.Text = med.Apellido;
+                txtNombre.Text = med.Nombre;
                 txtDNI.Text = med.DNI;
                 txtEmail.Text = med.Usuario.Email;
                 txtTelefono.Text = med.Telefono;
@@ -43,8 +43,8 @@ namespace TPC_Equipo_4A
             medico.Id_Medico = int.Parse(Request.QueryString["id_m"]);
             medico.Usuario = new Usuario();
             medico.Usuario.Id_Usuario = int.Parse(Request.QueryString["id_u"]);
-            medico.NombreYApellido = txtApellido.Text;
-            medico.Legajo = txtNombre.Text;
+            medico.Apellido = txtApellido.Text;
+            medico.Nombre = txtNombre.Text;
             medico.DNI = txtDNI.Text;
             medico.Usuario.Email = txtEmail.Text;
             medico.Telefono = txtTelefono.Text;

@@ -29,7 +29,6 @@ namespace TPC_Equipo_4A
                 nuevo.Medico.Id_Medico = int.Parse(ddlMedico.SelectedValue.ToString());
                 nuevo.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());
                 nuevo.Hora = float.Parse(txtHorario.Text.ToString());
-                nuevo.
             }
             catch (Exception ex)
             {

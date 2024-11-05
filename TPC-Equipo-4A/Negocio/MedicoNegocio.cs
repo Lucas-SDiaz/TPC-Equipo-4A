@@ -23,7 +23,8 @@ namespace Negocio
                     aux.Usuario = new Usuario();
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
                     aux.Id_Medico = (int)datos.Lector.GetInt64(1);
-                    aux.NombreYApellido = (string)datos.Lector["Nombre Y apellido"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.Especialidad = new Especialidad();
                     aux.Especialidad.Descripcion = (string)datos.Lector["Nombre_E"];
@@ -51,7 +52,8 @@ namespace Negocio
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
                     aux.Id_Medico = (int)datos.Lector.GetInt64(1);
                     aux.Legajo = (string)datos.Lector["Legajo"];
-                    aux.NombreYApellido = (string)datos.Lector["Nombre Y apellido"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.Telefono = (string)datos.Lector["Celular"];
                     aux.Especialidad = new Especialidad();
@@ -81,8 +83,8 @@ namespace Negocio
                 {
                     aux.Usuario = new Usuario();
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
-                    aux.NombreYApellido = (string)datos.Lector["Apellido"];
-                    aux.Legajo = (string)datos.Lector["Nombre"];
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Usuario = new Usuario();
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.DNI = (string)datos.Lector["DNI"];
@@ -99,7 +101,11 @@ namespace Negocio
 
         public void editarMedico(Medico medico)
         {
-            //datos.setStoreProcedure();
+            datos.setStoreProcedure("storedProcedureEditarMedico");
+            datos.setParameters("@ID_Usuario", medico.Usuario.Id_Usuario);
+            datos.setParameters("@Nombre", medico.Legajo);
+            datos.setParameters("@Apellido", medico.Usuario.Id_Usuario);
+            datos.ejecutarAccion();
         }
     }
 }

@@ -10,11 +10,13 @@ namespace Dominio
     {
         
         public int Id_Persona { get; set; }
-        public string NombreYApellido { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
         public string Telefono { get; set; }
         public string DNI { get; set; }
         public  Usuario Usuario { get; set; }
         public bool Estado { get; set; }
+        public string NombreCompleto => $"{Apellido}, {Nombre}";
 
     }
 }
