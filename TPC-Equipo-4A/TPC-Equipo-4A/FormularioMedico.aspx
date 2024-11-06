@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <%if(Request.QueryString["id"] == null){ %>
+        <%if(Request.QueryString["id_u"] == null && Request.QueryString["id_m"] == null){ %>
             <h2>Registrar Médico</h2>
         <%}else{ %>
             <h2>Editar Médico</h2>
@@ -45,11 +45,11 @@
                         <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
-                <%if (Request.QueryString["id"]==null) { %>
+                <%if (Request.QueryString["id_u"] == null && Request.QueryString["id_m"] == null) { %>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="Especialidad">Especialidad</label>
-                            <asp:DropDownList ID="Especialidad" CssClass="form-control" runat="server">
+                            <asp:DropDownList ID="ddlEspecialidad" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
                                 <asp:ListItem Text="Seleccione una especialidad" Value="0"></asp:ListItem>
                             </asp:DropDownList>
                         </div>

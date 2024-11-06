@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using Negocio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,17 +14,30 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Medico med;
-            if (!IsPostBack && Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
+            try
             {
-                MedicoNegocio negocio = new MedicoNegocio();
-                int id = int.Parse(Request.QueryString["id_m"]);
-                med = negocio.buscarMedicoID(id);
-                txtApellido.Text = med.Apellido;
-                txtNombre.Text = med.Nombre;
-                txtDNI.Text = med.DNI;
-                txtEmail.Text = med.Usuario.Email;
-                txtTelefono.Text = med.Telefono;
+                Medico med;
+                if (!IsPostBack && Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
+                {
+                    MedicoNegocio negocioMed = new MedicoNegocio();
+                    int id = int.Parse(Request.QueryString["id_m"]);
+                    med = negocioMed.buscarMedicoID(id);
+                    txtApellido.Text = med.Apellido;
+                    txtNombre.Text = med.Nombre;
+                    txtDNI.Text = med.DNI;
+                    txtEmail.Text = med.Usuario.Email;
+                    txtTelefono.Text = med.Telefono;
+                }
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                ddlEspecialidad.DataSource = negocio.listarConSP();
+                ddlEspecialidad.DataTextField = "Descripcion";
+                ddlEspecialidad.DataValueField = "Id_Especialidad";
+                ddlEspecialidad.DataBind();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
@@ -51,6 +65,22 @@ namespace TPC_Equipo_4A
                 negocio.IngresarMedico(medico);
             }
             Response.Redirect("MedicosABM.aspx", false);
+        }
+
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (ddlEspecialidad.SelectedValue)
+            {
+             
+                case "Ordenar por especialidad": 
+                    
+                    break;
+                case "Ordenar alfabéticamente": 
+                    break;
+                default: // Opción predeterminada, sin filtro específico
+                    //query = "SELECT * FROM Medicos";
+                    break;
+            }
         }
     }
 
