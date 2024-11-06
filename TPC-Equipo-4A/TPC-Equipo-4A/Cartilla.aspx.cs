@@ -31,18 +31,21 @@ namespace TPC_Equipo_4A
         protected void mostrarDgvSegunPerfil()
         {
             MedicoNegocio medicoNegocio = new MedicoNegocio();
-
-            if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Paciente)
+            Usuario usuario = (Usuario)Session["Usuario"];
+            if (usuario != null)
             {
-                Session.Add("listaMedicos", medicoNegocio.listarParaPacientesConSP());
-                dgvMedicos.DataSource = Session["listaMedicos"];
-                dgvMedicos.DataBind();
-            }
-            else if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
-            {
-                Session.Add("listaMedicos", medicoNegocio.listarParaPAdministrativoConSP());
-                dgvMedicosPersonalAdministrativo.DataSource = Session["listaMedicos"];
-                dgvMedicosPersonalAdministrativo.DataBind();
+                if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Paciente)
+                {
+                    Session.Add("listaMedicos", medicoNegocio.listarParaPacientesConSP());
+                    dgvMedicos.DataSource = Session["listaMedicos"];
+                    dgvMedicos.DataBind();
+                }
+                else if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
+                {
+                    Session.Add("listaMedicos", medicoNegocio.listarParaPAdministrativoConSP());
+                    dgvMedicosPersonalAdministrativo.DataSource = Session["listaMedicos"];
+                    dgvMedicosPersonalAdministrativo.DataBind();
+                }
             }
         }
 

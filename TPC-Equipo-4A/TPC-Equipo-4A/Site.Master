@@ -85,10 +85,11 @@
                                     Iniciar sesión 
                                     <img src="iconoLogin.ico" alt="Iniciar Sesión" style="width: 20px; height: 20px;">
                                 <%}else{
-                                        Session.Remove("Usuario");    %>
-                                    <a class="nav-link" href="Default.aspx">
-                                    Cerrar sesión 
-                                    <img src="iconoLogout.ico" alt="Cerrar Sesión" style="width: 20px; height: 20px;">
+                                       %>
+                                    <asp:LinkButton ID="btnCerrarSession" runat="server" CssClass="btn" OnClick="btnCerrarSession_Click">
+                                        Cerrar sesión 
+                                        <img src="iconoLogout.ico" alt="Cerrar Sesión" style="width: 20px; height: 20px;">
+                                    </asp:LinkButton>
                                 <%} %>
                             </a>
                         </li>

@@ -6,7 +6,9 @@
             <asp:TextBox ID="txtBuscar" CssClass="form-control me-2" runat="server" Placeholder="Buscar médico..." Width="200px"></asp:TextBox>
             <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-outline-secondary" OnClick="btnBuscar_Click" />
         </div>
-         <%if(((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo) {%>   
+         <%if (((Dominio.Usuario)Session["Usuario"]) != null)
+             { 
+             if(((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo) {%>   
         <div>
             <asp:Button runat="server" ID="btnAgregarMedico" Text="Agregar Médico" CssClass="btn btn-outline-primary" OnClick="btnAgregarMedico_Click"/>
             <asp:Button runat="server" ID="btnModificar" Text="Modificar Médico" CssClass="btn btn-outline-secondary"/>
@@ -23,7 +25,7 @@
                 { %>
             <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false">
                 <Columns>
-                    <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
+                    <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreCompleto" />
                     <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Descripcion" />
                     <asp:CommandField ShowSelectButton="true" SelectText="Ver horarios disponibles" />
                 </Columns>
@@ -53,6 +55,6 @@
                 background-color: dimgray;
             }
         </style>
-             <%} %>
+             <%} }%>
 
 </asp:Content>

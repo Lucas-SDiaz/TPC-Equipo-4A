@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dominio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,17 +12,18 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         protected void btnCartilla_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Cartilla.aspx");
+   
+            Response.Redirect("Cartilla.aspx", false);
         }
 
         protected void btnSolTurno_Click(object sender, EventArgs e)
         {
-            Response.Redirect("NuevoTurno");
+            Response.Redirect("NuevoTurno", false);
         }
     }
 }

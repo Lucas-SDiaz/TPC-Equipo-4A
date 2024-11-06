@@ -13,5 +13,10 @@ namespace TPC_Equipo_4A
         {
 
         }
+
+        protected void btnCerrarSession_Click(object sender, EventArgs e)
+        {
+            Session.Remove("Usuario");
+        }
     }
 }
