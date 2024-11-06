@@ -1,13 +1,14 @@
-﻿
-
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="FormularioMedico.aspx.cs" Inherits="TPC_Equipo_4A.FormularioMedico" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="FormularioMedico.aspx.cs" Inherits="TPC_Equipo_4A.FormularioMedico" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <%if(Request.QueryString["id_u"] == null && Request.QueryString["id_m"] == null){ %>
-            <h2>Registrar Médico</h2>
-        <%}else{ %>
-            <h2>Editar Médico</h2>
+        <%if (Request.QueryString["id_u"] == null && Request.QueryString["id_m"] == null)
+            { %>
+        <h2>Registrar Médico</h2>
+        <%}
+        else
+        { %>
+        <h2>Editar Médico</h2>
         <%}%>
         <form>
             <div class="row">
@@ -45,16 +46,13 @@
                         <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
                     </div>
                 </div>
-                <%if (Request.QueryString["id_u"] == null && Request.QueryString["id_m"] == null) { %>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="Especialidad">Especialidad</label>
-                            <asp:DropDownList ID="ddlEspecialidad" AutoPostBack="true" CssClass="form-control" runat="server" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
-                                <asp:ListItem Text="Seleccione una especialidad" Value="0"></asp:ListItem>
-                            </asp:DropDownList>
-                        </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="Especialidad">Especialidad</label>
+                        <asp:DropDownList runat="server" ID="ddlEspecialidad" CssClass="form-control" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
+                        </asp:DropDownList>
                     </div>
-                <%} %>
+                </div>
             </div>
 
             <div class="form-group mt-3">

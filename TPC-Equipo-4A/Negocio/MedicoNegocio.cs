@@ -73,22 +73,24 @@ namespace Negocio
             try
             {
                 Medico aux = new Medico();
-                datos.setQuery("select M.ID_Usuario, M.Apellido, M.Nombre, U.Email, M.DNI, T.Numero from Medicos M" +
-                              " INNER JOIN Usuarios U ON U.ID_Usuario = M.ID_Usuario" +
-                              " INNER JOIN Telefonos T ON T.ID_Usuario = M.ID_Usuario" +
-                              " WHERE M.ID_Medico = @ID_Medico");
+                //datos.setQuery("select M.ID_Usuario, M.Apellido, M.Nombre, U.Email, M.DNI, T.Numero from Medicos M" +
+                //              " INNER JOIN Usuarios U ON U.ID_Usuario = M.ID_Usuario" +
+                //              " INNER JOIN Telefonos T ON T.ID_Usuario = M.ID_Usuario" +
+                //              " WHERE M.ID_Medico = @ID_Medico");
+                datos.setStoreProcedure("storedProcedureBuscarMedicoID");
                 datos.setParameters("@ID_Medico", id_med);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     aux.Usuario = new Usuario();
+                    aux.Especialidad = new Especialidad();
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
-                    aux.Usuario = new Usuario();
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.DNI = (string)datos.Lector["DNI"];
                     aux.Telefono = (string)datos.Lector["Numero"];
+                    aux.Especialidad.Id_Especialidad = (int)datos.Lector.GetInt64(3);
                 }
                 return aux;
             }
@@ -118,6 +120,7 @@ namespace Negocio
             datos.setParameters("@Email", medico.Usuario.Email);
             datos.setParameters("@DNI", medico.DNI);
             datos.setParameters("@Numero", medico.Telefono);
+            datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
             datos.ejecutarAccion();
         }
     }

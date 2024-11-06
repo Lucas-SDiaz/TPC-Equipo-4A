@@ -16,23 +16,31 @@ namespace TPC_Equipo_4A
         {
             try
             {
-                Medico med;
-                if (!IsPostBack && Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
+                Medico med = new Medico();
+                med.Usuario = new Usuario();
+                if (!IsPostBack)
                 {
+                    CargarEspecialidades();
                     MedicoNegocio negocioMed = new MedicoNegocio();
-                    int id = int.Parse(Request.QueryString["id_m"]);
-                    med = negocioMed.buscarMedicoID(id);
-                    txtApellido.Text = med.Apellido;
-                    txtNombre.Text = med.Nombre;
-                    txtDNI.Text = med.DNI;
-                    txtEmail.Text = med.Usuario.Email;
-                    txtTelefono.Text = med.Telefono;
+                    int id;
+                    if (Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
+                    {
+                        id = int.Parse(Request.QueryString["id_m"]);
+                        med = negocioMed.buscarMedicoID(id);
+                        txtApellido.Text = med.Apellido;
+                        txtNombre.Text = med.Nombre;
+                        txtDNI.Text = med.DNI;
+                        txtEmail.Text = med.Usuario.Email;
+                        txtTelefono.Text = med.Telefono;
+                        ddlEspecialidad.SelectedValue = med.Especialidad.Id_Especialidad.ToString();
+                    }
+
                 }
-                EspecialidadNegocio negocio = new EspecialidadNegocio();
-                ddlEspecialidad.DataSource = negocio.listarConSP();
-                ddlEspecialidad.DataTextField = "Descripcion";
-                ddlEspecialidad.DataValueField = "Id_Especialidad";
-                ddlEspecialidad.DataBind();
+                else
+                {
+                }
+               
+
             }
             catch (Exception ex)
             {
@@ -42,7 +50,15 @@ namespace TPC_Equipo_4A
         }
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            IngresarOModificarRegistro();
+            try
+            {
+                IngresarOModificarRegistro();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
         private void IngresarOModificarRegistro()
         {
@@ -54,7 +70,9 @@ namespace TPC_Equipo_4A
             medico.DNI = txtDNI.Text;
             medico.Usuario.Email = txtEmail.Text;
             medico.Telefono = txtTelefono.Text;
-            if (Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
+            medico.Especialidad = new Especialidad();
+            medico.Especialidad.Id_Especialidad = int.Parse(ddlEspecialidad.SelectedValue);
+                if (Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
             {
                 medico.Id_Medico = int.Parse(Request.QueryString["id_m"]);
                 medico.Usuario.Id_Usuario = int.Parse(Request.QueryString["id_u"]);
@@ -69,6 +87,10 @@ namespace TPC_Equipo_4A
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //Medico medico = new Medico();
+            //medico.Especialidad = new Especialidad();
+            //medico.Especialidad.Descripcion = ddlEspecialidad.SelectedItem.Text;
+            //medico.Especialidad.Id_Especialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
             switch (ddlEspecialidad.SelectedValue)
             {
              
@@ -81,6 +103,15 @@ namespace TPC_Equipo_4A
                     //query = "SELECT * FROM Medicos";
                     break;
             }
+        }
+        private void CargarEspecialidades()
+        {
+            EspecialidadNegocio negocio = new EspecialidadNegocio();
+            ddlEspecialidad.DataSource = negocio.listarConSP();
+            ddlEspecialidad.DataTextField = "Descripcion";
+            ddlEspecialidad.DataValueField = "Id_Especialidad";
+            ddlEspecialidad.DataBind();
+            ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccionar Especialidad --", "0"));
         }
     }
 
