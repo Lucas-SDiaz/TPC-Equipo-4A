@@ -9,9 +9,10 @@ namespace Negocio
 {
     public class MedicoNegocio
     {
-        AccesoDatos datos = new AccesoDatos();
         public List<Medico> listarParaPacientesConSP()
         {
+            AccesoDatos datos = new AccesoDatos();
+
             List<Medico> lista = new List<Medico>();
             try
             {
@@ -40,6 +41,8 @@ namespace Negocio
         }
         public List<Medico> listarParaPAdministrativoConSP()
         {
+            AccesoDatos datos = new AccesoDatos();
+
             List<Medico> lista = new List<Medico>();
             try
             {
@@ -58,7 +61,10 @@ namespace Negocio
                     aux.Telefono = (string)datos.Lector["Celular"];
                     aux.Especialidad = new Especialidad();
                     aux.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
-                    lista.Add(aux);
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    if(aux.Estado == true){
+                        lista.Add(aux);
+                    }
                 }
                 return lista;
             }
@@ -70,13 +76,11 @@ namespace Negocio
         }
         public Medico buscarMedicoID(int id_med)
         {
+            AccesoDatos datos = new AccesoDatos();
+
             try
             {
                 Medico aux = new Medico();
-                //datos.setQuery("select M.ID_Usuario, M.Apellido, M.Nombre, U.Email, M.DNI, T.Numero from Medicos M" +
-                //              " INNER JOIN Usuarios U ON U.ID_Usuario = M.ID_Usuario" +
-                //              " INNER JOIN Telefonos T ON T.ID_Usuario = M.ID_Usuario" +
-                //              " WHERE M.ID_Medico = @ID_Medico");
                 datos.setStoreProcedure("storedProcedureBuscarMedicoID");
                 datos.setParameters("@ID_Medico", id_med);
                 datos.ejecutarLectura();
@@ -103,6 +107,8 @@ namespace Negocio
 
         public void EditarMedico(Medico medico)
         {
+            AccesoDatos datos = new AccesoDatos();
+
             datos.setStoreProcedure("storedProcedureEditarMedico");
             datos.setParameters("@ID_Usuario", medico.Usuario.Id_Usuario);
             datos.setParameters("@Nombre", medico.Nombre);
@@ -110,18 +116,54 @@ namespace Negocio
             datos.setParameters("@Email", medico.Usuario.Email);
             datos.setParameters("@DNI", medico.DNI);
             datos.setParameters("@Numero", medico.Telefono);
+            datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
             datos.ejecutarAccion();
         }
         public void IngresarMedico(Medico medico)
         {
-            datos.setStoreProcedure("storedProcedureInsertarMedico");
-            datos.setParameters("@Nombre", medico.Nombre);
-            datos.setParameters("@Apellido", medico.Apellido);
-            datos.setParameters("@Email", medico.Usuario.Email);
-            datos.setParameters("@DNI", medico.DNI);
-            datos.setParameters("@Numero", medico.Telefono);
-            datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
-            datos.ejecutarAccion();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setStoreProcedure("storedProcedureInsertarMedico");
+                datos.setParameters("@Nombre", medico.Nombre);
+                datos.setParameters("@Apellido", medico.Apellido);
+                datos.setParameters("@Email", medico.Usuario.Email);
+                datos.setParameters("@DNI", medico.DNI);
+                datos.setParameters("@Numero", medico.Telefono);
+                datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool EliminarMedico(int id_usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setStoreProcedure("storedProcedureEliminarMedico");
+                datos.setParameters("@ID_Usuario", id_usuario);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }
