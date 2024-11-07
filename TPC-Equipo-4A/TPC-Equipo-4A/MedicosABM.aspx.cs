@@ -11,9 +11,9 @@ namespace TPC_Equipo_4A
 {
     public partial class MedicosABM : System.Web.UI.Page
     {
+        MedicoNegocio medicoNegocio = new MedicoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
-            MedicoNegocio medicoNegocio = new MedicoNegocio();
 
             if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Administrador)
             {
@@ -39,13 +39,22 @@ namespace TPC_Equipo_4A
         {
             Response.Redirect("FormularioMedico.aspx", false);
         }
-
-        protected void dgvMedicos_SelectedIndexChanged(object sender, EventArgs e)
+        protected void dgvMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            GridViewRow row = dgvMedicos.SelectedRow;
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = dgvMedicos.Rows[index];
             string id_usuario = row.Cells[0].Text;
-            string id_medico = dgvMedicos.SelectedDataKey.Value.ToString();
-            Response.Redirect("FormularioMedico.aspx?id_m=" + id_medico + "&id_u=" + id_usuario, false);
+            string id_medico = dgvMedicos.DataKeys[index].Value.ToString();
+            if (e.CommandName == "Editar")
+            {
+                Response.Redirect("FormularioMedico.aspx?id_m=" + id_medico + "&id_u=" + id_usuario, false);
+            }
+            else if(e.CommandName == "Eliminar")
+            {
+                medicoNegocio.EliminarMedico(int.Parse(id_usuario));
+                Response.Redirect("MedicosAMB.aspx", false);
+            }
+
         }
     }
 }
