@@ -5,6 +5,7 @@
         <form class="row g-3">
          <div class="row align-items-center">
    <div class="col">
+
        <!-- Información Personal -->
 <div class="col-md-6">
     <h4>Información Personal</h4>
@@ -87,4 +88,7 @@
             </div>
         </form>
     </div>
+
+
+
 </asp:Content>

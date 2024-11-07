@@ -43,9 +43,69 @@ namespace Negocio
             }
         }
 
+        public void ValidarPaciente(Paciente paciente)
+        {
+            //NOMBRE obligatorio, sin números
+            if (string.IsNullOrWhiteSpace(paciente.Nombre))
+                throw new ArgumentException("El nombre es obligatorio.");
+            if (!Regex.IsMatch(paciente.Nombre, @"^[a-zA-ZÀ-ÿ\s]+$"))
+                throw new ArgumentException("El nombre solo puede contener letras.");
+
+            //APELLIDO obligatorio, sin números
+            if (string.IsNullOrWhiteSpace(paciente.Apellido))
+                throw new ArgumentException("El apellido es obligatorio.");
+            if (!Regex.IsMatch(paciente.Apellido, @"^[a-zA-ZÀ-ÿ\s]+$"))
+                throw new ArgumentException("El apellido solo puede contener letras.");
+
+            //DNI obligatorio, solo números, de 7 a 8 dígitos
+            if (string.IsNullOrWhiteSpace(paciente.DNI))
+                throw new ArgumentException("El DNI es obligatorio.");
+            if (!Regex.IsMatch(paciente.DNI, @"^\d{7,8}$"))
+                throw new ArgumentException("El DNI debe tener entre 7 y 8 dígitos numéricos.");
+            //Valido que el DNI no exista previamente
+            if (ExisteDNI(paciente.DNI))
+                throw new ArgumentException("El DNI ya está registrado en el sistema.");
+
+            //FECHA, menor a la actual
+            if (paciente.FechaNacimiento == null || paciente.FechaNacimiento > DateTime.Now)
+                throw new ArgumentException("La fecha de nacimiento es inválida.");
+
+            //MAIL si o si @
+            if (!string.IsNullOrEmpty(paciente.Usuario.Email) &&
+                !Regex.IsMatch(paciente.Usuario.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                throw new ArgumentException("El formato de email es inválido.");
+            }
+
+            //CONTRASEÑA obligatoria, al menos 8 caracteres y 1 número
+            if (string.IsNullOrWhiteSpace(paciente.Usuario.Contraseña))
+                throw new ArgumentException("La contraseña es obligatoria.");
+            if (!Regex.IsMatch(paciente.Usuario.Contraseña, @"^(?=.*\d).{8,}$"))
+                throw new ArgumentException("La contraseña debe tener al menos 8 caracteres y contener al menos un número.");
+        }
+
+        private bool ExisteDNI(string dni)
+        {
+            try
+            {
+                datos.setQuery("SELECT COUNT(*) FROM Pacientes WHERE DNI = @DNI");
+                datos.setParameters("@DNI", dni);
+                int count = (int)datos.ejecutarScalar();
+                return count > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al verificar la existencia del DNI en la base de datos.", ex);
+            }
+        }
+
+
         public void Agregar (Paciente nuevoPaciente)
         {
             AccesoDatos datos = new AccesoDatos();
+
+            ValidarPaciente(nuevoPaciente);
+
             try
             {
                 //Usuario
@@ -91,7 +151,16 @@ namespace Negocio
                 datos.setParameters("@Apellido", nuevoPaciente.Apellido);
                 datos.setParameters("@DNI", nuevoPaciente.DNI);
                 datos.setParameters("@FechaNacimiento", nuevoPaciente.FechaNacimiento);
-                datos.setParameters("@Estado", 1); 
+                datos.setParameters("@Estado", 1);
+                
+                datos.ejecutarAccion();
+
+                //Teléfono
+                datos.setQuery("INSERT INTO Telefonos (ID_Usuario, Numero) VALUES (@ID_Usuario, @Numero)");
+                datos.clearParameters();
+                datos.setParameters("@ID_Usuario", idUsuarioGenerado);
+
+                datos.setParameters("@Numero", nuevoPaciente.Telefono);
 
                 datos.ejecutarAccion(); 
             }

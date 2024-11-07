@@ -38,7 +38,7 @@
                 <div class="card text-white bg-info shadow">
                     <div class="card-body text-center">
                         <h5 class="card-title">Pacientes</h5>
-                        <a href="AgregarPaciente.aspx" class="btn btn-light">Ver más</a>
+                        <a href="Pacientes.aspx" class="btn btn-light">Ver más</a>
                     </div>
                 </div>
             </div>
