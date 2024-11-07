@@ -27,7 +27,7 @@
                     <div class="card-body text-center">
                         <img src="iconoPacientes.ico" alt="Imagen" style="width: 100px; height: 100px;">
                         <h5 class="card-title mt-3">Empleados</h5>
-                        <a href="#" class="btn btn-primary">Ver más</a>
+                        <a href="ABMPadministrativo.aspx" class="btn btn-primary">Ver más</a>
                     </div>
                 </div>
             </div>

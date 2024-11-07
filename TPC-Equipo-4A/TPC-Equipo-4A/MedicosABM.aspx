@@ -16,18 +16,16 @@
         </asp:DropDownList>
     </div>
     <hr />
-    <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Medico" OnSelectedIndexChanged="dgvMedicos_SelectedIndexChanged">
+    <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Medico" OnRowCommand="dgvMedicos_RowCommand">
         <columns>
             <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario"/>
             <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
-<%--            <asp:BoundField HeaderText="Apellido" DataField="Apellido" />--%>
             <asp:BoundField HeaderText="Nombre y apellido" DataField="NombreCompleto" />
-<%--            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />--%>
             <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
             <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
             <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Descripcion" />
-            <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="📝" />
-            <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />
+            <asp:ButtonField CommandName="Editar" Text="📝" ButtonType="Button" HeaderText="Editar"/>
+            <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar"/>
         </columns>
     </asp:GridView>
     <style>
