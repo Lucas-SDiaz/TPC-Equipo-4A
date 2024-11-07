@@ -122,6 +122,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ABMPadministrativo.aspx" />
     <Content Include="About.aspx" />
     <Content Include="AgregarPaciente.aspx" />
     <Content Include="Cartilla.aspx" />
@@ -147,6 +148,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="favicon.ico" />
+    <Content Include="FormularioAdministartivos.aspx" />
     <Content Include="FormularioMedico.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
@@ -196,6 +198,13 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ABMPadministrativo.aspx.cs">
+      <DependentUpon>ABMPadministrativo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ABMPadministrativo.aspx.designer.cs">
+      <DependentUpon>ABMPadministrativo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AgregarPaciente.aspx.cs">
       <DependentUpon>AgregarPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -246,6 +255,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioAdministartivos.aspx.cs">
+      <DependentUpon>FormularioAdministartivos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioAdministartivos.aspx.designer.cs">
+      <DependentUpon>FormularioAdministartivos.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormularioMedico.aspx.cs">
       <DependentUpon>FormularioMedico.aspx</DependentUpon>
