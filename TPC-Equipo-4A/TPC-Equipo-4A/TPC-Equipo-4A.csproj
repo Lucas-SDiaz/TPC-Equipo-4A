@@ -147,10 +147,13 @@
     <Content Include="Dashboard.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="EspecialidadesABM.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="FormularioAdministartivos.aspx" />
+    <Content Include="FormularioEspecialidad.aspx" />
     <Content Include="FormularioMedico.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="insertExitoso.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MedicosABM.aspx" />
     <Content Include="NuevoTurno.aspx" />
@@ -256,12 +259,26 @@
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EspecialidadesABM.aspx.cs">
+      <DependentUpon>EspecialidadesABM.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EspecialidadesABM.aspx.designer.cs">
+      <DependentUpon>EspecialidadesABM.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormularioAdministartivos.aspx.cs">
       <DependentUpon>FormularioAdministartivos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="FormularioAdministartivos.aspx.designer.cs">
       <DependentUpon>FormularioAdministartivos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioEspecialidad.aspx.cs">
+      <DependentUpon>FormularioEspecialidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FormularioEspecialidad.aspx.designer.cs">
+      <DependentUpon>FormularioEspecialidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormularioMedico.aspx.cs">
       <DependentUpon>FormularioMedico.aspx</DependentUpon>
@@ -272,6 +289,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="insertExitoso.aspx.cs">
+      <DependentUpon>insertExitoso.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="insertExitoso.aspx.designer.cs">
+      <DependentUpon>insertExitoso.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

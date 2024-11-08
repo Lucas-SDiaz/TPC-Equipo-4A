@@ -22,8 +22,9 @@ namespace Negocio
                     Especialidad aux = new Especialidad();
                     aux.Id_Especialidad = (int)datos.Lector.GetInt64(0);
                     aux.Descripcion = (string)datos.Lector["Nombre_E"];
-
-                    lista.Add(aux);
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    if (aux.Estado)
+                        lista.Add(aux);
                 }
                 return lista;
             }
@@ -31,6 +32,31 @@ namespace Negocio
             {
 
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool IngresarEspecialidad(Especialidad aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setStoreProcedure("storedProcedureInsertarEspecialidad");
+                datos.setParameters("@Descripcion", aux.Descripcion);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

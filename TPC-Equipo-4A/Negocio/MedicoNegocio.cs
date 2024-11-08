@@ -62,9 +62,8 @@ namespace Negocio
                     aux.Especialidad = new Especialidad();
                     aux.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
                     aux.Estado = (bool)datos.Lector["Estado"];
-                    if(aux.Estado == true){
+                    if(aux.Estado)
                         lista.Add(aux);
-                    }
                 }
                 return lista;
             }
@@ -119,7 +118,7 @@ namespace Negocio
             datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
             datos.ejecutarAccion();
         }
-        public void IngresarMedico(Medico medico)
+        public bool IngresarMedico(Medico medico)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -133,6 +132,7 @@ namespace Negocio
                 datos.setParameters("@Numero", medico.Telefono);
                 datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
                 datos.ejecutarAccion();
+                return true;
             }
             catch (Exception ex)
             {

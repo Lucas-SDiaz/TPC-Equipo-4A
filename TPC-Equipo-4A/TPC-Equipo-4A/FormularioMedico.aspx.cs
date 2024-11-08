@@ -80,7 +80,8 @@ namespace TPC_Equipo_4A
             }
             else
             {
-                negocio.IngresarMedico(medico);
+                if (negocio.IngresarMedico(medico))
+                    Response.Redirect("insertExitoso.aspx");
             }
             Response.Redirect("MedicosABM.aspx", false);
         }

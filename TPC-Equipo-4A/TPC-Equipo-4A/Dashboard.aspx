@@ -32,7 +32,6 @@
                 </div>
             </div>
         </div>
-        
         <div class="row">
             <div class="col-md-3 mb-4">
                 <div class="card text-white bg-info shadow">
@@ -46,7 +45,7 @@
                 <div class="card text-white bg-info shadow">
                     <div class="card-body text-center">
                         <h5 class="card-title">Especialidades</h5>
-                        <a href="#" class="btn btn-light">Ver más</a>
+                        <a href="EspecialidadesABM.aspx" class="btn btn-light">Ver más</a>
                     </div>
                 </div>
             </div>
