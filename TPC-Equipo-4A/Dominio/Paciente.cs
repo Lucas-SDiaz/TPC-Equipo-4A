@@ -17,7 +17,7 @@ namespace Dominio
 
         public string FechaNaciemiento()
         {
-            return FechaNacimiento.ToString("yyyy-MM-dd");
+            return FechaNacimiento.ToString("dd-MM-yyyy");
         }
        // //public int HistoriaClinica { get; set; }
        // public string NombreYApellido { get; set; }

@@ -16,7 +16,12 @@ namespace Dominio
         public string DNI { get; set; }
         public  Usuario Usuario { get; set; }
         public bool Estado { get; set; }
+        public DateTime FechaRegistro { get; set; }
         public string NombreCompleto => $"{Apellido}, {Nombre}";
+        public string FechaReg()
+        {
+            return FechaRegistro.ToString("dd-MM-yyyy");
+        }
 
     }
 }

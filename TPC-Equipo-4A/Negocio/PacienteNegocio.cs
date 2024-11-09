@@ -43,6 +43,43 @@ namespace Negocio
             }
         }
 
+        public Paciente BuscarPorID(string id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                Paciente aux = new Paciente();
+                datos.setStoreProcedure("storedProcedureBuscarPacienteID");
+                datos.setParameters("@ID_Paciente", id);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    aux.Domicilio = new Domicilio();
+                    aux.Usuario = new Usuario();
+                    aux.Id_Paciente = (int)datos.Lector.GetInt64(0);
+                    aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(1);
+                    aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]).Date;
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.DNI = (string)datos.Lector["DNI"];
+                    aux.Usuario.Email = (string)datos.Lector["Email"];
+                    aux.Telefono = (string)datos.Lector["Celular"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+                    aux.FechaRegistro = ((DateTime)datos.Lector["FechaRegistro"]).Date;
+                    aux.Domicilio.Calle = (string)datos.Lector["Domicilio"];
+                }
+                return aux;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void ValidarPaciente(Paciente paciente)
         {
             //NOMBRE obligatorio, sin números
