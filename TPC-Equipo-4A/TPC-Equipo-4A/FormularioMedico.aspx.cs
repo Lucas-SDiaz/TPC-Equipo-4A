@@ -36,11 +36,6 @@ namespace TPC_Equipo_4A
                     }
 
                 }
-                else
-                {
-                }
-               
-
             }
             catch (Exception ex)
             {
@@ -76,6 +71,7 @@ namespace TPC_Equipo_4A
             {
                 medico.Id_Medico = int.Parse(Request.QueryString["id_m"]);
                 medico.Usuario.Id_Usuario = int.Parse(Request.QueryString["id_u"]);
+                medico.Estado = true;
                 negocio.EditarMedico(medico);
             }
             else

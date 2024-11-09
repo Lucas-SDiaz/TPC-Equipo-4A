@@ -46,14 +46,10 @@ namespace TPC_Equipo_4A
 
         }
 
-        protected void dgvEspecialidades_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-
-        }
-
         protected void dgvEspecialidades_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
+            string id_esp = dgvEspecialidades.SelectedDataKey.Value.ToString();
+            Response.Redirect("ConfirmarAccion.aspx?id_esp=" + id_esp, false);
         }
 
         protected void dgvEspecialidades_PageIndexChanging(object sender, GridViewPageEventArgs e)

@@ -28,12 +28,9 @@ namespace TPC_Equipo_4A
 
             nuevoPaciente.Usuario = new Usuario();
             nuevoPaciente.Usuario.Email = txtEmail.Text;
-            nuevoPaciente.Usuario.Contraseña = txtConfirmPassword.Text;
+            nuevoPaciente.Usuario.Contraseña = txtDNI.Text;
             nuevoPaciente.Usuario.Perfil = Perfil.Paciente;
             //--------------------------------------------------------
-            //string nombre = txtNombre.Text;
-            //string Apellido = txtApellido.Text;
-            //nuevoPaciente.NombreYApellido = nombre + " " + Apellido;
             nuevoPaciente.Nombre = txtNombre.Text;
             nuevoPaciente.Apellido = txtApellido.Text;
             nuevoPaciente.Telefono = txtTelefono.Text;
@@ -52,6 +49,16 @@ namespace TPC_Equipo_4A
             //--------------------------------------------------------
             nuevo.Agregar(nuevoPaciente);
             Response.Redirect("Dashboard.aspx", false);
+        }
+
+        protected void btnEnviar_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnEnviar_Click2(object sender, EventArgs e)
+        {
+
         }
     }
 }

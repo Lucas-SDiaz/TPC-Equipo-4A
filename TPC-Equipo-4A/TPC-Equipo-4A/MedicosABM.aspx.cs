@@ -14,12 +14,14 @@ namespace TPC_Equipo_4A
         MedicoNegocio medicoNegocio = new MedicoNegocio();
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Administrador)
+            if (!IsPostBack)
             {
-                Session.Add("listaMedicos", medicoNegocio.listarParaPAdministrativoConSP());
-                dgvMedicos.DataSource = Session["listaMedicos"];
-                dgvMedicos.DataBind();
+                if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Administrador)
+                {
+                    Session.Add("listaMedicos", medicoNegocio.listarParaPAdministrativoConSP(true));
+                    dgvMedicos.DataSource = Session["listaMedicos"];
+                    dgvMedicos.DataBind();
+                }
             }
         }
 
@@ -52,9 +54,14 @@ namespace TPC_Equipo_4A
             else if(e.CommandName == "Eliminar")
             {
                 medicoNegocio.EliminarMedico(int.Parse(id_usuario));
-                Response.Redirect("MedicosAMB.aspx", false);
+                Response.Redirect("MedicosABM.aspx", false);
             }
 
+        }
+
+        protected void VerRegistrosEliminados_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegistrosEliminados.aspx", false);
         }
     }
 }

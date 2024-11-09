@@ -41,7 +41,6 @@ namespace Negocio
         public bool IngresarEspecialidad(Especialidad aux)
         {
             AccesoDatos datos = new AccesoDatos();
-
             try
             {
                 datos.setStoreProcedure("storedProcedureInsertarEspecialidad");
@@ -59,5 +58,53 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+        public bool BajaEspecialidad(Especialidad especialidad)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setStoreProcedure("storedProcedureBajaEspecialidad");
+                datos.setParameters("@ID_Especialidad", especialidad.Id_Especialidad);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        //public int ContarRegistros()
+        //{
+        //    List<Especialidad> lista = new List<Especialidad>();
+        //    try
+        //    {
+        //        datos.setStoreProcedure("storedProcedureListarEspecialidad");
+        //        datos.ejecutarLectura();
+        //        while (datos.Lector.Read())
+        //        {
+        //            Especialidad aux = new Especialidad();
+        //            aux.Id_Especialidad = (int)datos.Lector.GetInt64(0);
+        //            aux.Descripcion = (string)datos.Lector["Nombre_E"];
+        //            aux.Estado = (bool)datos.Lector["Estado"];
+        //            lista.Add(aux);
+        //        }
+        //        return lista.Count;
+                
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    }
+        //    finally
+        //    {
+        //        datos.cerrarConexion();
+        //    }
+        //}
     }
 }

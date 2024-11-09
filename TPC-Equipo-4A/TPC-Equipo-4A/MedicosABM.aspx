@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="MedicosABM.aspx.cs" Inherits="TPC_Equipo_4A.MedicosABM" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <meta charset="utf-8" />
     <div class="d-flex justify-content-between">
         <div class="d-flex">
             <asp:TextBox ID="txtBuscar" CssClass="form-control me-2" runat="server" Placeholder="Buscar médico..." Width="200px"></asp:TextBox>
@@ -28,6 +29,9 @@
             <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar"/>
         </columns>
     </asp:GridView>
+    <div>
+        <asp:Button runat="server" ID="VerRegistrosEliminados" OnClick="VerRegistrosEliminados_Click" Text="Ver registros eliminados"/>
+    </div>
     <style>
         .tableCustom {
             border-radius: 9px;

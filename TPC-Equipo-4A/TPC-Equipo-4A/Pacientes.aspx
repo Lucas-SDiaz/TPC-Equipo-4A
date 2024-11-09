@@ -22,7 +22,7 @@
             <asp:BoundField HeaderText="DNI" DataField="DNI" />
             <asp:BoundField HeaderText="Email" DataField="Usuario.Email"/>
             <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-            <asp:BoundField HeaderText="Fecha de nacimiento" DataField="FechaNacimiento" />
+            <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
             <asp:CommandField HeaderText="Modificar" ShowSelectButton="true" SelectText="📝" />
             <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />
         </Columns>

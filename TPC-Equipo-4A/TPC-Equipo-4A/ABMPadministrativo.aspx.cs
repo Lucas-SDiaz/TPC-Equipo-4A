@@ -33,5 +33,25 @@ namespace TPC_Equipo_4A
             //string id_empleado = dgvAdministrativos.SelectedDataKey.Value.ToString();
             //Response.Redirect("FormularioAdministrativos.aspx?id_m=" + id_empleado + "&id_u=" + id_usuario, false);
         }
+
+        protected void dgvAdministrativos_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnAgregarAdmin_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnBuscar_Click1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

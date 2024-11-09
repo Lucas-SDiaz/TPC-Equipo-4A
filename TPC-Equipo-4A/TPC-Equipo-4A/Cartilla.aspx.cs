@@ -42,7 +42,7 @@ namespace TPC_Equipo_4A
                 }
                 else if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
                 {
-                    Session.Add("listaMedicos", medicoNegocio.listarParaPAdministrativoConSP());
+                    Session.Add("listaMedicos", medicoNegocio.listarParaPAdministrativoConSP(true));
                     dgvMedicosPersonalAdministrativo.DataSource = Session["listaMedicos"];
                     dgvMedicosPersonalAdministrativo.DataBind();
                 }

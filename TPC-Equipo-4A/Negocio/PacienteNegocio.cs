@@ -26,7 +26,7 @@ namespace Negocio
                     aux.Usuario = new Usuario();   
                     aux.Id_Paciente = (int)datos.Lector.GetInt64(0);
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(1);
-                    aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]);
+                    aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]).Date;
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.DNI = (string)datos.Lector["DNI"];
@@ -143,10 +143,6 @@ namespace Negocio
                 datos.setQuery("INSERT INTO Pacientes (ID_Usuario, Nombre, Apellido, DNI, FechaNacimiento, Estado) VALUES (@ID_Usuario, @Nombre, @Apellido, @DNI, @FechaNacimiento, @Estado)");
                 datos.clearParameters();
                 datos.setParameters("@ID_Usuario", idUsuarioGenerado);
-
-                //string[] nombreApellido = nuevoPaciente.NombreYApellido.Split(' ');
-                //string nombre = nombreApellido[0];
-                //string apellido = nombreApellido.Length > 1 ? nombreApellido[1] : "";
                 datos.setParameters("@Nombre", nuevoPaciente.Nombre);
                 datos.setParameters("@Apellido", nuevoPaciente.Apellido);
                 datos.setParameters("@DNI", nuevoPaciente.DNI);
@@ -159,7 +155,6 @@ namespace Negocio
                 datos.setQuery("INSERT INTO Telefonos (ID_Usuario, Numero) VALUES (@ID_Usuario, @Numero)");
                 datos.clearParameters();
                 datos.setParameters("@ID_Usuario", idUsuarioGenerado);
-
                 datos.setParameters("@Numero", nuevoPaciente.Telefono);
 
                 datos.ejecutarAccion(); 

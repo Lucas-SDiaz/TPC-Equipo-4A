@@ -19,7 +19,6 @@ namespace TPC_Equipo_4A
             Session.Remove("Usuario");
             if (Session["Usuario"]==null)
                 Response.Redirect("Default.aspx");
-
         }
     }
 }

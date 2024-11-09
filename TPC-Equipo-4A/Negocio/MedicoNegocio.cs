@@ -39,7 +39,7 @@ namespace Negocio
                 throw ex;
             }
         }
-        public List<Medico> listarParaPAdministrativoConSP()
+        public List<Medico> listarParaPAdministrativoConSP(bool opc)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -52,6 +52,7 @@ namespace Negocio
                 {
                     Medico aux = new Medico();
                     aux.Usuario = new Usuario();
+                    aux.Especialidad = new Especialidad();
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
                     aux.Id_Medico = (int)datos.Lector.GetInt64(1);
                     aux.Legajo = (string)datos.Lector["Legajo"];
@@ -59,10 +60,13 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.Telefono = (string)datos.Lector["Celular"];
-                    aux.Especialidad = new Especialidad();
+                    aux.DNI = (string)datos.Lector["DNI"];
                     aux.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
+                    aux.Especialidad.Id_Especialidad = (int)datos.Lector.GetInt64(9);
                     aux.Estado = (bool)datos.Lector["Estado"];
-                    if(aux.Estado)
+                    if(opc && aux.Estado)
+                        lista.Add(aux);
+                    else if(!opc && !aux.Estado)
                         lista.Add(aux);
                 }
                 return lista;
@@ -107,16 +111,36 @@ namespace Negocio
         public void EditarMedico(Medico medico)
         {
             AccesoDatos datos = new AccesoDatos();
-
-            datos.setStoreProcedure("storedProcedureEditarMedico");
-            datos.setParameters("@ID_Usuario", medico.Usuario.Id_Usuario);
-            datos.setParameters("@Nombre", medico.Nombre);
-            datos.setParameters("@Apellido", medico.Apellido);
-            datos.setParameters("@Email", medico.Usuario.Email);
-            datos.setParameters("@DNI", medico.DNI);
-            datos.setParameters("@Numero", medico.Telefono);
-            datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
-            datos.ejecutarAccion();
+            MedicoNegocio negocio = new MedicoNegocio();
+            Medico aux = new Medico();
+            aux.Usuario = new Usuario();
+            if (medico.Nombre == null)
+            {
+                aux = negocio.buscarMedicoID(medico.Id_Medico);
+                datos.setStoreProcedure("storedProcedureEditarMedico");
+                datos.setParameters("@ID_Usuario", aux.Usuario.Id_Usuario);
+                datos.setParameters("@Nombre", aux.Nombre);
+                datos.setParameters("@Apellido", aux.Apellido);
+                datos.setParameters("@Email", aux.Usuario.Email);
+                datos.setParameters("@DNI", aux.DNI);
+                datos.setParameters("@Numero", aux.Telefono);
+                datos.setParameters("@ID_Especialidad", aux.Especialidad.Id_Especialidad);
+                datos.setParameters("@Estado", true);
+                datos.ejecutarAccion();
+            }
+            else
+            {
+                datos.setStoreProcedure("storedProcedureEditarMedico");
+                datos.setParameters("@ID_Usuario", medico.Usuario.Id_Usuario);
+                datos.setParameters("@Nombre", medico.Nombre);
+                datos.setParameters("@Apellido", medico.Apellido);
+                datos.setParameters("@Email", medico.Usuario.Email);
+                datos.setParameters("@DNI", medico.DNI);
+                datos.setParameters("@Numero", medico.Telefono);
+                datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
+                datos.setParameters("@Estado", true);
+                datos.ejecutarAccion();
+            }
         }
         public bool IngresarMedico(Medico medico)
         {

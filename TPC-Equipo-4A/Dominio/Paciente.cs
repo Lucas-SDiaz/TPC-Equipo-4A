@@ -13,6 +13,12 @@ namespace Dominio
         public HistoriaClinica HistoriaClinica { get; set; }
         public List<Turno> Turnos { get; set; } 
         public Domicilio Domicilio { get; set; }
+
+
+        public string FechaNaciemiento()
+        {
+            return FechaNacimiento.ToString("yyyy-MM-dd");
+        }
        // //public int HistoriaClinica { get; set; }
        // public string NombreYApellido { get; set; }
        // public string DNI { get; set; }
