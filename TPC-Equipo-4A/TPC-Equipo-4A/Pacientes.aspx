@@ -42,7 +42,7 @@
             {%>
                 <asp:GridView ID="dgvPacientes2" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Paciente" OnSelectedIndexChanged="dgvPacientes2_SelectedIndexChanged">
                     <Columns>
-                        <asp:BoundField HeaderText="ID Usuario" DataField="Usuario.ID_Usuario" />
+<%--                        <asp:BoundField HeaderText="ID Usuario" DataField="Usuario.ID_Usuario" />--%>
                         <asp:BoundField HeaderText="Nombre y apellido" DataField="NombreCompleto" />
                         <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
                         <asp:BoundField HeaderText="Telefono" DataField="Telefono" />

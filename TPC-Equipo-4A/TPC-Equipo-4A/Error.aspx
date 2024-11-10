@@ -43,13 +43,26 @@
     </style>
 </head>
 <body>
+    <%if (Session["error"].ToString() == "Usted no tiene permiso para acceder")
+      {%>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="error-card">
             <h3>Error</h3>
-            <p class="message">Usuario o Contraseña Incorrectos</p>
+            <p class="message">Usted no tiene permiso para acceder</p>
             <a href="Login.aspx" class="btn btn-primary mt-3">Volver al Login</a>
         </div>
     </div>
+    <%}
+      else 
+      { %>
+            <div class="container d-flex justify-content-center align-items-center vh-100">
+                <div class="error-card">
+                    <h3>Error</h3>
+                    <p class="message">Usuario o Contraseña Incorrectos</p>
+                    <a href="Login.aspx" class="btn btn-primary mt-3">Volver al Login</a>
+                </div>
+            </div> 
+    <%} %>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+</body>>
 </html>

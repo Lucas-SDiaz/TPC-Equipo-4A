@@ -38,9 +38,8 @@
                         <strong>Dirección:</strong>
                         <asp:Label ID="lblDireccion" runat="server" CssClass="form-control-plaintext"></asp:Label>
                     </div>
-
                     <!-- Botón para Historial de Turnos -->
-                    <a href="HistorialTurnos.aspx" class="btn btn-primary">Historial de Turnos</a>
+                    <a href="#" class="btn btn-primary">Historial de Turnos</a>
                 </div>
             </div>
         </div>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Dominio;
 
 namespace TPC_Equipo_4A
 {
@@ -11,7 +12,12 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["Usuario"] == null)
+            {
+                
+                Session.Add("error", "Usted no tiene permiso para acceder");
+                Response.Redirect("Error.aspx", false);
+            }
         }
     }
 }
