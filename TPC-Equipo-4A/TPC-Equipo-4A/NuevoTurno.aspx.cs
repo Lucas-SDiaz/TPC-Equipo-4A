@@ -14,26 +14,173 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                CargarPacientes();
+                CargarEspecialidades();
+                CargarMedicos();
 
+                ddlHorario.Items.Insert(0, new ListItem("-- Seleccionar Horario --", "0"));
+            }
+        }
+
+        private void CargarHorarios(int idMedico)
+        {
+            try
+            {
+                MedicoNegocio negocio = new MedicoNegocio();
+                Medico medico = negocio.listarHorariosDeMedicosConSP(idMedico, txtFechaTurno.Text);
+                
+                for (double i = medico.HorariosLaborables.FirstOrDefault().HoraInicio.TotalHours; 
+                        i < medico.HorariosLaborables.FirstOrDefault().HoraFin.TotalHours; 
+                        i++)
+                {
+                    if (!medico.TurnosAsignados.Any(x => x.Hora.TotalHours == i))
+                    {
+                        ListItem aux = new ListItem(i.ToString() + ":00hs", i.ToString());
+                        ddlHorario.Items.Add(aux);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error cargando lista de horarios de medicos");
+            }
+        }
+
+        private void CargarMedicos()
+        {
+            try
+            {
+                MedicoNegocio negocio = new MedicoNegocio();
+                List<Medico> medicos = negocio.listarMedicosConSP();
+                ddlMedico.Items.Insert(0, new ListItem("-- Seleccionar Medico --", "0"));
+
+                Session["listaMedicos"] = medicos;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error cargando lista de medicos");
+            }
+        }
+
+        private void CargarPacientes()
+        {
+            try
+            {
+                PacienteNegocio negocio = new PacienteNegocio();
+                List<Paciente> pacientes = negocio.listarConSP();
+
+                ddlPaciente.DataSource = pacientes;
+                ddlPaciente.DataTextField = "NombreCompleto";
+                ddlPaciente.DataValueField = "Id_Paciente";
+                ddlPaciente.DataBind();
+                ddlPaciente.Items.Insert(0, new ListItem("-- Seleccionar Paciente --", "0"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error cargando lista de pacientes");
+            }
+        }
+
+        private void CargarEspecialidades()
+        {
+            try
+            {
+                EspecialidadNegocio negocio = new EspecialidadNegocio();
+                List<Especialidad> especialidades = negocio.listarConSP();
+
+                ddlEspecialidad.DataSource = especialidades;
+                ddlEspecialidad.DataTextField = "Descripcion";
+                ddlEspecialidad.DataValueField = "Id_Especialidad";
+                ddlEspecialidad.DataBind();
+                ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccionar Especialidad --", "0"));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error cargando lista de especialidades");
+            }
         }
 
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
-            Turno nuevo = new Turno();
+            Turno turno = new Turno();
             TurnoNegocio negocio = new TurnoNegocio();
 
             try
             {
-                nuevo.Paciente.Id_Paciente = int.Parse(ddlPaciente.SelectedValue.ToString());
-                nuevo.Especialidad.Id_Especialidad = int.Parse(ddlEspecialidad.SelectedValue.ToString());
-                nuevo.Medico.Id_Medico = int.Parse(ddlMedico.SelectedValue.ToString());
-                nuevo.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());
-                nuevo.Hora = float.Parse(txtHorario.Text.ToString());
+                turno.IdPaciente = int.Parse(ddlPaciente.SelectedValue.ToString());
+                turno.IdMedico = int.Parse(ddlMedico.SelectedValue.ToString());
+                turno.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());
+                turno.Hora = new TimeSpan(Convert.ToInt16(ddlHorario.SelectedValue),0,0);
+
+                negocio.agregarTurno(turno);
+
+                string script = "alert('Registro agregado exitosamente.'); window.location.href='Default.aspx';";
+                ClientScript.RegisterStartupScript(this.GetType(), "Hola mundo", script, true);
             }
             catch (Exception ex)
             {
-                throw ex;
+                Console.WriteLine("Error agregando nuevo turno");
             }
+        }
+
+        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = int.Parse(ddlEspecialidad.SelectedItem.Value);
+            ddlMedico.DataTextField = "NombreCompleto";
+            ddlMedico.DataValueField = "ID_Medico";
+
+            var medicosFiltrados = ((List<Medico>)Session["listaMedicos"]).FindAll(x => x.Especialidad.Id_Especialidad == id);
+            if (medicosFiltrados.Any())
+            {
+                ddlMedico.DataSource = ((List<Medico>)Session["listaMedicos"]).FindAll(x => x.Especialidad.Id_Especialidad == id);
+                CargarJornadasSegunMedico(medicosFiltrados.FirstOrDefault().Id_Medico);
+            }
+            else
+            {
+                LimpiarHorarios();
+                ddlMedico.Items.Clear();
+                ddlMedico.Items.Insert(0, new ListItem("-- Seleccionar Medico --", "0"));
+            }
+
+            ddlMedico.DataBind();
+        }
+
+        protected void txtFechaTurno_TextChanged(object sender, EventArgs e)
+        { 
+            var fecha = Convert.ToDateTime(txtFechaTurno.Text);
+            if (fecha < DateTime.Today)
+            {
+                txtFechaTurno.Text = null;
+                return;
+            }
+
+            int idMedico = int.Parse(ddlMedico.SelectedItem.Value);
+            CargarJornadasSegunMedico(idMedico);
+        }
+
+        protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int id = int.Parse(ddlMedico.SelectedItem.Value);
+
+            CargarJornadasSegunMedico(id);
+        }
+
+        private void CargarJornadasSegunMedico(int idMedico)
+        {
+            LimpiarHorarios();
+
+            if (!string.IsNullOrWhiteSpace(txtFechaTurno.Text) && idMedico > 0)
+            {
+                CargarHorarios(idMedico);
+            }
+        }
+
+        private void LimpiarHorarios()
+        {
+            ddlHorario.Items.Clear();
+            ddlHorario.Items.Insert(0, new ListItem("-- Seleccionar Horario --", "0"));
         }
     }
 }

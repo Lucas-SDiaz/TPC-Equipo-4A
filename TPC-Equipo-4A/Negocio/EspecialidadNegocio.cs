@@ -22,9 +22,10 @@ namespace Negocio
                     Especialidad aux = new Especialidad();
                     aux.Id_Especialidad = (int)datos.Lector.GetInt64(0);
                     aux.Descripcion = (string)datos.Lector["Nombre_E"];
-                    aux.Estado = (bool)datos.Lector["Estado"];
-                    if (aux.Estado)
-                        lista.Add(aux);
+                    //aux.Estado = (bool)datos.Lector["Estado"];
+                    //if (aux.Estado)
+                    
+                    lista.Add(aux);
                 }
                 return lista;
             }
