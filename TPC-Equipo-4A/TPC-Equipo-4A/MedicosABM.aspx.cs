@@ -56,7 +56,6 @@ namespace TPC_Equipo_4A
                 medicoNegocio.EliminarMedico(int.Parse(id_usuario));
                 Response.Redirect("MedicosABM.aspx", false);
             }
-
         }
 
         protected void VerRegistrosEliminados_Click(object sender, EventArgs e)

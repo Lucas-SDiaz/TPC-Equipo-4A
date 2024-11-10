@@ -151,7 +151,7 @@
     <Content Include="Error.aspx" />
     <Content Include="EspecialidadesABM.aspx" />
     <Content Include="favicon.ico" />
-    <Content Include="FormularioAdministartivos.aspx" />
+    <Content Include="FormularioEmpleadoAdmin.aspx" />
     <Content Include="FormularioEspecialidad.aspx" />
     <Content Include="FormularioMedico.aspx" />
     <Content Include="Global.asax" />
@@ -283,12 +283,12 @@
     <Compile Include="EspecialidadesABM.aspx.designer.cs">
       <DependentUpon>EspecialidadesABM.aspx</DependentUpon>
     </Compile>
-    <Compile Include="FormularioAdministartivos.aspx.cs">
-      <DependentUpon>FormularioAdministartivos.aspx</DependentUpon>
+    <Compile Include="FormularioEmpleadoAdmin.aspx.cs">
+      <DependentUpon>FormularioEmpleadoAdmin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="FormularioAdministartivos.aspx.designer.cs">
-      <DependentUpon>FormularioAdministartivos.aspx</DependentUpon>
+    <Compile Include="FormularioEmpleadoAdmin.aspx.designer.cs">
+      <DependentUpon>FormularioEmpleadoAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormularioEspecialidad.aspx.cs">
       <DependentUpon>FormularioEspecialidad.aspx</DependentUpon>

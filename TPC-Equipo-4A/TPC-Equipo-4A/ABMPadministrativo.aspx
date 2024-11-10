@@ -6,7 +6,7 @@
             <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-outline-secondary" OnClick="btnBuscar_Click1"/>
         </div>
         <div>
-            <asp:Button runat="server" ID="btnAgregarAdmin" Text="Agregar Administartivo" CssClass="btn btn-outline-primary" OnClick="btnAgregarAdmin_Click1" />
+            <asp:Button runat="server" ID="btnAgregarAdmin" Text="Agregar Administartivo" CssClass="btn btn-outline-primary" OnClick="btnAgregarAdmin_Click"/>
         </div>
         <asp:DropDownList ID="ddlFiltro" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFiltro_SelectedIndexChanged" CssClass="btn btn-secondary btn-sm dropdown-toggle">
             <asp:ListItem Text="Predeterminado" Value="Predeterminado"></asp:ListItem>
@@ -14,17 +14,14 @@
         </asp:DropDownList>
     </div>
     <hr />
-    <asp:GridView ID="dgvAdministrativos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_PersonalAdministrativo" OnSelectedIndexChanged="dgvAdministrativos_SelectedIndexChanged1" >
+    <asp:GridView ID="dgvAdministrativos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_PersonalAdministrativo" OnRowCommand="dgvAdministrativos_RowCommand" >
         <columns>
-            <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario"/>
             <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
-
             <asp:BoundField HeaderText="Nombre y apellido" DataField="NombreCompleto" />
-          
+            <asp:BoundField HeaderText="DNI" DataField="DNI" />
             <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
-            <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-            <asp:CommandField HeaderText="Editar" ShowSelectButton="true" SelectText="📝" />
-            <asp:CommandField HeaderText="Eliminar" ShowSelectButton="true" SelectText="🗑️❌" />
+            <asp:ButtonField CommandName="Editar" Text="📝" ButtonType="Button" HeaderText="Editar"/>
+            <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar"/>
         </columns>
     </asp:GridView>
     <style>
