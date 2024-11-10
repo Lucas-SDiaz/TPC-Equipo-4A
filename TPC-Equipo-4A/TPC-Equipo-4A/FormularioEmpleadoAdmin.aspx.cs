@@ -17,19 +17,31 @@ namespace TPC_Equipo_4A
             if (Session["Usuario"] == null)
             {
                 Session.Add("error", "Usted no tiene permiso para acceder");
-            }
-            else
+            }else if (!IsPostBack)
             {
                 if (Request.QueryString["id_u"] != null)
                 {
                     //EDITAR
                     EditarEmpleado(Request.QueryString["id_u"]);
                 }
-                else
-                {
-                    //INGRSAR
-                    IngresarEmpleado();
-                }
+            }
+        }
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (Request.QueryString["id_u"] != null)
+            {
+                
+            }
+            else
+            {
+                //INGRSAR
+                PersonalAdministrativo empleado = new PersonalAdministrativo();
+                empleado.Usuario = new Usuario();
+                empleado.Nombre = txtNombre.Text;
+                empleado.Apellido = txtApellido.Text;
+                empleado.Usuario.Email = txtEmail.Text;
+                empleado.DNI = txtDNI.Text;
+                IngresarEmpleado(empleado);
             }
         }
         private void EditarEmpleado(string id)
@@ -41,14 +53,20 @@ namespace TPC_Equipo_4A
             txtEmail.Text = empleado.Usuario.Email;
             txtDNI.Text = empleado.DNI;
         }
-        private void IngresarEmpleado()
+        private void IngresarEmpleado(PersonalAdministrativo empleado)
         {
-
+            
+            if(negocio.IngresarEmpleado(empleado))
+            {
+                Session.Add("accionExitosa", "Registro ingresado exitosamente!");
+                Response.Redirect("insertExitoso.aspx", false);
+            }
+            else
+            {
+                Session.Add("error", "Error al ingresar registro");
+                Response.Redirect("Error.apx", false);
+            }
         }
 
-        protected void btnAceptar_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -11,17 +11,17 @@ namespace Negocio
 {
     public class EmpleadoAdministrativoNegocio
     {
-        public List<PersonalAdministrativo> listarPAdministrativoSP()
+        public List<PersonalAdministrativo> listarPAdministrativoSP(bool opc)
         {
 			AccesoDatos datos = new AccesoDatos();
 			List<PersonalAdministrativo> lista = new List<PersonalAdministrativo>();	
-            PersonalAdministrativo aux = new PersonalAdministrativo();  
 			try
 			{
 				datos.setStoreProcedure("storedProcedurelistarPAdministrativoSP");
 				datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
+                    PersonalAdministrativo aux = new PersonalAdministrativo();  
                     aux.Usuario = new Usuario();
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
                     aux.Id_PersonalAdministrativo = (int)datos.Lector.GetInt64(1);
@@ -31,7 +31,10 @@ namespace Negocio
                     aux.DNI = (string)datos.Lector["DNI"];
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.Estado = (bool)datos.Lector["Estado"];
-                    lista.Add(aux);
+                    if (opc && aux.Estado)
+                        lista.Add(aux);
+                    else if (!opc && !aux.Estado)
+                        lista.Add(aux);
                 }
                 return lista;
 			}
@@ -71,6 +74,29 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool IngresarEmpleado(PersonalAdministrativo aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setStoreProcedure("storedProcedureIngresarEmpleado");
+                datos.setParameters("@Nombre", aux.Nombre);
+                datos.setParameters("@Apellido", aux.Apellido);
+                datos.setParameters("@Email", aux.Usuario.Email);
+                datos.setParameters("@DNI", aux.DNI);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
             }
             finally
             {
