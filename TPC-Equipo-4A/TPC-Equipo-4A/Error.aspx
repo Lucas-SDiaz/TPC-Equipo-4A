@@ -43,8 +43,18 @@
     </style>
 </head>
 <body>
-    <%if (Session["error"].ToString() == "Usted no tiene permiso para acceder")
-      {%>
+      <%if (Session["error"].ToString() == "Error al ingresar registro")
+        { %>
+            <div class="container d-flex justify-content-center align-items-center vh-100">
+                <div class="error-card">
+                    <h3>Error</h3>
+                    <p class="message">Error al ingresar registro</p>
+                    <a href="Login.aspx" class="btn btn-primary mt-3">Volver al Login</a>
+                </div>
+            </div>
+      <%}
+        else if (Session["error"].ToString() == "Usted no tiene permiso para acceder")
+        {%>
     <div class="container d-flex justify-content-center align-items-center vh-100">
         <div class="error-card">
             <h3>Error</h3>
@@ -53,8 +63,8 @@
         </div>
     </div>
     <%}
-      else 
-      { %>
+        else
+        { %>
             <div class="container d-flex justify-content-center align-items-center vh-100">
                 <div class="error-card">
                     <h3>Error</h3>
