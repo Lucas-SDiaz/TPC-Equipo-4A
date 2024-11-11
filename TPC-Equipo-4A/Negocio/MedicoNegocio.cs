@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Negocio
 {
@@ -39,6 +40,7 @@ namespace Negocio
                 throw ex;
             }
         }
+        
         public List<Medico> listarParaPAdministrativoConSP(bool opc)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -60,7 +62,7 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Usuario.Email = (string)datos.Lector["Email"];
                     aux.Telefono = (string)datos.Lector["Celular"];
-                    aux.DNI = (string)datos.Lector["DNI"];
+                    //aux.DNI = (string)datos.Lector["DNI"];
                     aux.Especialidad.Descripcion = (string)datos.Lector["Especialidad"];
                     aux.Especialidad.Id_Especialidad = (int)datos.Lector.GetInt64(9);
                     aux.Estado = (bool)datos.Lector["Estado"];
@@ -77,6 +79,94 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public List<Medico> listarMedicosConSP()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Medico> lista = new List<Medico>();
+            
+            try
+            {
+                datos.setStoreProcedure("storedProcedureObtenerMedicos");
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Medico aux = new Medico();
+                    aux.Id_Medico = (int)datos.Lector.GetInt64(0);
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Especialidad = new Especialidad();
+                    aux.Especialidad.Id_Especialidad = (int)datos.Lector.GetInt64(3);
+                    aux.Especialidad.Descripcion = (string)datos.Lector["Nombre_E"];
+                    
+                    lista.Add(aux);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error obteniendo lista de medicos desde capa de negocio");
+            }
+
+            return lista;
+        }
+
+        public Medico listarHorariosDeMedicosConSP(int idMedico, string fechaDeTurno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Medico medico = new Medico();
+            List<JornadaMedicos> jornadas = new List<JornadaMedicos>();
+            List<Turno> turnos = new List<Turno>();
+
+            try
+            {
+                datos.setStoreProcedure("storedProcedureObtenerJornadaDeMedicoSegunFecha");
+                datos.setParameters("@idMedico", idMedico);
+                datos.setParameters("@fechaTurno", fechaDeTurno);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    JornadaMedicos jornada = new JornadaMedicos();
+                    jornada.Id_Medico = (int)datos.Lector.GetInt64(0);
+
+                    if (!datos.Lector.IsDBNull(0))
+                    {
+                        jornada.DiaSemana = (byte)datos.Lector["DiaSemana"];
+                        jornada.HoraInicio = (TimeSpan)datos.Lector["HoraEntrada"];
+                        jornada.HoraFin = (TimeSpan)datos.Lector["HoraSalida"];
+                        
+                        if (!jornadas.Any(x => x.DiaSemana == jornada.DiaSemana && x.HoraInicio == jornada.HoraInicio))
+                        {
+                            jornadas.Add(jornada);
+                        }
+                    }
+
+                    if (!datos.Lector.IsDBNull(6))
+                    {
+                        Turno turno = new Turno();
+                        turno.IdMedico = (int)datos.Lector.GetInt64(0);
+                        turno.Hora = (TimeSpan)datos.Lector["Hora"];
+                        turno.Fecha = (DateTime)datos.Lector["Fecha"];
+                        turnos.Add(turno);
+                    }
+
+
+                    medico.Id_Medico = (int)datos.Lector.GetInt64(1);
+                    medico.TurnosAsignados = turnos;
+                    medico.HorariosLaborables = jornadas;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error obteniendo lista de medicos desde capa de negocio");
+            }
+
+
+
+
+            return medico;
+        }
+
         public Medico buscarMedicoID(int id_med)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -103,7 +193,6 @@ namespace Negocio
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

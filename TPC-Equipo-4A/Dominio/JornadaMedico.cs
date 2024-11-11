@@ -11,9 +11,10 @@ namespace Dominio
         public int ID_Jornada { get; set; }
         public int Id_Medico { get; set; }
         //public string DiaSemana { get; set; } 
-        public DayOfWeek DiaSemana { get; set; }
+        public byte DiaSemana { get; set; }
         public TimeSpan HoraInicio { get; set; } // Hora de inicio
         public TimeSpan HoraFin { get; set; } // Hora de fin
+        public List<string> HorariosDisponibles { get; set; }
         public bool Estado { get; set; } 
 
     }

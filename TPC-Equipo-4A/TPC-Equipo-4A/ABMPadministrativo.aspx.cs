@@ -17,7 +17,7 @@ namespace TPC_Equipo_4A
             if ((Usuario)Session["Usuario"] != null) {
                 if(((Usuario)Session["Usuario"]).Perfil == Perfil.Administrador)
                 {
-                    dgvAdministrativos.DataSource = negocio.listarPAdministrativoSP();
+                    dgvAdministrativos.DataSource = negocio.listarPAdministrativoSP(true);
                     dgvAdministrativos.DataBind();
                 }
             }
