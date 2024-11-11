@@ -28,7 +28,7 @@ namespace TPC_Equipo_4A
         {
             Paciente paciente = new Paciente();
             PacienteNegocio negocio = new PacienteNegocio();
-            paciente = negocio.BuscarPorID(idPaciente);
+            paciente = negocio.BuscarParaModificar(idPaciente);
 
             if (paciente != null)
             {
@@ -77,8 +77,9 @@ namespace TPC_Equipo_4A
         {
             Paciente nuevoPaciente = new Paciente();
             PacienteNegocio nuevo = new PacienteNegocio();
-
             nuevoPaciente.Usuario = new Usuario();
+            nuevoPaciente.Domicilio = new Domicilio();
+
             nuevoPaciente.Usuario.Email = txtEmail.Text;
             nuevoPaciente.Usuario.Contraseña = txtConfirmContraseña.Text;
             nuevoPaciente.Usuario.Perfil = Perfil.Paciente;
@@ -90,7 +91,6 @@ namespace TPC_Equipo_4A
             //--------------------------------------------------------
             nuevoPaciente.FechaNacimiento = DateTime.Parse(txtFNac.Text);
             //--------------------------------------------------------
-            nuevoPaciente.Domicilio = new Domicilio();
             nuevoPaciente.Domicilio.Calle = txtCalle.Text;
             nuevoPaciente.Domicilio.Numero = int.Parse(txtNumero.Text);
             nuevoPaciente.Domicilio.Piso = txtPiso.Text;
