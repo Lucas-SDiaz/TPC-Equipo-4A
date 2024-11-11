@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.AccessControl;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -43,31 +44,85 @@ namespace Negocio
             }
         }
 
-        public Paciente BuscarPorID(string id)
+        // public Paciente BuscarPorID(int id)
+        // {
+        //     AccesoDatos datos = new AccesoDatos();
+        //     try
+        //     {
+        //         Paciente aux = new Paciente();
+        //         datos.setStoreProcedure("storedProcedureBuscarPacienteID");
+        //         datos.setParameters("@ID_Paciente", id);
+        //         datos.ejecutarLectura();
+        //         while (datos.Lector.Read())
+        //         {
+        //             aux.Domicilio = new Domicilio();
+        //             aux.Usuario = new Usuario();
+        //             aux.Id_Paciente = (int)datos.Lector.GetInt64(0);
+        //             aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(1);
+        //             aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]).Date;
+        //             aux.Apellido = (string)datos.Lector["Apellido"];
+        //             aux.Nombre = (string)datos.Lector["Nombre"];
+        //             aux.DNI = (string)datos.Lector["DNI"];
+        //             aux.Usuario.Email = (string)datos.Lector["Email"];
+        //             aux.Telefono = (string)datos.Lector["Celular"];
+        //             aux.Estado = (bool)datos.Lector["Estado"];
+        //             aux.FechaRegistro = ((DateTime)datos.Lector["FechaRegistro"]).Date;
+        //             aux.Domicilio.Calle = (string)datos.Lector["Calle"];
+        //             aux.Domicilio.Numero = (int)datos.Lector.GetInt64(0);
+        //             aux.Domicilio.Piso = (string)datos.Lector["Piso"];
+        //             aux.Domicilio.Depto = (string)datos.Lector["Depto"];
+        //             aux.Domicilio.Ciudad = (string)datos.Lector["Ciudad"];
+        //             aux.Domicilio.Provincia = (string)datos.Lector["Provincia"];
+        //             aux.Domicilio.CodigoPostal = (string)datos.Lector["CodigoPostal"];
+        //         }
+        //         return aux;
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         throw ex;
+        //     }
+        //     finally
+        //     {
+        //         datos.cerrarConexion();
+        //     }
+        // }
+        public Paciente BuscarPorID(int id)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                Paciente aux = new Paciente();
+                Paciente aux = null; // Inicializa el objeto solo si se encuentra un resultado.
                 datos.setStoreProcedure("storedProcedureBuscarPacienteID");
                 datos.setParameters("@ID_Paciente", id);
                 datos.ejecutarLectura();
-                while (datos.Lector.Read())
+
+                if (datos.Lector.Read())
                 {
+                    aux = new Paciente();
                     aux.Domicilio = new Domicilio();
                     aux.Usuario = new Usuario();
+
                     aux.Id_Paciente = (int)datos.Lector.GetInt64(0);
                     aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(1);
-                    aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]).Date;
+                    aux.FechaNacimiento = ((DateTime)datos.Lector["FechaNacimiento"]).Date;
                     aux.Apellido = (string)datos.Lector["Apellido"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.DNI = (string)datos.Lector["DNI"];
-                    aux.Usuario.Email = (string)datos.Lector["Email"];
+                    aux.Usuario.Email = datos.Lector["Email"] != DBNull.Value ? (string)datos.Lector["Email"] : null;
+                    aux.Usuario.Contraseña = (string)datos.Lector["Contraseña"];
                     aux.Telefono = (string)datos.Lector["Celular"];
                     aux.Estado = (bool)datos.Lector["Estado"];
                     aux.FechaRegistro = ((DateTime)datos.Lector["FechaRegistro"]).Date;
-                    aux.Domicilio.Calle = (string)datos.Lector["Domicilio"];
+
+                    aux.Domicilio.Calle = (string)datos.Lector["Calle"];
+                    aux.Domicilio.Numero = int.TryParse((string)datos.Lector["Numero"], out int numero) ? numero : 0;
+                    aux.Domicilio.Ciudad = (string)datos.Lector["Ciudad"];
+                    aux.Domicilio.Provincia = (string)datos.Lector["Provincia"];
+                    aux.Domicilio.CodigoPostal = (string)datos.Lector["CodigoPostal"];
+                    aux.Domicilio.Piso = datos.Lector["Piso"] != DBNull.Value ? (string)datos.Lector["Piso"] : null;
+                    aux.Domicilio.Depto = datos.Lector["Depto"] != DBNull.Value ? (string)datos.Lector["Depto"] : null;
                 }
+
                 return aux;
             }
             catch (Exception ex)
@@ -79,6 +134,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
 
         public void ValidarPaciente(Paciente paciente)
         {
@@ -137,7 +193,7 @@ namespace Negocio
         }
 
 
-        public void Agregar (Paciente nuevoPaciente)
+        public void Agregar(Paciente nuevoPaciente)
         {
             AccesoDatos datos = new AccesoDatos();
 
@@ -199,6 +255,83 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void Editar(Paciente paciente)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            PacienteNegocio negocio = new PacienteNegocio();
+            Paciente aux = new Paciente();
+
+            if (paciente.Nombre == null) 
+            {
+                aux = negocio.BuscarPorID(paciente.Id_Paciente);
+                datos.setStoreProcedure("storedProcedureEditarPaciente");
+
+                datos.setParameters("@ID_Usuario", aux.Usuario.Id_Usuario);
+                datos.setParameters("@Nombre", aux.Nombre);
+                datos.setParameters("@Apellido", aux.Apellido);
+                datos.setParameters("@Email", aux.Usuario.Email);
+                datos.setParameters("@Contraseña", aux.Usuario.Contraseña);
+                datos.setParameters("@DNI", aux.DNI);
+                datos.setParameters("@Numero", aux.Telefono);
+                datos.setParameters("@FechaNacimiento", aux.FechaNacimiento);
+                datos.setParameters("@Estado", aux.Estado);
+                datos.setParameters("@Calle", aux.Domicilio.Calle);
+                datos.setParameters("@NumeroCalle", aux.Domicilio.Numero);
+                datos.setParameters("@Piso", string.IsNullOrEmpty(aux.Domicilio.Piso) ? (object)DBNull.Value : aux.Domicilio.Piso);
+                datos.setParameters("@Depto", string.IsNullOrEmpty(aux.Domicilio.Depto) ? (object)DBNull.Value : aux.Domicilio.Depto);
+                datos.setParameters("@Ciudad", aux.Domicilio.Ciudad);
+                datos.setParameters("@Provincia", aux.Domicilio.Provincia);
+                datos.setParameters("@CodigoPostal", aux.Domicilio.CodigoPostal);
+
+                datos.ejecutarAccion();
+            }
+            else
+            {
+                datos.setStoreProcedure("storedProcedureEditarPaciente");
+
+                datos.setParameters("@ID_Usuario", paciente.Usuario.Id_Usuario);
+                datos.setParameters("@Nombre", paciente.Nombre);
+                datos.setParameters("@Apellido", paciente.Apellido);
+                datos.setParameters("@Email", paciente.Usuario.Email);
+                datos.setParameters("@Contraseña", aux.Usuario.Contraseña);
+                datos.setParameters("@DNI", paciente.DNI);
+                datos.setParameters("@Numero", paciente.Telefono);
+                datos.setParameters("@FechaNacimiento", paciente.FechaNacimiento);
+                datos.setParameters("@Estado", paciente.Estado);
+                datos.setParameters("@Calle", paciente.Domicilio.Calle);
+                datos.setParameters("@NumeroCalle", paciente.Domicilio.Numero);
+                datos.setParameters("@Piso", string.IsNullOrEmpty(paciente.Domicilio.Piso) ? (object)DBNull.Value : paciente.Domicilio.Piso);
+                datos.setParameters("@Depto", string.IsNullOrEmpty(paciente.Domicilio.Depto) ? (object)DBNull.Value : paciente.Domicilio.Depto);
+                datos.setParameters("@Ciudad", paciente.Domicilio.Ciudad);
+                datos.setParameters("@Provincia", paciente.Domicilio.Provincia);
+                datos.setParameters("@CodigoPostal", paciente.Domicilio.CodigoPostal);
+
+                datos.ejecutarAccion();
+            }
+        }
+
+        public bool EliminarPaciente(int id_usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setStoreProcedure("storedProcedureEliminarPaciente");
+                datos.setParameters("@ID_Usuario", id_usuario);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
             }
             finally
             {

@@ -25,7 +25,8 @@
         {
             if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
             {%>
-            <asp:GridView ID="dgvPacientes" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowCommand="dgvPacientes_RowCommand">
+                <asp:GridView ID="dgvPacientes" runat="server" CssClass="table table-hover tableCustom" DataKeyNames="Id_Paciente" AutoGenerateColumns="false" OnRowCommand="dgvPacientes_RowCommand">
+
                 <Columns>
                     <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                     <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
@@ -33,8 +34,8 @@
                     <asp:BoundField HeaderText="DNI" DataField="DNI" />
                     <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
                     <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-                    <asp:ButtonField CommandName="Editar" Text="📝" ButtonType="Button" HeaderText="Editar"/>
-                    <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar"/>
+                    <asp:ButtonField CommandName="Editar" Text="📝" ButtonType="Button" HeaderText="Editar" />
+                    <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar" />
                 </Columns>
             </asp:GridView>
                   <%}

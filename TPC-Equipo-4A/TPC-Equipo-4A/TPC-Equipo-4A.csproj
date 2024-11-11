@@ -124,7 +124,7 @@
   <ItemGroup>
     <Content Include="ABMPadministrativo.aspx" />
     <Content Include="About.aspx" />
-    <Content Include="AgregarPaciente.aspx" />
+    <Content Include="FormularioPaciente.aspx" />
     <Content Include="Cartilla.aspx" />
     <Content Include="ConfirmarAccion.aspx" />
     <Content Include="Contact.aspx" />
@@ -211,12 +211,12 @@
     <Compile Include="ABMPadministrativo.aspx.designer.cs">
       <DependentUpon>ABMPadministrativo.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AgregarPaciente.aspx.cs">
-      <DependentUpon>AgregarPaciente.aspx</DependentUpon>
+    <Compile Include="FormularioPaciente.aspx.cs">
+      <DependentUpon>FormularioPaciente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AgregarPaciente.aspx.designer.cs">
-      <DependentUpon>AgregarPaciente.aspx</DependentUpon>
+    <Compile Include="FormularioPaciente.aspx.designer.cs">
+      <DependentUpon>FormularioPaciente.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

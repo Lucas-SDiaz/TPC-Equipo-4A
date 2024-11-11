@@ -1,7 +1,15 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AgregarPaciente.aspx.cs" Inherits="TPC_Equipo_4A.AgregarPaciente" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FormularioPaciente.aspx.cs" Inherits="TPC_Equipo_4A.AgregarPaciente" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 <div class="container mt-5">
+    <%if (Request.QueryString["id_u"] == null && Request.QueryString["id_p"] == null)
+     { %>
+ <h2>Registrar Paciente</h2>
+ <%}
+ else
+ { %>
+ <h2>Editar Paciente</h2>
+ <%}%>
     <form class="row g-3">
         <!-- Columna 1: Información Personal -->
         <div class="col-md-12">
@@ -36,6 +44,16 @@
                     <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" required></asp:TextBox>
                 </div>
             </div>
+            <div class="row mb-4">
+    <div class="col-md-6">
+        <label class="form-label">Contraseña</label>
+        <asp:TextBox ID="txtContraseña" runat="server" CssClass="form-control" required></asp:TextBox>
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">ConfirmContraseña</label>
+        <asp:TextBox ID="txtConfirmContraseña" runat="server" CssClass="form-control" required></asp:TextBox>
+    </div>
+</div>
         </div>
         <br />
 
@@ -79,7 +97,7 @@
             </div>
         </div>
 
-        <!-- Botón de envío -->
+        <!-- Botón -->
         <div class="col-12 text-center">
             <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-primary mt-4" OnClick="btnEnviar_Click" />
         </div>

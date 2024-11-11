@@ -34,19 +34,35 @@ namespace TPC_Equipo_4A
 
         protected void btnAgregarPaciente_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AgregarPaciente.aspx");
+            Response.Redirect("FormularioPaciente.aspx");
         }
 
         protected void dgvPacientes_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = dgvPacientes.Rows[index];
+            string id_usuario = row.Cells[0].Text;
+            string id_paciente = dgvPacientes.DataKeys[index].Value.ToString();
 
+            if (e.CommandName == "Editar")
+            {
+                Response.Redirect("FormularioPaciente.aspx?id_p=" + id_paciente + "&id_u=" + id_usuario, false);
+            }
+            else if (e.CommandName == "Eliminar")
+            {
+                PacienteNegocio pacienteNegocio = new PacienteNegocio();
+                pacienteNegocio.EliminarPaciente(int.Parse(id_paciente));
+
+                Response.Redirect("Pacientes.aspx", false);
+            }
         }
 
         protected void dgvPacientes2_SelectedIndexChanged(object sender, EventArgs e)
         {
             string id = dgvPacientes2.SelectedDataKey.Value.ToString();
+            int id_p = int.Parse(id);
             PacienteNegocio negocio = new PacienteNegocio();
-            Session.Add("Paciente", negocio.BuscarPorID(id));
+            Session.Add("Paciente", negocio.BuscarPorID(id_p));
             Response.Redirect("DetallePaciente.aspx", false);
         }
 
