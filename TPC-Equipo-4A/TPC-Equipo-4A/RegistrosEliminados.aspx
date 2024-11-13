@@ -14,20 +14,39 @@
         </asp:DropDownList>--%>
     </div>
     <hr />
-    <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Medico" OnRowCommand="dgvMedicos_RowCommand">
-        <Columns>
-            <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario" />
-            <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
-            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
-            <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
-            <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
-            <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
-            <asp:BoundField HeaderText="ID_Especialidad" DataField="Especialidad.Id_Especialidad" />
-            <asp:BoundField HeaderText="Descripcion" DataField="Especialidad.Descripcion" />
-            <asp:BoundField HeaderText="DNI" DataField="DNI" />
-            <asp:ButtonField CommandName="Restaurar" Text="Restaurar" ButtonType="Button" HeaderText="🔙" />
-        </Columns>
-    </asp:GridView>
+
+    <%  string urlAnterior = System.IO.Path.GetFileName(Request.UrlReferrer.LocalPath);
+        if (urlAnterior == "ABMPadministrativo")
+        {%>
+            <asp:GridView ID="dgvEmpleados" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_PersonalAdministrativo" OnRowCommand="dgvEmpleados_RowCommand">
+            <Columns>
+                <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario" />
+                <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
+                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
+                <asp:BoundField HeaderText="DNI" DataField="DNI" />
+                <asp:ButtonField CommandName="Restaurar" Text="Restaurar" ButtonType="Button" HeaderText="🔙" />
+            </Columns>
+        </asp:GridView>
+     <% }       
+        else if (urlAnterior == "MedicosABM")
+        { %>
+            <asp:GridView ID="dgvMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Medico" OnRowCommand="dgvMedicos_RowCommand">
+                <Columns>
+                    <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario" />
+                    <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
+                    <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                    <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
+                    <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
+                    <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+                    <asp:BoundField HeaderText="ID_Especialidad" DataField="Especialidad.Id_Especialidad" />
+                    <asp:BoundField HeaderText="Descripcion" DataField="Especialidad.Descripcion" />
+                    <asp:BoundField HeaderText="DNI" DataField="DNI" />
+                    <asp:ButtonField CommandName="Restaurar" Text="Restaurar" ButtonType="Button" HeaderText="🔙" />
+                </Columns>
+            </asp:GridView>
+    <%} %>
 
     <style>
         .tableCustom {

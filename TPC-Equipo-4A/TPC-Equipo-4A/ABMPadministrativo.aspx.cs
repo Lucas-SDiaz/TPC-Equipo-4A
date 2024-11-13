@@ -63,6 +63,7 @@ namespace TPC_Equipo_4A
             else if (e.CommandName == "Eliminar")
             {
                 //negocio.(int.Parse(id_usuario)); FALTA METODO PARA DAR DE BAJA EMPLEADOS
+                negocio.EliminarEmpleado(negocio.buscarEmpleadoID(int.Parse(id_emp)));
                 Response.Redirect("ABMPadministrativo.aspx", false);
             }
         }
@@ -70,6 +71,11 @@ namespace TPC_Equipo_4A
         protected void btnAgregarAdmin_Click(object sender, EventArgs e)
         {
             Response.Redirect("FormularioEmpleadoAdmin.aspx", false);
+        }
+
+        protected void VerRegistrosEliminados_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("RegistrosEliminados.aspx", false);
         }
     }
 }

@@ -61,6 +61,7 @@ namespace Negocio
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
+                    aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(0);
                     aux.Id_PersonalAdministrativo = (int)datos.Lector.GetInt64(1);
                     aux.Legajo = (string)datos.Lector["Legajo"];
                     aux.Apellido = (string)datos.Lector["Apellido"];
@@ -74,6 +75,55 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool EditarEmpleado(PersonalAdministrativo aux, string id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if(aux.Nombre == null)
+                {
+                    aux = buscarEmpleadoID(aux.Id_PersonalAdministrativo);
+                }
+                datos.setStoreProcedure("storedProcedureEditarEmpleado");
+                datos.setParameters("@ID_Usuario", id);
+                datos.setParameters("@Nombre", aux.Nombre);
+                datos.setParameters("@Apellido", aux.Apellido);
+                datos.setParameters("@Email", aux.Usuario.Email);
+                datos.setParameters("@DNI", aux.DNI);
+                datos.setParameters("@Estado", 1);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public bool EliminarEmpleado(PersonalAdministrativo aux)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setStoreProcedure("storedProcedureEliminarEmpleado");
+                datos.setParameters("@ID_Usuario", aux.Usuario.Id_Usuario);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
             }
             finally
             {

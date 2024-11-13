@@ -17,13 +17,17 @@
     <asp:GridView ID="dgvAdministrativos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_PersonalAdministrativo" OnRowCommand="dgvAdministrativos_RowCommand" >
         <columns>
             <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
-            <asp:BoundField HeaderText="Nombre y apellido" DataField="NombreCompleto" />
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
             <asp:BoundField HeaderText="DNI" DataField="DNI" />
             <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
             <asp:ButtonField CommandName="Editar" Text="📝" ButtonType="Button" HeaderText="Editar"/>
             <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar"/>
         </columns>
     </asp:GridView>
+    <div>
+        <asp:Button runat="server" ID="VerRegistrosEliminados" OnClick="VerRegistrosEliminados_Click" Text="Ver registros eliminados"/>
+    </div>
     <style>
         .tableCustom {
             border-radius: 9px;

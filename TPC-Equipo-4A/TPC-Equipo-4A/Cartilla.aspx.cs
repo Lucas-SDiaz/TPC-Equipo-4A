@@ -2,7 +2,10 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Imaging;
+using System.Globalization;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -24,7 +27,8 @@ namespace TPC_Equipo_4A
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             List<Medico> lista = (List<Medico>)Session["listaMedicos"];
-            dgvMedicos.DataSource = lista.FindAll(x => x.Apellido.ToUpper().Contains(txtBuscar.Text.ToUpper()) || x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+                    
+            dgvMedicos.DataSource = lista.FindAll(x => x.NombreCompleto.ToUpper().Contains(txtBuscar.Text.ToUpper()));
             dgvMedicos.DataBind();
         }
         

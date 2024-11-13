@@ -206,16 +206,6 @@ namespace Negocio
             if (medico.Nombre == null)
             {
                 aux = negocio.buscarMedicoID(medico.Id_Medico);
-                datos.setStoreProcedure("storedProcedureEditarMedico");
-                datos.setParameters("@ID_Usuario", aux.Usuario.Id_Usuario);
-                datos.setParameters("@Nombre", aux.Nombre);
-                datos.setParameters("@Apellido", aux.Apellido);
-                datos.setParameters("@Email", aux.Usuario.Email);
-                datos.setParameters("@DNI", aux.DNI);
-                datos.setParameters("@Numero", aux.Telefono);
-                datos.setParameters("@ID_Especialidad", aux.Especialidad.Id_Especialidad);
-                datos.setParameters("@Estado", true);
-                datos.ejecutarAccion();
             }
             else
             {
