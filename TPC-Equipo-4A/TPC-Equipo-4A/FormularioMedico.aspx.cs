@@ -67,39 +67,45 @@ namespace TPC_Equipo_4A
             medico.Telefono = txtTelefono.Text;
             medico.Especialidad = new Especialidad();
             medico.Especialidad.Id_Especialidad = int.Parse(ddlEspecialidad.SelectedValue);
-                if (Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
+            if (Request.QueryString["id_m"] != null && Request.QueryString["id_u"] != null)
             {
                 medico.Id_Medico = int.Parse(Request.QueryString["id_m"]);
                 medico.Usuario.Id_Usuario = int.Parse(Request.QueryString["id_u"]);
                 medico.Estado = true;
-                negocio.EditarMedico(medico);
+                if(negocio.EditarMedico(medico))                
+                {
+                    Session.Add("accionExitosa", "Registro modificado exitosamente!");
+                    Response.Redirect("insertExitoso.aspx", false);
+                }
             }
             else
             {
-                if (negocio.IngresarMedico(medico))
-                    Response.Redirect("insertExitoso.aspx");
+                //if (negocio.IngresarMedico(medico))
+                //{
+                //}
+                    Session.Add("accionExitosa", "Registro ingresado exitosamente!");
+                    Response.Redirect("insertExitoso.aspx", false);
             }
-            Response.Redirect("MedicosABM.aspx", false);
         }
 
         protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Medico medico = new Medico();
-            //medico.Especialidad = new Especialidad();
-            //medico.Especialidad.Descripcion = ddlEspecialidad.SelectedItem.Text;
-            //medico.Especialidad.Id_Especialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
-            switch (ddlEspecialidad.SelectedValue)
-            {
+            ////Medico medico = new Medico();
+            ////medico.Especialidad = new Especialidad();
+            ////medico.Especialidad.Descripcion = ddlEspecialidad.SelectedItem.Text;
+            ////medico.Especialidad.Id_Especialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
+            //switch (ddlEspecialidad.SelectedValue)
+            //{
              
-                case "Ordenar por especialidad": 
+            //    case "Ordenar por especialidad": 
                     
-                    break;
-                case "Ordenar alfabéticamente": 
-                    break;
-                default: // Opción predeterminada, sin filtro específico
-                    //query = "SELECT * FROM Medicos";
-                    break;
-            }
+            //        break;
+            //    case "Ordenar alfabéticamente": 
+            //        break;
+            //    default: // Opción predeterminada, sin filtro específico
+            //        //query = "SELECT * FROM Medicos";
+            //        break;
+            //}
         }
         private void CargarEspecialidades()
         {

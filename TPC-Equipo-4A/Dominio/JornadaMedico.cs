@@ -16,6 +16,12 @@ namespace Dominio
         public TimeSpan HoraFin { get; set; } // Hora de fin
         public List<string> HorariosDisponibles { get; set; }
         public bool Estado { get; set; } 
-
+        public JornadaMedicos() { }
+        public JornadaMedicos(byte dia, string he, string hs)
+        {
+            DiaSemana = dia;
+            HoraInicio = TimeSpan.Parse(he);
+            HoraFin = TimeSpan.Parse(hs);
+        }
     }
 }

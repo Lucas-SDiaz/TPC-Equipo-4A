@@ -1,0 +1,80 @@
+﻿using Dominio;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace TPC_Equipo_4A
+{
+    public partial class Horarios : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                LlenarHorarios(ddlEntradaLunes);
+                LlenarHorarios(ddlEntradaMartes);
+                LlenarHorarios(ddlEntradaMiercoles);
+                LlenarHorarios(ddlEntradaJueves);
+                LlenarHorarios(ddlEntradaViernes);
+                LlenarHorarios(ddlEntradaSabado);
+                LlenarHorarios(ddlSalidaLunes);
+                LlenarHorarios(ddlSalidaMartes);
+                LlenarHorarios(ddlSalidaMiercoles);
+                LlenarHorarios(ddlSalidaJueves);
+                LlenarHorarios(ddlSalidaViernes);
+                LlenarHorarios(ddlSalidaSabado);
+            }
+        }
+
+        protected void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Medico medico = new Medico();
+            medico.HorariosLaborables = new List<JornadaMedicos>();
+            if (chkLunes.Checked)
+                medico.HorariosLaborables.Add(new JornadaMedicos(1, ddlEntradaLunes.SelectedValue, ddlSalidaLunes.SelectedValue));
+            if (chkMartes.Checked)
+                medico.HorariosLaborables.Add(new JornadaMedicos(2, ddlEntradaMartes.SelectedValue, ddlSalidaMartes.SelectedValue));
+            if (chkMiercoles.Checked)
+                medico.HorariosLaborables.Add(new JornadaMedicos(3, ddlEntradaMiercoles.SelectedValue, ddlSalidaMiercoles.SelectedValue));
+            if (chkJueves.Checked)
+                medico.HorariosLaborables.Add(new JornadaMedicos(4, ddlEntradaJueves.SelectedValue, ddlSalidaJueves.SelectedValue));
+            if (chkViernes.Checked)
+                medico.HorariosLaborables.Add(new JornadaMedicos(5, ddlEntradaViernes.SelectedValue, ddlSalidaViernes.SelectedValue));
+            if (chkSabado.Checked)
+                medico.HorariosLaborables.Add(new JornadaMedicos(6, ddlEntradaSabado.SelectedValue, ddlSalidaSabado.SelectedValue));
+
+
+
+        }
+
+        protected void chkLunes_CheckedChanged(object sender, EventArgs e)
+        {
+            ddlEntradaLunes.Enabled = chkLunes.Checked;
+            ddlSalidaLunes.Enabled = chkLunes.Checked;
+            ddlEntradaMartes.Enabled = chkMartes.Checked;
+            ddlSalidaMartes.Enabled = chkMartes.Checked;
+            ddlEntradaMiercoles.Enabled = chkMiercoles.Checked;
+            ddlSalidaMiercoles.Enabled = chkMiercoles.Checked;
+            ddlEntradaJueves.Enabled = chkJueves.Checked;
+            ddlSalidaJueves.Enabled = chkJueves.Checked;
+            ddlEntradaViernes.Enabled = chkViernes.Checked;
+            ddlSalidaViernes.Enabled = chkViernes.Checked;
+            ddlEntradaSabado.Enabled = chkSabado.Checked;
+            ddlSalidaSabado.Enabled = chkSabado.Checked;
+        }
+        private void LlenarHorarios(DropDownList ddl)
+        {
+            DateTime horaInicial = DateTime.Today.AddHours(8); // 08:00 AM
+            DateTime horaFinal = DateTime.Today.AddHours(21);  // 21:00 PM
+
+            while (horaInicial <= horaFinal)
+            {
+                ddl.Items.Add(new ListItem(horaInicial.ToString("HH:mm"), horaInicial.ToString("HH:mm")));
+                horaInicial = horaInicial.AddMinutes(30); // Incremento de 30 minutos
+            }
+        }
+    }
+}

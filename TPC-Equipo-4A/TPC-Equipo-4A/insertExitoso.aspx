@@ -2,7 +2,12 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%if(Session["accionExitosa"].ToString() == "Registro ingresado exitosamente!")
       { %>
-         <h2>Registro ingresado exitosamente!</h2>  
+            <div>
+                <h2>Registro ingresado exitosamente!</h2>
+            </div>
+            <div>
+                <asp:Button ID="brnHorarios" Text="Cargar Horarios" CssClass="btn btn-primary" runat="server" OnClick="brnHorarios_Click"/>
+            </div>
     <%}
       else if(Session["accionExitosa"].ToString() == "Registro modificado exitosamente!")
       { %>

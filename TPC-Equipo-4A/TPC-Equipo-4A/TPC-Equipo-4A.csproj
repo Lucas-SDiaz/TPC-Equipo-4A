@@ -155,6 +155,7 @@
     <Content Include="FormularioEspecialidad.aspx" />
     <Content Include="FormularioMedico.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Horarios.aspx" />
     <Content Include="insertExitoso.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MedicosABM.aspx" />
@@ -306,6 +307,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Horarios.aspx.cs">
+      <DependentUpon>Horarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Horarios.aspx.designer.cs">
+      <DependentUpon>Horarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="insertExitoso.aspx.cs">
       <DependentUpon>insertExitoso.aspx</DependentUpon>

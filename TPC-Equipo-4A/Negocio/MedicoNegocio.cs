@@ -156,7 +156,7 @@ namespace Negocio
                     medico.HorariosLaborables = jornadas;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Error obteniendo lista de medicos desde capa de negocio");
             }
@@ -197,19 +197,13 @@ namespace Negocio
             }
         }
 
-        public void EditarMedico(Medico medico)
+        public bool EditarMedico(Medico medico)
         {
             AccesoDatos datos = new AccesoDatos();
-            MedicoNegocio negocio = new MedicoNegocio();
-            Medico aux = new Medico();
-            aux.Usuario = new Usuario();
-            if (medico.Nombre == null)
-            {
-                aux = negocio.buscarMedicoID(medico.Id_Medico);
-            }
-            else
+            try
             {
                 datos.setStoreProcedure("storedProcedureEditarMedico");
+                datos.setParameters("@ID_Medico", medico.Id_Medico);
                 datos.setParameters("@ID_Usuario", medico.Usuario.Id_Usuario);
                 datos.setParameters("@Nombre", medico.Nombre);
                 datos.setParameters("@Apellido", medico.Apellido);
@@ -219,6 +213,16 @@ namespace Negocio
                 datos.setParameters("@ID_Especialidad", medico.Especialidad.Id_Especialidad);
                 datos.setParameters("@Estado", true);
                 datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
         public bool IngresarMedico(Medico medico)
