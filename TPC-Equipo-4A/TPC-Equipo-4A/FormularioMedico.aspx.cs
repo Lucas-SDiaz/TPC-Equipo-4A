@@ -84,8 +84,7 @@ namespace TPC_Equipo_4A
                 {
                     
                     Session.Add("accionExitosa", "Registro ingresado exitosamente!");
-                    Session.Add("id_usuario", negocio.TraerUltimoIDUsuario());
-                    string id = Session["id_usuario"].ToString();
+                    Session.Add("id_medico", negocio.TraerUltimoIDMedico());
                     Response.Redirect("insertExitoso.aspx", false);
                 }
             }

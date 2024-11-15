@@ -35,11 +35,11 @@ namespace TPC_Equipo_4A
         {
             MedicoNegocio negocio = new MedicoNegocio();
 
-            if (Session["id_usuario"] != null)
+            if (Session["id_medico"] != null)
             {
 
                 ////ACA LE ESTOY PASANDO EL ID DE USUARIO PERO TIENE QUE IR EL ID DE MEDICO
-                Medico medico = negocio.buscarMedicoID(int.Parse(Session["id_usuario"].ToString()));
+                Medico medico = negocio.buscarMedicoID(int.Parse(Session["id_medico"].ToString()));
 
                 medico.HorariosLaborables = new List<JornadaMedicos>();
                 if (chkLunes.Checked)
@@ -55,6 +55,8 @@ namespace TPC_Equipo_4A
                 if (chkSabado.Checked)
                     medico.HorariosLaborables.Add(new JornadaMedicos(6, ddlEntradaSabado.SelectedValue, ddlSalidaSabado.SelectedValue));
 
+                string id_medico = Session["id_medico"].ToString();
+                medico.Id_Medico = int.Parse(id_medico);
                 if (negocio.CargarHorariosMedico(medico))
                 {
                     Session.Add("HorarioExitoso", "Carga de horarios exitosa!");

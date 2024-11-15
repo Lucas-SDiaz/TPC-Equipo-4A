@@ -166,16 +166,16 @@ namespace Negocio
 
             return medico;
         }
-        public int TraerUltimoIDUsuario()
+        public int TraerUltimoIDMedico()
         {
-            int Id_Usuario;
+            int Id_Medico;
             AccesoDatos datos = new AccesoDatos();
             datos.setStoreProcedure("storedProcedureTraerUltimoIDMedico");
             datos.ejecutarLectura();
             while (datos.Lector.Read())
             {
-                Id_Usuario = (int)datos.Lector.GetInt64(0);
-                return Id_Usuario;
+                Id_Medico = (int)datos.Lector.GetInt64(0);
+                return Id_Medico;
             }
             return -1;
         }
