@@ -71,7 +71,7 @@
                                 <img src="\Imagenes\turnos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Turnos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Pacientes.aspx">
+                            <a class="nav-link" href="PacientesEmpleados.aspx">
                                 <img src="\Imagenes\pacientes.png " alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Pacientes</a>
                         </li>
                     </ul>

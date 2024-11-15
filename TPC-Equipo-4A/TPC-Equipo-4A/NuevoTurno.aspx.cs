@@ -19,6 +19,14 @@ namespace TPC_Equipo_4A
                 CargarPacientes();
                 CargarEspecialidades();
                 CargarMedicos();
+                if (Request.QueryString["id_p"] != null){
+                    PacienteNegocio negocio = new PacienteNegocio();
+                    Paciente aux = new Paciente();
+                    int id = int.Parse(Request.QueryString["id_p"]);
+                    aux = negocio.BuscarPorID(id);
+                    ddlPaciente.SelectedValue = aux.Id_Paciente.ToString();
+                }
+                
 
                 ddlHorario.Items.Insert(0, new ListItem("-- Seleccionar Horario --", "0"));
             }
@@ -42,7 +50,7 @@ namespace TPC_Equipo_4A
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Error cargando lista de horarios de medicos");
             }
@@ -58,7 +66,7 @@ namespace TPC_Equipo_4A
 
                 Session["listaMedicos"] = medicos;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Error cargando lista de medicos");
             }
@@ -77,7 +85,7 @@ namespace TPC_Equipo_4A
                 ddlPaciente.DataBind();
                 ddlPaciente.Items.Insert(0, new ListItem("-- Seleccionar Paciente --", "0"));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Error cargando lista de pacientes");
             }
@@ -96,7 +104,7 @@ namespace TPC_Equipo_4A
                 ddlEspecialidad.DataBind();
                 ddlEspecialidad.Items.Insert(0, new ListItem("-- Seleccionar Especialidad --", "0"));
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("Error cargando lista de especialidades");
             }
@@ -119,7 +127,7 @@ namespace TPC_Equipo_4A
                 string script = "alert('Registro agregado exitosamente.'); window.location.href='Default.aspx';";
                 ClientScript.RegisterStartupScript(this.GetType(), "Hola mundo", script, true);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Error agregando nuevo turno");
             }

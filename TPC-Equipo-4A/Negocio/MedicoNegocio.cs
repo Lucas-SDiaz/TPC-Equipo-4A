@@ -1,5 +1,6 @@
 ﻿using Dominio;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -97,12 +98,11 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Especialidad = new Especialidad();
                     aux.Especialidad.Id_Especialidad = (int)datos.Lector.GetInt64(3);
-                    aux.Especialidad.Descripcion = (string)datos.Lector["Nombre_E"];
                     
                     lista.Add(aux);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Error obteniendo lista de medicos desde capa de negocio");
             }
@@ -165,6 +165,19 @@ namespace Negocio
 
 
             return medico;
+        }
+        public int TraerUltimoIDUsuario()
+        {
+            int Id_Usuario;
+            AccesoDatos datos = new AccesoDatos();
+            datos.setStoreProcedure("storedProcedureTraerUltimoIDMedico");
+            datos.ejecutarLectura();
+            while (datos.Lector.Read())
+            {
+                Id_Usuario = (int)datos.Lector.GetInt64(0);
+                return Id_Usuario;
+            }
+            return -1;
         }
 
         public Medico buscarMedicoID(int id_med)
@@ -271,6 +284,27 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public bool CargarHorariosMedico(Medico aux)
+        {
+            MedicoNegocio negocio = new MedicoNegocio();
+            ///
+            //Esto es provisorio
+            //Medico medico = negocio.buscarMedicoID(1);
+            ///
+            AccesoDatos datos =new AccesoDatos();
+            foreach (var item in aux.HorariosLaborables)
+            {
+                datos.setStoreProcedure("storedProcedureCargarHorarios");
+                datos.setParameters("@ID_Medico", aux.Id_Medico);
+                datos.setParameters("@DiaSemana", item.DiaSemana);
+                datos.setParameters("@HoraEntrada", item.HoraInicio);
+                datos.setParameters("@HoraSalida", item.HoraFin);
+                datos.setParameters("@Estado", 1);
+                datos.ejecutarAccion();
+                datos.clearParameters();
+            }
+            return true;
         }
     }
 }

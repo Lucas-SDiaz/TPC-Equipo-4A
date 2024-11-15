@@ -49,7 +49,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="Especialidad">Especialidad</label>
-                        <asp:DropDownList runat="server" ID="ddlEspecialidad" CssClass="form-control" OnSelectedIndexChanged="ddlEspecialidad_SelectedIndexChanged">
+                        <asp:DropDownList runat="server" ID="ddlEspecialidad" CssClass="form-control">
                         </asp:DropDownList>
                     </div>
                 </div>

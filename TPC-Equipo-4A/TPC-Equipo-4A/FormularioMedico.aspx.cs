@@ -80,33 +80,18 @@ namespace TPC_Equipo_4A
             }
             else
             {
-                //if (negocio.IngresarMedico(medico))
-                //{
-                //}
+                if (negocio.IngresarMedico(medico)) //ME falta ver como recupero el id del registro recien ingresado para luego poder cargar horarios
+                {
+                    
                     Session.Add("accionExitosa", "Registro ingresado exitosamente!");
+                    Session.Add("id_usuario", negocio.TraerUltimoIDUsuario());
+                    string id = Session["id_usuario"].ToString();
                     Response.Redirect("insertExitoso.aspx", false);
+                }
             }
         }
 
-        protected void ddlEspecialidad_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            ////Medico medico = new Medico();
-            ////medico.Especialidad = new Especialidad();
-            ////medico.Especialidad.Descripcion = ddlEspecialidad.SelectedItem.Text;
-            ////medico.Especialidad.Id_Especialidad = int.Parse(ddlEspecialidad.SelectedItem.Value);
-            //switch (ddlEspecialidad.SelectedValue)
-            //{
-             
-            //    case "Ordenar por especialidad": 
-                    
-            //        break;
-            //    case "Ordenar alfabéticamente": 
-            //        break;
-            //    default: // Opción predeterminada, sin filtro específico
-            //        //query = "SELECT * FROM Medicos";
-            //        break;
-            //}
-        }
+     
         private void CargarEspecialidades()
         {
             EspecialidadNegocio negocio = new EspecialidadNegocio();

@@ -16,7 +16,10 @@ namespace TPC_Equipo_4A
 
         protected void brnHorarios_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Horarios.aspx", false);
+            if(Session["id_usuario"] != null)
+            {
+                Response.Redirect("Horarios.aspx", false);
+            }
         }
     }
 }
