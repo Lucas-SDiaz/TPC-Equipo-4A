@@ -43,17 +43,17 @@ namespace TPC_Equipo_4A
 
                 medico.HorariosLaborables = new List<JornadaMedicos>();
                 if (chkLunes.Checked)
-                    medico.HorariosLaborables.Add(new JornadaMedicos(1, ddlEntradaLunes.SelectedValue, ddlSalidaLunes.SelectedValue));
+                    medico.HorariosLaborables.Add(new JornadaMedicos(2, ddlEntradaLunes.SelectedValue, ddlSalidaLunes.SelectedValue));
                 if (chkMartes.Checked)
-                    medico.HorariosLaborables.Add(new JornadaMedicos(2, ddlEntradaMartes.SelectedValue, ddlSalidaMartes.SelectedValue));
+                    medico.HorariosLaborables.Add(new JornadaMedicos(3, ddlEntradaMartes.SelectedValue, ddlSalidaMartes.SelectedValue));
                 if (chkMiercoles.Checked)
-                    medico.HorariosLaborables.Add(new JornadaMedicos(3, ddlEntradaMiercoles.SelectedValue, ddlSalidaMiercoles.SelectedValue));
+                    medico.HorariosLaborables.Add(new JornadaMedicos(4, ddlEntradaMiercoles.SelectedValue, ddlSalidaMiercoles.SelectedValue));
                 if (chkJueves.Checked)
-                    medico.HorariosLaborables.Add(new JornadaMedicos(4, ddlEntradaJueves.SelectedValue, ddlSalidaJueves.SelectedValue));
+                    medico.HorariosLaborables.Add(new JornadaMedicos(5, ddlEntradaJueves.SelectedValue, ddlSalidaJueves.SelectedValue));
                 if (chkViernes.Checked)
-                    medico.HorariosLaborables.Add(new JornadaMedicos(5, ddlEntradaViernes.SelectedValue, ddlSalidaViernes.SelectedValue));
+                    medico.HorariosLaborables.Add(new JornadaMedicos(6, ddlEntradaViernes.SelectedValue, ddlSalidaViernes.SelectedValue));
                 if (chkSabado.Checked)
-                    medico.HorariosLaborables.Add(new JornadaMedicos(6, ddlEntradaSabado.SelectedValue, ddlSalidaSabado.SelectedValue));
+                    medico.HorariosLaborables.Add(new JornadaMedicos(7, ddlEntradaSabado.SelectedValue, ddlSalidaSabado.SelectedValue));
 
                 string id_medico = Session["id_medico"].ToString();
                 medico.Id_Medico = int.Parse(id_medico);
