@@ -70,7 +70,6 @@ namespace TPC_Equipo_4A
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }

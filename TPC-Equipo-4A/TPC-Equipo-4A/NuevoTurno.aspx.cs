@@ -123,6 +123,7 @@ namespace TPC_Equipo_4A
                 turno.Hora = new TimeSpan(Convert.ToInt16(ddlHorario.SelectedValue),0,0);
 
                 negocio.agregarTurno(turno);
+                EnviarMailConfirmacion(turno);
 
                 string script = "alert('Registro agregado exitosamente.'); window.location.href='Default.aspx';";
                 ClientScript.RegisterStartupScript(this.GetType(), "Hola mundo", script, true);
@@ -189,6 +190,37 @@ namespace TPC_Equipo_4A
         {
             ddlHorario.Items.Clear();
             ddlHorario.Items.Insert(0, new ListItem("-- Seleccionar Horario --", "0"));
+        }
+
+        private void EnviarMailConfirmacion(Turno turno)
+        {
+            var pacienteNegocio = new PacienteNegocio();
+            var medicoNegocio = new MedicoNegocio();
+
+            var medico = medicoNegocio.buscarMedicoID((int)turno.IdMedico);
+            var paciente = pacienteNegocio.BuscarPorID((int)turno.IdPaciente);
+
+            if (string.IsNullOrEmpty(paciente.Usuario.Email))
+            {
+                return;
+            }
+
+            string nombreApellido = paciente.Apellido + ", " + paciente.Nombre;
+            string emaildestino = paciente.Usuario.Email;
+            string doctor = medico.Apellido + ", " + medico.Nombre;
+            DateTime dia = turno.Fecha;
+            TimeSpan hora = turno.Hora;
+
+            EmailService emailService = new EmailService();
+            emailService.armarMail(emaildestino, nombreApellido, doctor, dia, hora);
+            try
+            {
+                emailService.enviarEmail();
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+            }
         }
     }
 }
