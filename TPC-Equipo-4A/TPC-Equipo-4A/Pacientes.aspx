@@ -25,9 +25,10 @@
         {
             if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
             {%>
-                <asp:GridView ID="dgvPacientes" runat="server" CssClass="table table-hover tableCustom" DataKeyNames="Id_Paciente" AutoGenerateColumns="false" OnRowCommand="dgvPacientes_RowCommand">
+                <asp:GridView ID="dgvPacientes" runat="server" CssClass="table table-hover tableCustom" DataKeyNames="Id_Paciente, Usuario.Id_Usuario" AutoGenerateColumns="false" OnRowCommand="dgvPacientes_RowCommand">
 
                 <Columns>
+                    <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario" Visible="false" />
                     <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                     <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
                     <asp:BoundField DataField="FechaNacimiento" HeaderText="Fecha de Nacimiento" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
@@ -43,7 +44,7 @@
             {%>
                 <asp:GridView ID="dgvPacientes2" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Paciente" OnSelectedIndexChanged="dgvPacientes2_SelectedIndexChanged">
                     <Columns>
-<%--                        <asp:BoundField HeaderText="ID Usuario" DataField="Usuario.ID_Usuario" />--%>
+                        <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario" Visible="false" />
                         <asp:BoundField HeaderText="Nombre y apellido" DataField="NombreCompleto" />
                         <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
                         <asp:BoundField HeaderText="Telefono" DataField="Telefono" />

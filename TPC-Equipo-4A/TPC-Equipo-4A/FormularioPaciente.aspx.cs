@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -29,6 +30,7 @@ namespace TPC_Equipo_4A
             Paciente paciente = new Paciente();
             PacienteNegocio negocio = new PacienteNegocio();
             paciente = negocio.BuscarParaModificar(idPaciente);
+            Session.Add("id_u", paciente.Usuario.Id_Usuario);
 
             if (paciente != null)
             {
@@ -99,23 +101,28 @@ namespace TPC_Equipo_4A
             nuevoPaciente.Domicilio.Provincia = txtProvincia.Text;
             nuevoPaciente.Domicilio.CodigoPostal = txtCodigoPostal.Text;
             //--------------------------------------------------------
-            if (Request.QueryString["id_p"] != null && Request.QueryString["id_u"] != null)
-            {
+            
+            if (Request.QueryString["id_p"] != null)
+            { 
                 nuevoPaciente.Id_Paciente = int.Parse(Request.QueryString["id_p"]);
-                nuevoPaciente.Usuario.Id_Usuario = int.Parse(Request.QueryString["id_u"]);
+                string id_usuario = Session["id_u"].ToString();
+                nuevoPaciente.Usuario.Id_Usuario = int.Parse(id_usuario);
                 nuevoPaciente.Estado = true;
-                nuevo.Editar(nuevoPaciente);
-                Response.Redirect("Pacientes.aspx", false);
+
+                if (nuevo.Editar(nuevoPaciente))
+                {
+                    Session.Add("accionExitosa", "Registro modificado exitosamente!");
+                    Response.Redirect("PacientesEmpleados.aspx", false);
+                }
+                
             }
             else
             {
                 nuevo.Agregar(nuevoPaciente);
                 Response.Redirect("Pacientes.aspx", false);
             }
-            
-
-           
         }
+
         protected void btnEnviar_Click2(object sender, EventArgs e)
         {
 

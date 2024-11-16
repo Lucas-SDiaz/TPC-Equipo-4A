@@ -3,6 +3,7 @@ using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -41,17 +42,18 @@ namespace TPC_Equipo_4A
         {
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = dgvPacientes.Rows[index];
-            string id_usuario = row.Cells[0].Text;
+            string id_usuario = dgvPacientes.DataKeys[index]["Usuario.Id_Usuario"].ToString();
             string id_paciente = dgvPacientes.DataKeys[index].Value.ToString();
 
             if (e.CommandName == "Editar")
             {
-                Response.Redirect("FormularioPaciente.aspx?id_p=" + id_paciente + "&id_u=" + id_usuario, false);
+                //Response.Redirect("FormularioPaciente.aspx?id_p=" + id_paciente + "&id_u=" + id_usuario, false);
+                Response.Redirect("FormularioPaciente.aspx?id_p=" + id_paciente, false);
             }
             else if (e.CommandName == "Eliminar")
             {
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
-                pacienteNegocio.EliminarPaciente(int.Parse(id_paciente));
+                pacienteNegocio.EliminarPaciente(int.Parse(id_usuario));
 
                 Response.Redirect("Pacientes.aspx", false);
             }
