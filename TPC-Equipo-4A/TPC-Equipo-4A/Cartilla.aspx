@@ -41,7 +41,8 @@
             <asp:GridView ID="dgvMedicosPersonalAdministrativo" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
-                <asp:BoundField HeaderText="Nombre Y Apellido" DataField="NombreYApellido" />
+                <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+                <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
                 <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
                 <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                 <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Descripcion" />

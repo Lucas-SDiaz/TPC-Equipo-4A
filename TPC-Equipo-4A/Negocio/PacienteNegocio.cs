@@ -32,7 +32,7 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.DNI = (string)datos.Lector["DNI"];
                     aux.Usuario.Email = (string)datos.Lector["Email"];
-                    aux.Telefono = (string)datos.Lector["Celular"];
+                    aux.Telefono = datos.Lector["Celular"] != DBNull.Value ? (string)datos.Lector["Celular"] : null;
                     lista.Add(aux);
                 }
                 return lista;

@@ -118,7 +118,7 @@ namespace TPC_Equipo_4A
             else
             {
                 nuevo.Agregar(nuevoPaciente);
-                Response.Redirect("Pacientes.aspx", false);
+                Response.Redirect("PacientesEmpleados.aspx", false);
             }
         }
 

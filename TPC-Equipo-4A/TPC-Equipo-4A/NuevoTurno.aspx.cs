@@ -117,8 +117,8 @@ namespace TPC_Equipo_4A
 
             try
             {
-                turno.IdPaciente = int.Parse(ddlPaciente.SelectedValue.ToString());
-                turno.IdMedico = int.Parse(ddlMedico.SelectedValue.ToString());
+                turno.Paciente.Id_Paciente = int.Parse(ddlPaciente.SelectedValue.ToString());
+                turno.Medico.Id_Medico = int.Parse(ddlMedico.SelectedValue.ToString());
                 turno.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());
                 turno.Hora = new TimeSpan(Convert.ToInt16(ddlHorario.SelectedValue),0,0);
 
@@ -197,8 +197,8 @@ namespace TPC_Equipo_4A
             var pacienteNegocio = new PacienteNegocio();
             var medicoNegocio = new MedicoNegocio();
 
-            var medico = medicoNegocio.buscarMedicoID((int)turno.IdMedico);
-            var paciente = pacienteNegocio.BuscarPorID((int)turno.IdPaciente);
+            var medico = medicoNegocio.buscarMedicoID((int)turno.Medico.Id_Medico);
+            var paciente = pacienteNegocio.BuscarPorID((int)turno.Paciente.Id_Paciente);
 
             if (string.IsNullOrEmpty(paciente.Usuario.Email))
             {

@@ -144,7 +144,7 @@ namespace Negocio
                     if (!datos.Lector.IsDBNull(6))
                     {
                         Turno turno = new Turno();
-                        turno.IdMedico = (int)datos.Lector.GetInt64(0);
+                        turno.Medico.Id_Medico = (int)datos.Lector.GetInt64(0);
                         turno.Hora = (TimeSpan)datos.Lector["Hora"];
                         turno.Fecha = (DateTime)datos.Lector["Fecha"];
                         turnos.Add(turno);
