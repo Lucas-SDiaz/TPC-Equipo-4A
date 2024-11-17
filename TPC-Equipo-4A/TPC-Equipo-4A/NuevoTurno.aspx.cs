@@ -113,6 +113,8 @@ namespace TPC_Equipo_4A
         protected void btnAceptar_Click(object sender, EventArgs e)
         {
             Turno turno = new Turno();
+            turno.Medico = new Medico();
+            turno.Paciente = new Paciente();    
             TurnoNegocio negocio = new TurnoNegocio();
 
             try
