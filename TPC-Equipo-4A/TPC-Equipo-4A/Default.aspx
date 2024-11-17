@@ -90,47 +90,45 @@
  </head>
  <body>
 
-  <div class="container mt-3">
-   <div class="main-image">
-       <section class="col-md-6" aria-labelledby="gettingStartedTitle">
-    <div class="container-md">
-        <div id="carouselExampleDark" class="carousel carousel-dark slide">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="2000">
-                    <img src="\Imagenes\1.jpeg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="\Imagenes\2.jpeg" class="d-block w-100" alt="...">
-                </div>
-                <div class="carousel-item" data-bs-interval="2000">
-                    <img src="\Imagenes\3.jpeg" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Siguiente</span>
-            </button>
-        </div>
-    </div>
-</section>
-<section class="col-md-4" aria-labelledby="librariesTitle">
+   <%--  <div class="container mt-3">--%>
+         <div class="container-sm">
+             <%--<div class="container-md">--%>
+                 <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+                     <div class="carousel-inner">
+                         <div class="carousel-item active">
+                             <img src="\Imagenes\2.jpg" class="img-fluid" height:80% alt="...">
+                             <div class="carousel-caption d-none d-md-block">
+                                 <h5>Sede Central</h5>
+                             </div>
+                         </div>
+                         <div class="carousel-item">
+                             <img src="\Imagenes\3.jpg" class="img-fluid" height: 80% alt="...">
+                             <div class="carousel-caption d-none d-md-block">
+                                 <h5>Sede Caballito</h5>
+                             </div>
+                         </div>
+                         <div class="carousel-item">
+                             <img src="\Imagenes\1.jpg" class="img-fluid" height: 80% alt="...">
+                         </div>
+                     </div>
+                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                         <span class="visually-hidden">Previous</span>
+                     </button>
+                     <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                         <span class="visually-hidden">Next</span>
+                     </button>
+                 </div>
+             <%--</div>--%>
+<%--<section class="col-md-4" aria-labelledby="librariesTitle">--%>
 <%--    <div class="d-grid gap-2 col-6 mx-auto">
         <asp:Button ID="btnSolTurno" runat="server" Text="Solicitar Turno" class="fas fa-calendar-alt" OnClick="btnSolTurno_Click" />
         <asp:Button ID="btnCartilla" runat="server" Text="Ver Cartilla" CssClass="btn btn-primary btn-lg" OnClick="btnCartilla_Click"/>
     </div>--%>
-</section>  
-     SEDE SAN ISIDRO
+<%--</section> --%>
     </div>
-   </div>
+ <%--  </div>--%>
    <div class="row mt-3 main-buttons">
     <div class="col-md-6">
      <a class="btn btn-success" href="Turnos.aspx">

@@ -19,18 +19,18 @@ namespace TPC_Equipo_4A
                 List<Turno> lista = new List<Turno>();
                 lista = turnoNegocio.listarTurnos();
                 //Session.Add("listaTurnos", lista);
-                dgvTurnos.DataSource = lista;
-                dgvTurnos.DataBind();
-                
+                DgvTurno.DataSource = lista;
+                DgvTurno.DataBind();
             }
         }
 
-        protected void dgvTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
+
+        protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
 
-        protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
+        protected void DgvTurno_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }
