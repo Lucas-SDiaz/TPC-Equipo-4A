@@ -25,7 +25,7 @@
         <div class="container mt-4">
             <div class="row">
                 <div class="col-md-9">
-                    <asp:GridView ID="dgvTurnosMedico" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowDataBound="dgvTurnosMedico_RowDataBound">
+                    <asp:GridView ID="dgvTurnosMedico" runat="server" CssClass="table table-hover tableCustom" DataKeyNames="ID_Turno" AutoGenerateColumns="false" OnRowCommand="dgvTurnosMedico_RowCommand">
                         <Columns>
                             <asp:BoundField HeaderText="Paciente" DataField="Paciente.NombreCompleto" />
                             <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
@@ -56,7 +56,7 @@
         <%}
             else
             { %>
-        <asp:GridView ID="dgvTurnos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowDataBound="dgvTurnos_RowDataBound">
+        <asp:GridView ID="dgvTurnos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowCommand="dgvTurnos_RowCommand">
             <Columns>
                 <asp:BoundField HeaderText="Paciente" DataField="Paciente.NombreCompleto" />
                 <asp:BoundField HeaderText="Médico" DataField="Medico.NombreCompleto" />

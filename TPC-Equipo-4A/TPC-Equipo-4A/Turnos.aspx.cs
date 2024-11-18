@@ -40,15 +40,6 @@ namespace TPC_Equipo_4A
 
         }
 
-        protected void dgvTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
-
-        protected void dgvTurnosMedico_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-
-        }
 
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
@@ -72,6 +63,26 @@ namespace TPC_Equipo_4A
                 Response.Write("Fecha inválida");
             }
             
+        }
+
+        protected void dgvTurnosMedico_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            Turno aux = new Turno();
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = dgvTurnosMedico.Rows[index];
+            string id_turno = dgvTurnosMedico.DataKeys[index].Value.ToString();
+            aux = turnoNegocio.listarTurnoPorID(int.Parse(id_turno));
+            Session.Add("Turno", aux);
+            if (e.CommandName == "Consulta")
+            {
+                Response.Redirect("NuevaConsulta.aspx", false);
+            }
+            
+        }
+
+        protected void dgvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+
         }
     }
 }

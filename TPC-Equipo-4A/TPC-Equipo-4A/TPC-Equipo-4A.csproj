@@ -159,6 +159,7 @@
     <Content Include="insertExitoso.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MedicosABM.aspx" />
+    <Content Include="NuevaConsulta.aspx" />
     <Content Include="NuevoTurno.aspx" />
     <Content Include="ObrasSociales.aspx" />
     <Content Include="Pacientes.aspx" />
@@ -343,6 +344,13 @@
     </Compile>
     <Compile Include="MedicosABM.aspx.designer.cs">
       <DependentUpon>MedicosABM.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaConsulta.aspx.cs">
+      <DependentUpon>NuevaConsulta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaConsulta.aspx.designer.cs">
+      <DependentUpon>NuevaConsulta.aspx</DependentUpon>
     </Compile>
     <Compile Include="NuevoTurno.aspx.cs">
       <DependentUpon>NuevoTurno.aspx</DependentUpon>
