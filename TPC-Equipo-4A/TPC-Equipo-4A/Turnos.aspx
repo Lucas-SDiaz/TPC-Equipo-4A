@@ -10,17 +10,28 @@
     </asp:DropDownList>
     </div>
     <div>
-        <asp:GridView ID="DgvTurno" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowDataBound="DgvTurno_RowDataBound">
+        <asp:GridView ID="dgvTurnos" runat="server" CssClass="table table-hover tableCustom" DataKeyNames="ID_Turno" AutoGenerateColumns="false" OnRowCommand="dgvTurnos_RowCommand">
             <Columns>
                 <asp:BoundField HeaderText="Paciente" DataField="Paciente.NombreCompleto" />
                 <asp:BoundField HeaderText="Médico" DataField="Medico.NombreCompleto" />
                 <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                 <asp:BoundField DataField="HoraFormateada" HeaderText="Hora" DataFormatString="{0:hh:mm}" HtmlEncode="false" />
                 <asp:BoundField DataField="Estado" HeaderText="Estado" />
-                <asp:ButtonField CommandName="Editar" Text="📝" ButtonType="Button" HeaderText="Editar" />
-                <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar" />
+                <asp:ButtonField CommandName="Reprogramar" Text="📝" ButtonType="Button" HeaderText="Reprogramar" />
+                <asp:ButtonField CommandName="Cancelar" Text="❌" ButtonType="Button" HeaderText="Cancelar" />
             </Columns>
         </asp:GridView>
+<%--        <asp:GridView ID="DgvTurno" runat="server" CssClass="table table-hover tableCustom" DataKeyName="ID_Turno" AutoGenerateColumns="false" OnRowcommand="DgvTurno_RowCommand">
+            <Columns>
+                <asp:BoundField HeaderText="Paciente" DataField="Paciente.NombreCompleto" />
+                <asp:BoundField HeaderText="Médico" DataField="Medico.NombreCompleto" />
+                <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
+                <asp:BoundField DataField="HoraFormateada" HeaderText="Hora" DataFormatString="{0:hh:mm}" HtmlEncode="false" />
+                <asp:BoundField DataField="Estado" HeaderText="Estado" />
+                <asp:ButtonField CommandName="Reprogramar" Text="📝" ButtonType="Button" HeaderText="Reprogramar"/>
+                <asp:ButtonField CommandName="Cancelar" Text="❌" ButtonType="Button" HeaderText="Cancelar" />
+            </Columns>
+        </asp:GridView>--%>
     </div>
     <style>
     .tableCustom {

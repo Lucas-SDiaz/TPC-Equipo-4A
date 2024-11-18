@@ -1,47 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="TPC_Equipo_4A._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-
- <%--   <main>
-        <div class="row">
-            <section class="col-md-6" aria-labelledby="gettingStartedTitle">
-                <div class="container-md">
-                    <div id="carouselExampleDark" class="carousel carousel-dark slide">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active" data-bs-interval="10000">
-                                <img src="\Imagenes\1.jpeg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item" data-bs-interval="2000">
-                                <img src="\Imagenes\2.jpeg" class="d-block w-100" alt="...">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="\Imagenes\3.jpeg" class="d-block w-100" alt="...">
-                            </div>
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Anterior</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Siguiente</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-            <section class="col-md-4" aria-labelledby="librariesTitle">
-                <div class="d-grid gap-2 col-6 mx-auto">
-                    <asp:Button ID="btnSolTurno" runat="server" Text="Solicitar Turno" CssClass="btn btn-primary btn-lg" OnClick="btnSolTurno_Click" />
-                    <asp:Button ID="btnCartilla" runat="server" Text="Ver Cartilla" CssClass="btn btn-primary btn-lg" OnClick="btnCartilla_Click"/>
-                </div>
-            </section>  
-        </div>
-    </main>--%>
     <html>
  <head>
   <title>
@@ -49,6 +8,7 @@
   </title>
   <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <script src="https://kit.fontawesome.com/25735b2c95.js" crossorigin="anonymous"></script>
   <style>
       body {
           font-family: Arial, sans-serif;
@@ -139,10 +99,10 @@
      </a>
     </div>
     <div class="col-md-6">
-     <a class="btn btn-success">
-      <i class="fas fa-file-medical-alt">
+     <a class="btn btn-success" href="PacientesEmpleados.aspx">
+     <i class="fa-solid fa-user-pen">
       </i>
-      RESULTADO DE ESTUDIO
+      PACIENTES
      </a>
     </div>
    </div>

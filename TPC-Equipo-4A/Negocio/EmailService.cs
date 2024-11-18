@@ -38,7 +38,7 @@ namespace Negocio
             {
                 server.Send(email);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("No se pudo enviar email");
             }

@@ -19,8 +19,8 @@ namespace TPC_Equipo_4A
                 List<Turno> lista = new List<Turno>();
                 lista = turnoNegocio.listarTurnos();
                 //Session.Add("listaTurnos", lista);
-                DgvTurno.DataSource = lista;
-                DgvTurno.DataBind();
+                dgvTurnos.DataSource = lista;
+                dgvTurnos.DataBind();
             }
         }
 
@@ -30,9 +30,27 @@ namespace TPC_Equipo_4A
 
         }
 
-        protected void DgvTurno_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void dgvTurnos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            {
 
+                if (e.CommandName == "Reprogramar" || e.CommandName == "Cancelar")
+                {
+
+                    int index = Convert.ToInt32(e.CommandArgument);
+                    int idTurno = Convert.ToInt32(dgvTurnos.DataKeys[index].Value);
+
+
+                    if (e.CommandName == "Reprogramar")
+                    {
+                        Response.Redirect("NuevoTurno.aspx?id=" + idTurno, false);
+                    }
+                    else if (e.CommandName == "Cancelar")
+                    {
+                        turnoNegocio.cancelarTurno(idTurno);
+                    }
+                }
+            }
         }
     }
 }
