@@ -33,7 +33,6 @@ namespace Negocio
             }
             return turno;
         }
-
         public List<Turno> listarTurnos()
         {
             List<Turno> listaTurnos = new List<Turno>();
@@ -53,11 +52,80 @@ namespace Negocio
                     aux.Medico.Nombre = (string)datos.Lector["nom med"];
                     aux.Hora = (TimeSpan)datos.Lector["Hora"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
-                    //aux.Estado = (string)datos.Lector["Estado"];
+                    aux.Estado = (int)datos.Lector["Estado"];
 
                     listaTurnos.Add(aux);   
                 }
                 return listaTurnos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public List<Turno> listarTurnosMedico(int id_u)
+        {
+            List<Turno> listaTurnos = new List<Turno>();
+            try
+            {
+                datos.setStoreProcedure("SPlistarTurnosMedico");
+                datos.setParameters("@ID_Usuario", id_u);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Turno aux = new Turno();
+                    aux.Paciente = new Paciente();
+                    aux.Medico = new Medico();      
+                    aux.ID_Turno = (int)datos.Lector.GetInt64(0);
+                    aux.Paciente.Apellido = (string)datos.Lector["AP PAC"];
+                    aux.Paciente.Nombre = (string)datos.Lector["NOM PAC"];
+                    aux.Medico.Apellido = (string)datos.Lector["AP MED"];
+                    aux.Medico.Nombre = (string)datos.Lector["NOM MED"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.Hora = (TimeSpan)datos.Lector["Hora"];
+                    aux.Estado = (int)datos.Lector["Estado"];
+
+                    listaTurnos.Add(aux);   
+                }
+                return listaTurnos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public Turno listarTurnoPorID(int id_t)
+        {
+            List<Turno> listaTurnos = new List<Turno>();
+            try
+            {
+                Turno aux = new Turno();
+                datos.setStoreProcedure("SPlistarTurnoPorID");
+                datos.setParameters("@ID_Turno", id_t);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    aux.Paciente = new Paciente();
+                    aux.Medico = new Medico();      
+                    aux.ID_Turno = (int)datos.Lector.GetInt64(0);
+                    aux.Paciente.Apellido = (string)datos.Lector["AP PAC"];
+                    aux.Paciente.Nombre = (string)datos.Lector["NOM PAC"];
+                    aux.Medico.Apellido = (string)datos.Lector["AP MED"];
+                    aux.Medico.Nombre = (string)datos.Lector["NOM MED"];
+                    aux.Fecha = (DateTime)datos.Lector["Fecha"];
+                    aux.Hora = (TimeSpan)datos.Lector["Hora"];
+                    aux.Estado = (int)datos.Lector["Estado"];
+
+                }
+                return aux;
             }
             catch (Exception ex)
             {
