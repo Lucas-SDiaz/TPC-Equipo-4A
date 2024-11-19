@@ -47,6 +47,10 @@ namespace TPC_Equipo_4A
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 IngresarOModificarRegistro();
             }
             catch (Exception ex)

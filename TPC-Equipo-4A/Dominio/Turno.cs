@@ -13,7 +13,7 @@ namespace Dominio
         public Paciente Paciente { get; set; }
         public DateTime Fecha{ get; set; }
         public TimeSpan Hora {  get; set; }
-        public string Estado { get; set; }
+        public int Estado { get; set; }
         public string HoraFormateada => $"{Hora:hh\\:mm}";
 
         // "Nuevo", "Reprogramado", etc.

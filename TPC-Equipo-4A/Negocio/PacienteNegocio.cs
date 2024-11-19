@@ -252,7 +252,13 @@ namespace Negocio
                 datos.setParameters("@FechaRegistro", DateTime.Now.Date);
 
 
-                datos.ejecutarAccion(); 
+                datos.ejecutarAccion();
+
+                //Fecha Registro
+                datos.setQuery("INSERT INTO FechaRegistro(ID_Usuario, FechaRegistro) VALUES(@ID_Usuario, @FechaRegistro)");
+                datos.clearParameters();
+                datos.setParameters("@ID_Usuario", idUsuarioGenerado);
+                datos.setParameters("@FechaRegistro", DateTime.Now.Date);
             }
             catch (Exception ex)
             {

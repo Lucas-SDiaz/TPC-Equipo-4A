@@ -66,6 +66,10 @@ namespace TPC_Equipo_4A
         {
             try
             {
+                Page.Validate();
+                if (!Page.IsValid)
+                    return;
+
                 IngresaroModificarPaciente();
             }
             catch (Exception ex)
