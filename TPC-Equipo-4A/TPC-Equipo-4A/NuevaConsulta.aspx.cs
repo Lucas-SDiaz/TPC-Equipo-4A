@@ -1,4 +1,5 @@
 ﻿using Dominio;
+using Negocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,12 +33,15 @@ namespace TPC_Equipo_4A
         }
         private void GuardarConsulta()
         {
+            ConsultaNegocio negocio = new ConsultaNegocio();
             Consulta consulta = new Consulta();
             consulta.Turno = new Turno();
             consulta.Turno = (Turno)Session["Turno"];
             consulta.Comentarios = txtComentarios.Text;
             consulta.Diagnostico = txtDiagnostico.Text; 
             consulta.Tratamiento = txtTratamiento.Text;
+            if (negocio.AgregarConsulta(consulta))
+                Response.Redirect("Default.aspx", false);
         }
     }
 }

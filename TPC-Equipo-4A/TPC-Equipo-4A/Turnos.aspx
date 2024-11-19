@@ -56,7 +56,7 @@
         <%}
             else
             { %>
-          <asp:GridView ID="GvTurnos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowCommand="GvTurnos_RowCommand1">
+          <asp:GridView ID="GvTurnos" runat="server" CssClass="table table-hover tableCustom" DataKeyNames="ID_Turno" AutoGenerateColumns="false" OnRowCommand="GvTurnos_RowCommand1">
        <%-- <asp:GridView ID="dgvTurnos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowCommand="dgvTurnos_RowCommand">--%>
             <Columns>
                 <asp:BoundField HeaderText="Paciente" DataField="Paciente.NombreCompleto" />
