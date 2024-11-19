@@ -33,7 +33,7 @@
                     <label class="form-label">Apellido</label>
                     <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control" Required=""></asp:TextBox>
                     <asp:RequiredFieldValidator ErrorMessage="Campo requerido" ControlToValidate="txtApellido" runat="server" />
-                                    <asp:RegularExpressionValidator 
+                    <asp:RegularExpressionValidator 
 ID="revApellido" 
 runat="server" 
 ControlToValidate="txtApellido" 
