@@ -16,12 +16,30 @@
                     <div class="form-group">
                         <label for="Nombre">Nombre</label>
                         <asp:TextBox ID="txtNombre" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ErrorMessage="Campo requerido" ControlToValidate="txtNombre" runat="server" />
+                        <asp:RegularExpressionValidator 
+ID="revNombre" 
+runat="server" 
+ControlToValidate="txtNombre" 
+ErrorMessage="Solo se permiten letras" 
+ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" 
+Display="Dynamic" 
+CssClass="text-danger" />
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="Apellido">Apellido</label>
                         <asp:TextBox ID="txtApellido" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ErrorMessage="Campo requerido" ControlToValidate="txtApellido" runat="server" />
+                        <asp:RegularExpressionValidator 
+ID="revApellido" 
+runat="server" 
+ControlToValidate="txtApellido" 
+ErrorMessage="Solo se permiten letras" 
+ValidationExpression="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+$" 
+Display="Dynamic" 
+CssClass="text-danger" />
                     </div>
                 </div>
             </div>
@@ -30,6 +48,14 @@
                     <div class="form-group">
                         <label for="Email">Email</label>
                         <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ErrorMessage="Campo requerido" ControlToValidate="txtEmail" runat="server" />
+                        <asp:RegularExpressionValidator 
+ErrorMessage="Solo formato email" 
+ControlToValidate="txtEmail" 
+ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" 
+runat="server" 
+Display="Dynamic" 
+CssClass="text-danger" />
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -44,6 +70,8 @@
                     <div class="form-group">
                         <label for="Telefono">Teléfono</label>
                         <asp:TextBox ID="txtTelefono" CssClass="form-control" runat="server"></asp:TextBox>
+                        <asp:RequiredFieldValidator ErrorMessage="Campo requerido" ControlToValidate="txtTelefono" runat="server" />
+<asp:RegularExpressionValidator ErrorMessage="Solo números" ControlToValidate="txtTelefono" ValidationExpression="^[0-9]+$" runat="server" Display="Dynamic" CssClass="text-danger" />
                     </div>
                 </div>
                 <div class="col-md-6">

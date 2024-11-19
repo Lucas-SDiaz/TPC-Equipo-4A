@@ -43,10 +43,12 @@ namespace TPC_Equipo_4A
                     Session.Add("Usuario", usuario);
                     if (Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Perfil != Dominio.Perfil.Administrador) 
                     {
+                        Session.Add("ID_U", usuario.Id_Usuario);
                         Response.Redirect("Default.aspx", false);
                     }
                     else if(Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Administrador)
                     {
+                        Session.Add("ID_U", usuario.Id_Usuario);
                         Response.Redirect("Dashboard.aspx", false);
                     }
                 }

@@ -30,6 +30,7 @@ namespace Negocio
                         usuario.Perfil = Perfil.PersonalAdministrativo;
                     else if (perfil == 4)
                         usuario.Perfil = Perfil.Paciente;
+
                     return true;
                 }
                 return false;
