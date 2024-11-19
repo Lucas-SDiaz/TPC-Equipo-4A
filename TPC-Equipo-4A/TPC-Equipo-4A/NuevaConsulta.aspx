@@ -34,7 +34,7 @@
                     <asp:TextBox ID="txtComentarios" CssClass="form-control border-info" TextMode="MultiLine" runat="server"></asp:TextBox>
                 </div>
             </div>
-        </form>
+        </form> <br /> <br />
         <div class="row">
             <div class="col-md-12">
                 <asp:Button runat="server" ID="btnGuardarConsulta" CssClass="btn btn-outline-primary" OnClick="btnGuardarConsulta_Click" Text="Guadar consulta" />

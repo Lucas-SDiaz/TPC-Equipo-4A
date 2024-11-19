@@ -116,6 +116,8 @@ namespace Negocio
                     aux.Paciente = new Paciente();
                     aux.Medico = new Medico();      
                     aux.ID_Turno = (int)datos.Lector.GetInt64(0);
+                    aux.Paciente.Id_Paciente = (int)datos.Lector.GetInt64(1);
+                    aux.Medico.Id_Medico = (int)datos.Lector.GetInt64(2);
                     aux.Paciente.Apellido = (string)datos.Lector["AP PAC"];
                     aux.Paciente.Nombre = (string)datos.Lector["NOM PAC"];
                     aux.Medico.Apellido = (string)datos.Lector["AP MED"];

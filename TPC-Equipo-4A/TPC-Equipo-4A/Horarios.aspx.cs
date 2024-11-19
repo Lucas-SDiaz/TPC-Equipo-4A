@@ -38,7 +38,6 @@ namespace TPC_Equipo_4A
             if (Session["id_medico"] != null)
             {
 
-                ////ACA LE ESTOY PASANDO EL ID DE USUARIO PERO TIENE QUE IR EL ID DE MEDICO
                 Medico medico = negocio.buscarMedicoID(int.Parse(Session["id_medico"].ToString()));
 
                 medico.HorariosLaborables = new List<JornadaMedicos>();
