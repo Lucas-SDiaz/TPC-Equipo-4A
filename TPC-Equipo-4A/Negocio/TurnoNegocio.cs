@@ -52,7 +52,7 @@ namespace Negocio
                     aux.Medico.Nombre = (string)datos.Lector["nom med"];
                     aux.Hora = (TimeSpan)datos.Lector["Hora"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
-                    aux.Estado = (string)datos.Lector["Estado"];
+                    aux.Estado = (int)datos.Lector["Estado"];
 
                     listaTurnos.Add(aux);   
                 }
@@ -87,7 +87,7 @@ namespace Negocio
                     aux.Medico.Nombre = (string)datos.Lector["NOM MED"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
                     aux.Hora = (TimeSpan)datos.Lector["Hora"];
-                    aux.Estado = (string)datos.Lector["Estado"];
+                    aux.Estado = (int)datos.Lector["Estado"];
 
                     listaTurnos.Add(aux);   
                 }
@@ -122,7 +122,7 @@ namespace Negocio
                     aux.Medico.Nombre = (string)datos.Lector["NOM MED"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
                     aux.Hora = (TimeSpan)datos.Lector["Hora"];
-                    aux.Estado = (string)datos.Lector["Estado"];
+                    aux.Estado = (int)datos.Lector["Estado"];
 
                 }
                 return aux;
@@ -130,6 +130,27 @@ namespace Negocio
             catch (Exception ex)
             {
                 throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public bool cancelarTurno(int idTurno)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setStoreProcedure("SpCancelarTurno");
+                datos.setParameters("@ID_Turno", idTurno);
+                datos.ejecutarAccion();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
             }
             finally
             {
