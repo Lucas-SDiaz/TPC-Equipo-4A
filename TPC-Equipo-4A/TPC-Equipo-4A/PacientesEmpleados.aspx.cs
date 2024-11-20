@@ -70,7 +70,6 @@ namespace TPC_Equipo_4A
 
         }
 
-<<<<<<< Updated upstream
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             dgvPacientes.DataSource = Session["listarPacientes"];
@@ -98,7 +97,6 @@ namespace TPC_Equipo_4A
             dgvPacientes.DataBind();
         }
 
-=======
         protected void dgvPacientesMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
@@ -111,6 +109,5 @@ namespace TPC_Equipo_4A
             Session.Add("historiaClinica", histClinica);
             Response.Redirect("DetalleConsultas.aspx", false);
         }
->>>>>>> Stashed changes
     }
 }
