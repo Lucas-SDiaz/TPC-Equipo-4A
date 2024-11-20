@@ -51,7 +51,7 @@
                         <asp:CommandField HeaderText="info   ℹ️" ShowSelectButton="true" SelectText="Ver detalles" />
                     </Columns>
                 </asp:GridView>
-            <%} 
+            <%}
         }%>
     <style>
         .tableCustom {

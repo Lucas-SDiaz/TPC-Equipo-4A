@@ -22,6 +22,11 @@ namespace TPC_Equipo_4A
                 {
                     dgvPacientes.DataSource = Session["listarPacientes"];
                     dgvPacientes.DataBind();
+                }else if(((Usuario)Session["Usuario"]).Perfil == Perfil.Medico)
+                {
+                    int id_medico = (int)Session["ID_M"];
+                    dgvPacientesMedicos.DataSource = pacienteNegocio.listarConSP(id_medico);
+                    dgvPacientesMedicos.DataBind();
                 }
             }
             // PacienteNegocio pacienteNegocio = new PacienteNegocio();
@@ -65,6 +70,7 @@ namespace TPC_Equipo_4A
 
         }
 
+<<<<<<< Updated upstream
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
             dgvPacientes.DataSource = Session["listarPacientes"];
@@ -92,5 +98,19 @@ namespace TPC_Equipo_4A
             dgvPacientes.DataBind();
         }
 
+=======
+        protected void dgvPacientesMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = dgvPacientesMedicos.Rows[index];
+            string id_paciente = dgvPacientesMedicos.DataKeys[index].Value.ToString();
+            ConsultaNegocio negocio = new ConsultaNegocio();
+            HistoriaClinica histClinica = new HistoriaClinica();
+            histClinica = negocio.ListarConsultas(int.Parse(id_paciente));
+            histClinica.Id_Paciente = int.Parse(id_paciente);
+            Session.Add("historiaClinica", histClinica);
+            Response.Redirect("DetalleConsultas.aspx", false);
+        }
+>>>>>>> Stashed changes
     }
 }

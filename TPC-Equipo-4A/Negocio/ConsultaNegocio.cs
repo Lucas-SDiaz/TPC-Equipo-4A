@@ -9,6 +9,59 @@ namespace Negocio
 {
     public class ConsultaNegocio
     {
+        public HistoriaClinica ListarConsultas(int id_pac)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            HistoriaClinica aux = new HistoriaClinica();
+            aux.Consultas = new List<Consulta>();
+            datos.setStoreProcedure("SPListarConsultasPorPaciente");
+            datos.setParameters("@ID_Paciente", id_pac);
+            datos.ejecutarLectura();
+
+            while (datos.Lector.Read())
+            {
+                Consulta consulta = new Consulta();
+                {
+                    consulta.Turno = new Turno();
+                    {
+                        consulta.Turno.Fecha = (DateTime)datos.Lector["FechaConsulta"];
+                        consulta.Turno.Paciente = new Paciente();
+                        {
+                            consulta.Turno.Paciente.Nombre = (string)datos.Lector["Nombre"];
+                            consulta.Turno.Paciente.Apellido = (string)datos.Lector["Apellido"];
+                        }
+                    }
+                    consulta.Diagnostico = (string)datos.Lector["Diagnostico"];
+                    consulta.Tratamiento = (string)datos.Lector["Tratamiento"];
+                    consulta.Comentarios = (string)datos.Lector["Comentarios"];
+                };
+
+                // Agregar consulta a la lista
+                aux.Consultas.Add(consulta);
+            }
+            return aux;
+
+
+
+
+
+
+
+
+            //while (datos.Lector.Read())
+            //{
+
+            //    aux.Consultas[index].Turno.Fecha = (DateTime)datos.Lector["FechaConsulta"];
+            //    aux.Consultas[index].Turno.Paciente.Nombre = (string)datos.Lector["Nombre"];
+            //    aux.Consultas[index].Turno.Paciente.Apellido = (string)datos.Lector["Apellido"];
+            //    aux.Consultas[index].Diagnostico = (string)datos.Lector["Diagnostico"];
+            //    aux.Consultas[index].Tratamiento = (string)datos.Lector["Tratamiento"];
+            //    aux.Consultas[index].Comentarios = (string)datos.Lector["Comentarios"];
+
+            //    index++;
+            //}
+            //return aux; 
+        }
         public bool AgregarConsulta(Consulta aux)
         {
             AccesoDatos datos = new AccesoDatos();

@@ -43,6 +43,36 @@ namespace Negocio
                 throw ex;
             }
         }
+        public List<Paciente> listarConSP(int Id_Medico)
+        {
+            List<Paciente> lista = new List<Paciente>();
+            try
+            {
+                datos.setStoreProcedure("storedProcedureListarPacientesPorMedico");
+                datos.setParameters("@ID_Medico", Id_Medico);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Paciente aux = new Paciente();
+                    aux.Usuario = new Usuario();
+                    aux.Id_Paciente = (int)datos.Lector.GetInt64(0);
+                    aux.Usuario.Id_Usuario = (int)datos.Lector.GetInt64(1);
+                    aux.FechaNacimiento = ((DateTime)datos.Lector["Fecha de nacimiento"]).Date;
+                    aux.Apellido = (string)datos.Lector["Apellido"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.DNI = (string)datos.Lector["DNI"];
+                    aux.Usuario.Email = (string)datos.Lector["Email"];
+                    aux.Telefono = datos.Lector["Celular"] != DBNull.Value ? (string)datos.Lector["Celular"] : null;
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
         public Paciente BuscarPorID(int id)
         {

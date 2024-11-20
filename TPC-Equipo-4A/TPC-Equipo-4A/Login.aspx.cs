@@ -36,6 +36,7 @@ namespace TPC_Equipo_4A
         private void LoginUsuario(Usuario usuario)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
+            MedicoNegocio medicoNegocio = new MedicoNegocio();
             try
             {
                 if (negocio.Loguear(usuario))
@@ -44,6 +45,7 @@ namespace TPC_Equipo_4A
                     if (Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Perfil != Dominio.Perfil.Administrador) 
                     {
                         Session.Add("ID_U", usuario.Id_Usuario);
+                        Session.Add("ID_M", medicoNegocio.BuscarIDMedicoPorIDUsuario(usuario.Id_Usuario));
                         Response.Redirect("Default.aspx", false);
                     }
                     else if(Session["Usuario"] != null && ((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Administrador)

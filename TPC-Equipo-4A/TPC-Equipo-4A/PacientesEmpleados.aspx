@@ -41,7 +41,19 @@
 
                 </Columns>
             </asp:GridView>
-            <%}
+            <%}else if(((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Medico)
+                {%>
+                    <asp:GridView ID="dgvPacientesMedicos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Paciente" OnRowCommand="dgvPacientesMedicos_RowCommand" >
+                        <Columns>
+                            <asp:BoundField HeaderText="IDusuario" DataField="Usuario.Id_Usuario" Visible="false" />
+                            <asp:BoundField HeaderText="Nombre y apellido" DataField="NombreCompleto" />
+                            <asp:BoundField HeaderText="Fecha Nacimiento" DataField="FechaNacimiento" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false"/>
+                            <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
+                            <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
+                            <asp:CommandField HeaderText="Ver historia clinica" ShowSelectButton="true" SelectText="➡️" />
+                        </Columns>
+                    </asp:GridView>
+                <%} 
    
         }%>
     <style>

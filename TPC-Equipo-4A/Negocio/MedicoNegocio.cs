@@ -41,7 +41,32 @@ namespace Negocio
                 throw ex;
             }
         }
-        
+        public int BuscarIDMedicoPorIDUsuario(int id_usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Medico aux = new Medico();
+            try
+            {
+                datos.setStoreProcedure("SPBuscarIDMedicoPorIDUsuario");
+                datos.setParameters("@ID_Usuario", id_usuario);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    aux.Id_Medico = (int)datos.Lector.GetInt64(0);
+                }
+                return aux.Id_Medico;
+            }
+            catch (Exception ex)
+            {
+                return aux.Id_Medico;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+
         public List<Medico> listarParaPAdministrativoConSP(bool opc)
         {
             AccesoDatos datos = new AccesoDatos();

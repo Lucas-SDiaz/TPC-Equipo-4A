@@ -124,6 +124,7 @@
   <ItemGroup>
     <Content Include="ABMPadministrativo.aspx" />
     <Content Include="About.aspx" />
+    <Content Include="DetalleConsultas.aspx" />
     <Content Include="FormularioPaciente.aspx" />
     <Content Include="Cartilla.aspx" />
     <Content Include="ConfirmarAccion.aspx" />
@@ -213,6 +214,13 @@
     </Compile>
     <Compile Include="ABMPadministrativo.aspx.designer.cs">
       <DependentUpon>ABMPadministrativo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetalleConsultas.aspx.cs">
+      <DependentUpon>DetalleConsultas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetalleConsultas.aspx.designer.cs">
+      <DependentUpon>DetalleConsultas.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormularioPaciente.aspx.cs">
       <DependentUpon>FormularioPaciente.aspx</DependentUpon>

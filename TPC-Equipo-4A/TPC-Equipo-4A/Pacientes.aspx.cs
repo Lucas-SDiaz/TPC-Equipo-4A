@@ -67,6 +67,5 @@ namespace TPC_Equipo_4A
             Session.Add("Paciente", negocio.BuscarPorID(id_p));
             Response.Redirect("DetallePaciente.aspx", false);
         }
-
     }
 }
