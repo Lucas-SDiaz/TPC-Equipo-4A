@@ -26,8 +26,6 @@ namespace TPC_Equipo_4A
                     aux = negocio.BuscarPorID(id);
                     ddlPaciente.SelectedValue = aux.Id_Paciente.ToString();
                 }
-                
-
                 ddlHorario.Items.Insert(0, new ListItem("-- Seleccionar Horario --", "0"));
             }
         }

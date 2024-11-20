@@ -16,16 +16,17 @@ namespace TPC_Equipo_4A
             if (!IsPostBack)
             {
                 PacienteNegocio pacienteNegocio = new PacienteNegocio();
-                Session["listarPacientes"] = pacienteNegocio.listarConSP();
 
                 if ((Usuario)Session["Usuario"] != null && ((Usuario)Session["Usuario"]).Perfil == Perfil.PersonalAdministrativo)
                 {
+                    Session["listarPacientes"] = pacienteNegocio.listarConSP();
                     dgvPacientes.DataSource = Session["listarPacientes"];
                     dgvPacientes.DataBind();
                 }else if(((Usuario)Session["Usuario"]).Perfil == Perfil.Medico)
                 {
                     int id_medico = (int)Session["ID_M"];
-                    dgvPacientesMedicos.DataSource = pacienteNegocio.listarConSP(id_medico);
+                    Session["listarPacientes"] = pacienteNegocio.listarConSPID(id_medico);
+                    dgvPacientesMedicos.DataSource = Session["listarPacientes"];
                     dgvPacientesMedicos.DataBind();
                 }
             }

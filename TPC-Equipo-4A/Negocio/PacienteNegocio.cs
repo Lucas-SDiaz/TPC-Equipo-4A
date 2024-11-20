@@ -47,7 +47,7 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public List<Paciente> listarConSP(int Id_Medico)
+        public List<Paciente> listarConSPID(int Id_Medico)
         {
             List<Paciente> lista = new List<Paciente>();
             try

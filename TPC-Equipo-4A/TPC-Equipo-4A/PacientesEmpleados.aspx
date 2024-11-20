@@ -37,7 +37,6 @@
                     <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                     <asp:ButtonField CommandName="Editar" Text="📝" ButtonType="Button" HeaderText="Editar" />
                     <asp:ButtonField CommandName="NuevoTurno" Text="📆" ButtonType="Button" HeaderText="Nuevo turno" />
-<%--                    <asp:ButtonField CommandName="Eliminar" Text="🗑️❌" ButtonType="Button" HeaderText="Eliminar" />--%>
 
                 </Columns>
             </asp:GridView>
