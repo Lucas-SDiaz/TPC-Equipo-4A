@@ -75,24 +75,19 @@ namespace TPC_Equipo_4A
         {
             List<Paciente> listaPacientes = (List<Paciente>)Session["listarPacientes"];
 
-            // Verificar la opción seleccionada y ordenar la lista de pacientes en consecuencia
             if (ddlFiltro.SelectedValue == "Alfabetico")
             {
-                // Ordenar alfabéticamente por Nombre
                 listaPacientes = listaPacientes.OrderBy(p => p.Nombre).ThenBy(p => p.Apellido).ToList();
             }
             else if (ddlFiltro.SelectedValue == "FechaNacimiento")
             {
-                // Ordenar por Fecha de Nacimiento (ascendente)
                 listaPacientes = listaPacientes.OrderBy(p => p.FechaNacimiento).ToList();
             }
             else
             {
-                // Opción "Predeterminado" - puedes definir el orden predeterminado aquí si es necesario
                 listaPacientes = (List<Paciente>)Session["listarPacientes"];
             }
 
-            // Actualizar la grilla con la lista ordenada
             dgvPacientes.DataSource = listaPacientes;
             dgvPacientes.DataBind();
         }
