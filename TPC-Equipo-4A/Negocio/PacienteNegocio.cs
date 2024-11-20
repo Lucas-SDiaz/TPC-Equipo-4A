@@ -52,7 +52,7 @@ namespace Negocio
             List<Paciente> lista = new List<Paciente>();
             try
             {
-                datos.setStoreProcedure("storedProcedureListarPacientesPorMedico");
+                datos.setStoreProcedure("SPListarPacientesPorMedico");
                 datos.setParameters("@ID_Medico", Id_Medico);
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
