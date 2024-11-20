@@ -2,8 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
         <div class="d-flex justify-content-between">
         <div class="d-flex">
-            <asp:TextBox ID="txtBuscar" CssClass="form-control me-2" runat="server" Placeholder="Buscar paciente..." Width="200px"></asp:TextBox>
-            <asp:Button runat="server" ID="btnBuscar" Text="Buscar" CssClass="btn btn-outline-secondary" />
+            <asp:TextBox ID="txtBuscar" CssClass="form-control me-2" runat="server" Placeholder="Buscar por nombre..." Width="200px"></asp:TextBox>
+            <asp:Button runat="server" ID="btnBuscar" Text="Buscar" OnClick="btnBuscar_Click" CssClass="btn btn-outline-secondary" />
+            <asp:Button runat="server" ID="btnMostrarTodos" Text="Mostrar Todos" OnClick="btnMostrarTodos_Click" CssClass="btn btn-outline-secondary" />
         </div>
         <% if (((Dominio.Usuario)Session["Usuario"]) != null)
            {
@@ -14,7 +15,8 @@
                     </div>
                     <asp:DropDownList ID="ddlFiltro" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFiltro_SelectedIndexChanged" CssClass="btn btn-secondary btn-sm dropdown-toggle">
                         <asp:ListItem Text="Predeterminado" Value="Predeterminado"></asp:ListItem>
-                        <asp:ListItem Text="Ordenar alfabéticamente" Value="Ordenar alfabéticamente"></asp:ListItem>
+                        <asp:ListItem Text="Ordenar alfabéticamente" Value="Alfabetico"></asp:ListItem>
+                        <asp:ListItem Text="Ordenar por fecha de nacimiento" Value="FechaNacimiento"></asp:ListItem>
                     </asp:DropDownList>
               <%}
            } %>

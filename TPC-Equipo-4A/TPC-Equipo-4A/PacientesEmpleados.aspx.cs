@@ -12,14 +12,26 @@ namespace TPC_Equipo_4A
     public partial class PacientesEmpleados : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        { 
-            PacienteNegocio pacienteNegocio = new PacienteNegocio();
-            if ((Usuario)Session["Usuario"] != null)
-                if (((Usuario)Session["Usuario"]).Perfil == Perfil.PersonalAdministrativo)
+        {
+            if (!IsPostBack)
+            {
+                PacienteNegocio pacienteNegocio = new PacienteNegocio();
+                Session["listarPacientes"] = pacienteNegocio.listarConSP();
+
+                if ((Usuario)Session["Usuario"] != null && ((Usuario)Session["Usuario"]).Perfil == Perfil.PersonalAdministrativo)
                 {
-                    dgvPacientes.DataSource = pacienteNegocio.listarConSP();
+                    dgvPacientes.DataSource = Session["listarPacientes"];
                     dgvPacientes.DataBind();
                 }
+            }
+            // PacienteNegocio pacienteNegocio = new PacienteNegocio();
+            // Session.Add("listarPacientes", pacienteNegocio.listarConSP());
+            // if ((Usuario)Session["Usuario"] != null)
+            //     if (((Usuario)Session["Usuario"]).Perfil == Perfil.PersonalAdministrativo)
+            //     {
+            //         dgvPacientes.DataSource = Session["listarPacientes"];
+            //         dgvPacientes.DataBind();
+            //     }
         }
 
         protected void dgvPacientes_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -44,9 +56,46 @@ namespace TPC_Equipo_4A
             Response.Redirect("FormularioPaciente.aspx");
         }
 
-        protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            List<Paciente> lista = (List<Paciente>)Session["listarPacientes"];
+            List<Paciente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+            dgvPacientes.DataSource = listaFiltrada;
+            dgvPacientes.DataBind();
 
         }
+
+        protected void btnMostrarTodos_Click(object sender, EventArgs e)
+        {
+            dgvPacientes.DataSource = Session["listarPacientes"];
+            dgvPacientes.DataBind();
+        }
+
+        protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Paciente> listaPacientes = (List<Paciente>)Session["listarPacientes"];
+
+            // Verificar la opción seleccionada y ordenar la lista de pacientes en consecuencia
+            if (ddlFiltro.SelectedValue == "Alfabetico")
+            {
+                // Ordenar alfabéticamente por Nombre
+                listaPacientes = listaPacientes.OrderBy(p => p.Nombre).ThenBy(p => p.Apellido).ToList();
+            }
+            else if (ddlFiltro.SelectedValue == "FechaNacimiento")
+            {
+                // Ordenar por Fecha de Nacimiento (ascendente)
+                listaPacientes = listaPacientes.OrderBy(p => p.FechaNacimiento).ToList();
+            }
+            else
+            {
+                // Opción "Predeterminado" - puedes definir el orden predeterminado aquí si es necesario
+                listaPacientes = (List<Paciente>)Session["listarPacientes"];
+            }
+
+            // Actualizar la grilla con la lista ordenada
+            dgvPacientes.DataSource = listaPacientes;
+            dgvPacientes.DataBind();
+        }
+
     }
 }

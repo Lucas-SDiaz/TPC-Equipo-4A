@@ -10,8 +10,8 @@
              { 
              if(((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo) {%>   
         <div>
-            <asp:Button runat="server" ID="btnAgregarMedico" Text="Agregar Médico" CssClass="btn btn-outline-primary" OnClick="btnAgregarMedico_Click"/>
-            <asp:Button runat="server" ID="btnModificar" Text="Modificar Médico" CssClass="btn btn-outline-secondary"/>
+            <!--<asp:Button runat="server" ID="btnAgregarMedico" Text="Agregar Médico" CssClass="btn btn-outline-primary" OnClick="btnAgregarMedico_Click"/> -->
+            <!--<asp:Button runat="server" ID="btnModificar" Text="Modificar Médico" CssClass="btn btn-outline-secondary"/>  -->
         </div>
         <%} %>
         <asp:DropDownList ID="ddlFiltro" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlFiltro_SelectedIndexChanged" CssClass="btn btn-secondary btn-sm dropdown-toggle">
