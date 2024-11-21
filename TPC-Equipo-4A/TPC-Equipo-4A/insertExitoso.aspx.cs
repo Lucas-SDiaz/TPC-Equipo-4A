@@ -21,5 +21,10 @@ namespace TPC_Equipo_4A
                 Response.Redirect("Horarios.aspx", false);
             }
         }
+
+        protected void btnMedicosABM_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MedicosABM.aspx", false);
+        }
     }
 }

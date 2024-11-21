@@ -65,16 +65,33 @@ namespace TPC_Equipo_4A
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             List<Paciente> lista = (List<Paciente>)Session["listarPacientes"];
-            List<Paciente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
-            dgvPacientes.DataSource = listaFiltrada;
-            dgvPacientes.DataBind();
 
+            if (((Usuario)Session["Usuario"]).Perfil == Perfil.PersonalAdministrativo)
+            {
+                List<Paciente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+                dgvPacientes.DataSource = listaFiltrada;
+                dgvPacientes.DataBind();
+            }
+            else if (((Usuario)Session["Usuario"]).Perfil == Perfil.Medico)
+            {
+                List<Paciente> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtBuscar.Text.ToUpper()));
+                dgvPacientesMedicos.DataSource = listaFiltrada;
+                dgvPacientesMedicos.DataBind();
+            }
         }
 
         protected void btnMostrarTodos_Click(object sender, EventArgs e)
         {
-            dgvPacientes.DataSource = Session["listarPacientes"];
-            dgvPacientes.DataBind();
+            if (((Usuario)Session["Usuario"]).Perfil == Perfil.PersonalAdministrativo)
+            {
+                dgvPacientes.DataSource = Session["listarPacientes"];
+                dgvPacientes.DataBind();
+            }
+            else if (((Usuario)Session["Usuario"]).Perfil == Perfil.Medico)
+            {
+                dgvPacientesMedicos.DataSource = Session["listarPacientes"];
+                dgvPacientesMedicos.DataBind();
+            }
         }
 
         protected void ddlFiltro_SelectedIndexChanged(object sender, EventArgs e)
