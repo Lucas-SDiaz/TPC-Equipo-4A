@@ -45,6 +45,11 @@ namespace TPC_Equipo_4A
                 lblMensaje.Text = "Ocurrió un error: " + ex.Message;
             }
         }
+
+        protected void btnVolverLogin_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Login.aspx");
+        }
     }
 
 
