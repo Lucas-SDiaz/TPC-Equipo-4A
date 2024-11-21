@@ -72,5 +72,38 @@ namespace Negocio
             }
         }
 
+        public Usuario BuscarPorEmail(string email)
+        {
+            Usuario usuario = null;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setQuery("SPBuscarUsuarioPorEmail");
+                datos.setParameters("@Email", email);
+                datos.ejecutarLectura();
+
+                if (datos.Lector.Read())
+                {
+                    usuario = new Usuario
+                    {
+                        Email = datos.Lector["Email"].ToString(),
+                        Contraseña = datos.Lector["Contraseña"].ToString()
+                    };
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+            return usuario;
+        }
+
+
     }
 }

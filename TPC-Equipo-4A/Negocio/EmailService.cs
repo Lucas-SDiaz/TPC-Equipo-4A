@@ -44,5 +44,19 @@ namespace Negocio
             }
         }
 
+        public void armarMailRecuperarContraseña(string emailDestino, string contraseña)
+        {
+            email = new MailMessage();
+            email.From = new MailAddress("noresponder@clinicafrgp.com");
+            email.To.Add(emailDestino);
+            email.Subject = "Recuperación de Contraseña - Clínica FRGP";
+            email.IsBodyHtml = true;
+            email.Body = $"<h1>Hola, Usuario!</h1>" +
+                         $"<p>Recibimos una solicitud para recuperar tu contraseña.</p>" +
+                         $"<p><strong>Tu contraseña es:</strong> {contraseña}</p>" +
+                         $"<p>Recorda no compartirla con nadie.</p>" +
+                         $"<p>Atentamente,<br>Clínica FRGP</p>";
+        }
+
     }
 }
