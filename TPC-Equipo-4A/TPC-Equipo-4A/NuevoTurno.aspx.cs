@@ -26,6 +26,25 @@ namespace TPC_Equipo_4A
                     aux = negocio.BuscarPorID(id);
                     ddlPaciente.SelectedValue = aux.Id_Paciente.ToString();
                 }
+                if (Request.QueryString["id"] != null)
+                {
+                    TurnoNegocio turnoNegocio = new TurnoNegocio();
+                    Turno turno = new Turno();
+                    int id = int.Parse(Request.QueryString["id"]);
+                    turno = turnoNegocio.listarTurnoPorID(id);
+                    PacienteNegocio negocio = new PacienteNegocio();
+                    Paciente aux = new Paciente();
+                    aux = negocio.BuscarPorID(turno.Paciente.Id_Paciente);
+                    ddlPaciente.SelectedValue = aux.Id_Paciente.ToString();
+                    //EspecialidadNegocio neg = new EspecialidadNegocio();
+                    //Especialidad especialidad = new Especialidad();
+                    //especialidad = neg.especialidadXID(turno.)
+                    MedicoNegocio medicoNegocio = new MedicoNegocio();
+                    Medico medico = new Medico();
+                    medico = medicoNegocio.buscarMedicoID(turno.Medico.Id_Medico);
+                    ddlMedico.SelectedValue = medico.Id_Medico.ToString();
+
+                }
                 ddlHorario.Items.Insert(0, new ListItem("-- Seleccionar Horario --", "0"));
             }
         }
