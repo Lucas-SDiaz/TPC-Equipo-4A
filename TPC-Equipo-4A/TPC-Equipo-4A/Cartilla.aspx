@@ -38,15 +38,17 @@
                 }
             </style>
             <%}else if(((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo) {%>   
-            <asp:GridView ID="dgvMedicosPersonalAdministrativo" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false">
+            <asp:GridView ID="dgvMedicosPersonalAdministrativo" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" DataKeyNames="Id_Medico" OnRowCommand="dgvMedicosPersonalAdministrativo_RowCommand">
             <Columns>
-                <asp:BoundField HeaderText="Legajo" DataField="Legajo" />
+                <asp:BoundField HeaderText="Legajo" DataField="Legajo" Visible="false"/>
                 <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
                 <asp:BoundField HeaderText="Apellido" DataField="Apellido" />
                 <asp:BoundField HeaderText="Email" DataField="Usuario.Email" />
                 <asp:BoundField HeaderText="Telefono" DataField="Telefono" />
                 <asp:BoundField HeaderText="Especialidad" DataField="Especialidad.Descripcion" />
-                <asp:CommandField ShowSelectButton="true" SelectText="Ver horarios disponibles" />
+<%--                <asp:CommandField ShowSelectButton="true" CommandName="horarios" SelectText="Ver horarios disponibles" />--%>
+                <asp:ButtonField CommandName="horarios" Text="Ver horarios disponibles" ButtonType="Button" HeaderText="horarios"/>
+
             </Columns>
         </asp:GridView>
         <style>

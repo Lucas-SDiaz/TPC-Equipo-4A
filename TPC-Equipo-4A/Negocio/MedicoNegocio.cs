@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -41,7 +42,41 @@ namespace Negocio
                 throw ex;
             }
         }
-        public int BuscarIDMedicoPorIDUsuario(int id_usuario)
+        public List<JornadaMedicos> ListarJornadaMedico(int id_m)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                List<JornadaMedicos> jornadas = new List<JornadaMedicos>();
+                datos.setStoreProcedure("SPListarHorariosPorID");
+                datos.setParameters("@ID_Medico", id_m);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    JornadaMedicos aux = new JornadaMedicos();
+                    aux.ID_Jornada = (int)datos.Lector.GetInt64(0);
+                    aux.Id_Medico = (int)datos.Lector.GetInt64(1);
+                    aux.DiaSemana = (byte)datos.Lector["DiaSemana"];
+                    aux.HoraInicio = (TimeSpan)datos.Lector["HoraEntrada"];
+                    aux.HoraFin = (TimeSpan)datos.Lector["HoraSalida"];
+                    aux.Estado = (bool)datos.Lector["Estado"];
+
+                    jornadas.Add(aux);
+                }
+                return jornadas;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            
+        }
+    public int BuscarIDMedicoPorIDUsuario(int id_usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             Medico aux = new Medico();
@@ -105,6 +140,7 @@ namespace Negocio
                 throw ex;
             }
         }
+
 
         public List<Medico> listarMedicosConSP()
         {
@@ -335,3 +371,7 @@ namespace Negocio
 
     }
 }
+
+
+
+
