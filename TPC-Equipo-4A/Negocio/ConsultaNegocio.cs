@@ -25,10 +25,17 @@ namespace Negocio
                     consulta.Turno = new Turno();
                     {
                         consulta.Turno.Fecha = (DateTime)datos.Lector["FechaConsulta"];
+                        consulta.Turno.Medico = new Medico();
+                        {
+                            consulta.Turno.Medico.Especialidad = new Especialidad();
+                            consulta.Turno.Medico.Nombre = (string)datos.Lector["med nombre"];
+                            consulta.Turno.Medico.Apellido = (string)datos.Lector["med ap"];
+                            consulta.Turno.Medico.Especialidad.Id_Especialidad = (int)datos.Lector.GetInt64(10);
+                        }
                         consulta.Turno.Paciente = new Paciente();
                         {
-                            consulta.Turno.Paciente.Nombre = (string)datos.Lector["Nombre"];
-                            consulta.Turno.Paciente.Apellido = (string)datos.Lector["Apellido"];
+                            consulta.Turno.Paciente.Nombre = (string)datos.Lector["pac nombre"];
+                            consulta.Turno.Paciente.Apellido = (string)datos.Lector["pac ap"];
                         }
                     }
                     consulta.Diagnostico = (string)datos.Lector["Diagnostico"];
