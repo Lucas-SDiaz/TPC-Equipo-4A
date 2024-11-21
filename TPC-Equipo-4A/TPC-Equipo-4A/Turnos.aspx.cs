@@ -92,11 +92,12 @@ namespace TPC_Equipo_4A
 
                 if (e.CommandName == "Reprogramar")
                 {
-                    Response.Redirect("NuevoTurno.aspx?id=" + idTurno, false);
+                    Response.Redirect("ReprogramarTurno.aspx?id=" + idTurno, false);
                 }
                 else if (e.CommandName == "Cancelar")
                 {
                     turnoNegocio.cancelarTurno(idTurno);
+                    Response.Redirect("Turnos.aspx");
                 }
             }
         }

@@ -167,6 +167,7 @@
     <Content Include="PacientesEmpleados.aspx" />
     <Content Include="RecuperarContraseña.aspx" />
     <Content Include="RegistrosEliminados.aspx" />
+    <Content Include="ReprogramarTurno.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -403,6 +404,13 @@
     </Compile>
     <Compile Include="RegistrosEliminados.aspx.designer.cs">
       <DependentUpon>RegistrosEliminados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReprogramarTurno.aspx.cs">
+      <DependentUpon>ReprogramarTurno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReprogramarTurno.aspx.designer.cs">
+      <DependentUpon>ReprogramarTurno.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
