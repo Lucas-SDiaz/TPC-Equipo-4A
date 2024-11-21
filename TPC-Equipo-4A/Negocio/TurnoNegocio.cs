@@ -20,6 +20,7 @@ namespace Negocio
                 datos.setParameters("@idMedico", turno.Medico.Id_Medico.ToString());
                 datos.setParameters("@fechaTurno", turno.Fecha);
                 datos.setParameters("@horaTurno", turno.Hora);
+    
 
                 datos.ejecutarAccion();
             }
@@ -50,6 +51,7 @@ namespace Negocio
                     aux.Paciente.Nombre = (string)datos.Lector["nom pac"];
                     aux.Medico.Apellido = (string)datos.Lector["ap med"];
                     aux.Medico.Nombre = (string)datos.Lector["nom med"];
+                    //aux.Especialidad.Id_Especialidad = (int)datos.Lector
                     aux.Hora = (TimeSpan)datos.Lector["Hora"];
                     aux.Fecha = (DateTime)datos.Lector["Fecha"];
                     aux.Estado = (int)datos.Lector["Estado"];
@@ -159,5 +161,32 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
+
+        public bool reprogramarTurno(Turno turno)
+        {
+            try
+            {
+                datos.setStoreProcedure("ReprogramarTurnoSP");
+                datos.setParameters("@idTurno", turno.ID_Turno.ToString());
+                datos.setParameters("@idPaciente", turno.Paciente.Id_Paciente.ToString());
+                datos.setParameters("@idMedico", turno.Medico.Id_Medico.ToString());
+                datos.setParameters("@fechaTurno", turno.Fecha);
+                datos.setParameters("@horaTurno", turno.Hora);
+
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error de conexión de SQL: " + ex.Message, ex);
+               
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+            return true;
+        }
+
     }
 }
