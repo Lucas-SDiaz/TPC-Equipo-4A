@@ -57,5 +57,14 @@ namespace TPC_Equipo_4A
         {
 
         }
+
+        protected void dgvMedicosPersonalAdministrativo_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int index = Convert.ToInt32(e.CommandArgument);
+            GridViewRow row = dgvMedicosPersonalAdministrativo.Rows[index];
+            string id_medico = dgvMedicosPersonalAdministrativo.DataKeys[index].Value.ToString();
+            Response.Redirect("HorariosMedico.aspx?id_m=" + id_medico, false);
+
+        }
     }
 }
