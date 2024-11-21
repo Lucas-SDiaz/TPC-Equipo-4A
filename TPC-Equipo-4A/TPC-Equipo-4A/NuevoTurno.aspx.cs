@@ -42,6 +42,10 @@ namespace TPC_Equipo_4A
                     MedicoNegocio medicoNegocio = new MedicoNegocio();
                     Medico medico = new Medico();
                     medico = medicoNegocio.buscarMedicoID(turno.Medico.Id_Medico);
+                    //EspecialidadNegocio especialidadNegocio = new EspecialidadNegocio();
+                    //int idm = medico.Id_Medico;
+                    //int idesp = especialidadNegocio.obtenerespmedico(idm);
+                    //ddlEspecialidad.SelectedValue = idesp.ToString();
                     ddlMedico.SelectedValue = medico.Id_Medico.ToString();
 
                 }
@@ -141,11 +145,18 @@ namespace TPC_Equipo_4A
                 turno.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());
                 turno.Hora = new TimeSpan(Convert.ToInt16(ddlHorario.SelectedValue),0,0);
 
-                negocio.agregarTurno(turno);
-                EnviarMailConfirmacion(turno);
+                if (Request.QueryString["id"] != null)
+                {
+                    negocio.reprogramarTurno(turno);
+                    Response.Redirect("Turnos.aspx");
+                }
+                else { 
+                    negocio.agregarTurno(turno);
+                    EnviarMailConfirmacion(turno);
 
-                string script = "alert('Registro agregado exitosamente.'); window.location.href='Default.aspx';";
-                ClientScript.RegisterStartupScript(this.GetType(), "Hola mundo", script, true);
+                    string script = "alert('Registro agregado exitosamente.'); window.location.href='Default.aspx';";
+                    ClientScript.RegisterStartupScript(this.GetType(), "Hola mundo", script, true);
+                }
             }
             catch (Exception)
             {

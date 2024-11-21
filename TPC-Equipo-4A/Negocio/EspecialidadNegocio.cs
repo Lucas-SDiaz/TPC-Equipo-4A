@@ -80,6 +80,32 @@ namespace Negocio
             }
         }
 
+        public int obtenerespmedico(int id_m)
+        {
+            List<Especialidad> listaxID = new List<Especialidad>();
+            try
+            {
+                Especialidad aux = new Especialidad();
+                datos.setStoreProcedure("obtenerEspecialidad");
+                datos.setParameters("@ID_Medico", id_m);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    aux.Id_Especialidad = (int)datos.Lector.GetInt64(0);
+                    //aux.Descripcion = (string)datos.Lector["Nombre_E"];
+                }
+                int resultado = aux.Id_Especialidad;
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public Especialidad especialidadXID(int id_e)
         {
             List<Especialidad> listaxID = new List<Especialidad>();
