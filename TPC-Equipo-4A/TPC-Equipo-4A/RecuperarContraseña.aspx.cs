@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Dominio;
-using Negocio;
-
 
 namespace TPC_Equipo_4A
 {
@@ -30,7 +29,7 @@ namespace TPC_Equipo_4A
                 {
                     emailService.armarMailRecuperarContraseña(
                         emailDestino: usuario.Email,
-                        contraseña: usuario.Contraseña 
+                        contraseña: usuario.Contraseña
                     );
                     emailService.enviarEmail();
 
@@ -47,4 +46,6 @@ namespace TPC_Equipo_4A
             }
         }
     }
+
+
 }

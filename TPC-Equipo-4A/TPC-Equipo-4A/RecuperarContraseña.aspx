@@ -1,6 +1,12 @@
-﻿<%@ Page Title="RecuperarContraseña" Language="C#" MasterPageFile="~/MasterAdmin.Master" AutoEventWireup="true" CodeBehind="RecuperarContraseña.aspx.cs" Inherits="TPC_Equipo_4A.RecuperarContraseña" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="RecuperarContraseña.aspx.cs" Inherits="TPC_Equipo_4A.RecuperarContraseña" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+</head>
 <body>
     <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
         <h1 class="mb-4">Recuperar Contraseña</h1>
@@ -15,6 +21,6 @@
             <asp:Label ID="lblMensaje" runat="server" CssClass="mt-3 text-center d-block"></asp:Label>
         </div>
     </div>
-</body>
 
-</asp:Content>
+</body>
+</html>

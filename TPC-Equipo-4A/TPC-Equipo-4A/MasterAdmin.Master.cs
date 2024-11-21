@@ -11,7 +11,7 @@ namespace TPC_Equipo_4A
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+           
         }
 
         protected void btnCerrarSession_Click(object sender, EventArgs e)

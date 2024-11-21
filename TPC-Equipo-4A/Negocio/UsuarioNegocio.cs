@@ -79,7 +79,7 @@ namespace Negocio
 
             try
             {
-                datos.setQuery("SPBuscarUsuarioPorEmail");
+                datos.setStoreProcedure("SPBuscarUsuarioPorEmail");
                 datos.setParameters("@Email", email);
                 datos.ejecutarLectura();
 
