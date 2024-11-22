@@ -30,7 +30,7 @@ namespace TPC_Equipo_4A
 
         protected void btnVolver_Click(object sender, EventArgs e)
         {
-            Response.Redirect("Default.aspx", false);
+            Response.Redirect("Default.aspx", false);   
         }
 
         private string CargarDiasHorarios(List<JornadaMedicos> jornadas)
