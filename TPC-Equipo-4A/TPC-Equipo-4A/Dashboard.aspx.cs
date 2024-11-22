@@ -19,5 +19,10 @@ namespace TPC_Equipo_4A
                 Response.Redirect("Error.aspx", false);
             }
         }
+
+        protected void btnVerUsuarios_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

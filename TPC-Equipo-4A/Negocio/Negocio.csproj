@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="AdminSystemNegocio.cs" />
     <Compile Include="ConsultaNegocio.cs" />
     <Compile Include="EmailService.cs" />
     <Compile Include="EmpleadoAdministrativoNegocio.cs" />

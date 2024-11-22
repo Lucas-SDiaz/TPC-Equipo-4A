@@ -15,11 +15,7 @@
                 <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control shadow-sm" TextMode="Password" placeholder="Introduce contraseña" required="required"></asp:TextBox>
             </div>
             <div class="mb-3 w-20">
-                <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-primary btn-lg w-100" OnClick="btnAgregar_Click" Text="Agregar" />
-            </div>
-
-            <div class="mb-3 w-20">
-                <asp:Button ID="btnVerUsuarios" runat="server" CssClass="btn btn-primary btn-lg w-100" OnClick="btnVerUsuarios_Click" Text="Ver usuarios con permisos" />
+                <asp:Button ID="btnAgregar" runat="server" CssClass="btn btn-primary btn-lg w-100" CausesValidation="true" OnClick="btnAgregar_Click" Text="Agregar" />
             </div>
             <div class="mb-3 w-100">
                     <asp:Label ID="lblMensaje" runat="server" CssClass="text-danger" Visible="false"></asp:Label>
@@ -28,4 +24,5 @@
             </div>
         </div>
     </form>
+
 </asp:Content>

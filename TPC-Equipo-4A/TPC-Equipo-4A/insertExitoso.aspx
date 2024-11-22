@@ -17,9 +17,13 @@
         <div>
               <asp:Button ID="btnMedicosABM" runat="server" Text="Volver" CssClass="btn btn-secondary" OnClick="btnMedicosABM_Click" />
         </div>
-            <%}
+     <% }else if (Session["accionExitosa"].ToString() == "Admin ingresado correctamente!")
+        {%>
+                        <h2>Admin ingresado correctamente!</h2>   
+      <%}
         else if (Session["HorarioExitoso"].ToString() == "Carga de horarios exitosa!")
         {%>
             <h2>Carga de horarios exitosa!</h2>
-     <% }%>
+      <%}%>
+                
 </asp:Content>
