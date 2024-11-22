@@ -16,9 +16,7 @@ namespace TPC_Equipo_4A
 		{
             if (!IsPostBack)
             {
-                //CargarPacientes();
-                //CargarEspecialidades();
-                //CargarMedicos();
+
                 if (Request.QueryString["id"] != null)
                 {
                     TurnoNegocio turnoNegocio = new TurnoNegocio();
@@ -34,9 +32,12 @@ namespace TPC_Equipo_4A
                     MedicoNegocio medicoNegocio = new MedicoNegocio();
                     Medico medico = new Medico();
                     medico = medicoNegocio.buscarMedicoID(turno.Medico.Id_Medico);
-                    //ddlMedico.SelectedValue = medico.Id_Medico.ToString();
-                    txtIDmed.Text = medico.Id_Medico.ToString();
+
+                    txtIDmed.Text = turno.Medico.Id_Medico.ToString();
                     txtMedico.Text = medico.Apellido.ToString();
+                        int idm = turno.Medico.Id_Medico;
+
+                    CargarJornadasSegunMedico(idm);
 
                 }
 
@@ -76,6 +77,7 @@ namespace TPC_Equipo_4A
 
             try
             {
+                turno.ID_Turno = int.Parse(Request.QueryString["id"]);
                 turno.Paciente.Id_Paciente = int.Parse(txtIdPac.Text.ToString());
                 turno.Medico.Id_Medico = int.Parse(txtIDmed.Text.ToString());
                 turno.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());

@@ -59,53 +59,55 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <%if (Session["Usuario"] != null) 
-                          { %>
-                                    
-                            <%if(((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Medico) 
-                              {%>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="Turnos.aspx">
-                                            <img src="\Imagenes\turnos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Turnos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="PacientesEmpleados.aspx">
-                                            <img src="\Imagenes\pacientes.png " alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Mis pacientes</a>
-                                    </li>
-                             <%}else  if(((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
-                               { %>
-                                    <li class="nav-item">
-                                            <a class="nav-link" href="Cartilla.aspx">
-                                                <img src="\Imagenes\medicos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Cartilla</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="Turnos.aspx">
-                                                <img src="\Imagenes\turnos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Turnos</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="PacientesEmpleados.aspx">
-                                                <img src="\Imagenes\pacientes.png " alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Pacientes</a>
-                                        </li>
-                                    </ul>
-                             <%}  %>
-                        <%} %>                      
-           
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <%if (Session["Usuario"] != null)
+                            { %>
+
+                        <%if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.Medico)
+                            {%>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Turnos.aspx">
+                                <img src="\Imagenes\turnos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Turnos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="PacientesEmpleados.aspx">
+                                <img src="\Imagenes\pacientes.png " alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Mis pacientes</a>
+                        </li>
+                        <%}
+                            else if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
+                            { %>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Cartilla.aspx">
+                                <img src="\Imagenes\medicos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Cartilla</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="Turnos.aspx">
+                                <img src="\Imagenes\turnos.svg" alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Turnos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="PacientesEmpleados.aspx">
+                                <img src="\Imagenes\pacientes.png " alt="Logo" width="25" height="20" class="d-inline-block align-text-top">Pacientes</a>
+                        </li>
+                    </ul>
+                    <%}  %>
+                    <%} %>
                 </div>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                                <%if (Session["Usuario"] == null) { %>
-                                    <a class="nav-link" href="Login.aspx">
-                                    Iniciar sesión 
+                            <%if (Session["Usuario"] == null)
+                                { %>
+                            <a class="nav-link" href="Login.aspx">Iniciar sesión 
                                     <img src="iconoLogin.ico" alt="Iniciar Sesión" style="width: 20px; height: 20px;">
-                                <%}else{
-                                       %>
-                                    <asp:LinkButton ID="btnCerrarSession" runat="server" CssClass="btn" OnClick="btnCerrarSession_Click">
+                                <%}
+                                else
+                                {
+                                %>
+                                <asp:LinkButton ID="btnCerrarSession" runat="server" CssClass="btn" OnClick="btnCerrarSession_Click">
                                         Cerrar sesión 
                                         <img src="iconoLogout.ico" alt="Cerrar Sesión" style="width: 20px; height: 20px;">
-                                    </asp:LinkButton>
+                                </asp:LinkButton>
                                 <%} %>
                             </a>
                         </li>
