@@ -37,10 +37,12 @@
                     <div class="mb-3">
                         <strong>Dirección:</strong>
                         <asp:Label ID="lblDireccion" runat="server" CssClass="form-control-plaintext"></asp:Label>
-                    </div>
-                    <!-- Botón para Historial de Turnos -->
-                    <a href="#" class="btn btn-primary">Historial de Turnos</a>
-                </div>
+                <%--    </div>
+                    <a href="DetalleConsultas.aspx" class="btn btn-primary">Historial de Turnos</a>
+                </div>--%>
+                        <div>
+                            <asp:Button runat ="server" ID="btnVerHistClinica" Text="Ver historia clinica" OnClick="btnVerHistClinica_Click"/>
+                        </div>
             </div>
         </div>
     </div>

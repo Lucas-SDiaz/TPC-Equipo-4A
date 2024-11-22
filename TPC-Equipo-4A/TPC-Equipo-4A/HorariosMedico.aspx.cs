@@ -42,22 +42,22 @@ namespace TPC_Equipo_4A
                 string dia = "";
                 switch (jornada.DiaSemana)
                 {
-                    case 1:
+                    case 2:
                         dia = "Lunes";
                         break;
-                    case 2:
+                    case 3:
                         dia = "Martes";
                         break;
-                    case 3:
+                    case 4:
                         dia = "Miercoles";
                         break;
-                    case 4:
+                    case 5:
                         dia = "Jueves";
                         break;
-                    case 5:
+                    case 6:
                         dia = "Viernes";
                         break;
-                    case 6:
+                    case 7:
                         dia = "Sábado";
                         break;
                     default:

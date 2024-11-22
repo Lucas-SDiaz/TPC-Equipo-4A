@@ -58,8 +58,8 @@ namespace TPC_Equipo_4A
                 medico.Id_Medico = int.Parse(id_medico);
                 if (negocio.CargarHorariosMedico(medico))
                 {
-                    Session.Add("HorarioExitoso", "Carga de horarios exitosa!");
-                    Response.Redirect("insertExitoso", false);
+                    //Session.Add("HorarioExitoso", "Carga de horarios exitosa!");
+                    Response.Redirect("Medicos.ABM", false);
                 }
             }
 
