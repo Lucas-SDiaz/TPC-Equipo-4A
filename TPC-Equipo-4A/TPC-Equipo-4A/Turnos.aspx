@@ -57,7 +57,7 @@
             else
             { %>
           <asp:GridView ID="GvTurnos" runat="server" CssClass="table table-hover tableCustom" DataKeyNames="ID_Turno" AutoGenerateColumns="false" OnRowCommand="GvTurnos_RowCommand1">
-       <%-- <asp:GridView ID="dgvTurnos" runat="server" CssClass="table table-hover tableCustom" AutoGenerateColumns="false" OnRowCommand="dgvTurnos_RowCommand">--%>
+     
             <Columns>
                 <asp:BoundField HeaderText="Paciente" DataField="Paciente.NombreCompleto" />
                 <asp:BoundField HeaderText="Médico" DataField="Medico.NombreCompleto" />
@@ -68,6 +68,7 @@
                 <asp:ButtonField CommandName="Cancelar" Text="❌" ButtonType="Button" HeaderText="Cancelar" />
             </Columns>
         </asp:GridView>
+                <div><p>1 - Pendiente / 2 - Cancelado / 3 - Reprogamado / 4 - Asistió / No Asistió</p></div>
         <%}  %>
         <%} %>
     </div>

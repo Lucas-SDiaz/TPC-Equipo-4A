@@ -108,7 +108,7 @@
    </div>
    <div class="row mt-3 footer-buttons">
     <div class="col-md-4">
-     <a class="btn btn-success" href="MedicosABM.aspx">
+     <a class="btn btn-success" href="Cartilla.aspx">
       <i class="fas fa-user-md">
       </i>
       CUERPO MÉDICO

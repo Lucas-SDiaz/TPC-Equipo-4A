@@ -15,13 +15,12 @@
                 <div class="col-md-6">
                     <div class="mb-3 text-start">
                         <label for="lblPaciente" class="form-label">Paciente</label>
-                        <asp:TextBox ID="txtIdPac" runat="server" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto"></asp:TextBox>
+                        <asp:TextBox ID="txtIdPac" runat="server" style="display:none"></asp:TextBox>
                         <asp:TextBox ID="txtPaciente" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                     </div>
                     <div class="mb-3 text-start">
                         <label for="lblMedico" class="form-label">Medico</label>
-                        <%--<asp:DropDownList ID="ddlMedico" runat="server" CssClass="form-control"></asp:DropDownList>--%> 
-                       <asp:TextBox ID="txtIDmed" runat="server" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto"></asp:TextBox>
+                       <asp:TextBox ID="txtIDmed" runat="server" style="display:none"></asp:TextBox>
                        <asp:TextBox ID="txtMedico" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
                         
                     </div>

@@ -34,7 +34,7 @@ namespace TPC_Equipo_4A
                     medico = medicoNegocio.buscarMedicoID(turno.Medico.Id_Medico);
 
                     txtIDmed.Text = turno.Medico.Id_Medico.ToString();
-                    txtMedico.Text = medico.Apellido.ToString();
+                    txtMedico.Text = medico.NombreCompleto.ToString();
                         int idm = turno.Medico.Id_Medico;
 
                     CargarJornadasSegunMedico(idm);

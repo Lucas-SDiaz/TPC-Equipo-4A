@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 
 namespace TPC_Equipo_4A
 {
@@ -62,7 +63,7 @@ namespace TPC_Equipo_4A
             {
                 Response.Write("Fecha inválida");
             }
-            
+
         }
 
         protected void dgvTurnosMedico_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -77,9 +78,8 @@ namespace TPC_Equipo_4A
             {
                 Response.Redirect("NuevaConsulta.aspx", false);
             }
-            
-        }
 
+        }
 
         protected void GvTurnos_RowCommand1(object sender, GridViewCommandEventArgs e)
         {
@@ -101,5 +101,6 @@ namespace TPC_Equipo_4A
                 }
             }
         }
+
     }
 }
