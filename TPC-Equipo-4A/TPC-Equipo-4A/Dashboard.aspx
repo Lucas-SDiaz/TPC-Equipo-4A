@@ -49,19 +49,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3 mb-4">
+            <%--<div class="col-md-3 mb-4">
                 <div class="card text-white bg-info shadow">
                     <div class="card-body text-center">
                         <h5 class="card-title">????????</h5>
                         <a href="#" class="btn btn-light">Ver más</a>
                     </div>
                 </div>
-            </div>
+            </div>--%>
             <div class="col-md-3 mb-4">
                 <div class="card text-white bg-info shadow">
                     <div class="card-body text-center">
                         <h5 class="card-title">Admins del Sistema</h5>
-                        <a href="#" class="btn btn-light">Ver más</a>
+                        <a href="SystemAdminABM.aspx" class="btn btn-light">Agregar</a>
                     </div>
                 </div>
             </div>
