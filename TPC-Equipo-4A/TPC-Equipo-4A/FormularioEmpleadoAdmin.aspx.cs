@@ -54,7 +54,7 @@ namespace TPC_Equipo_4A
             {
                 if (negocio.IngresarEmpleado(empleado))
                 {
-                    Session.Add("accionExitosa", "Registro ingresado exitosamente!");
+                    Session.Add("accionExitosaEmpleado", "Registro ingresado exitosamente!");
                     Response.Redirect("insertExitoso.aspx", false);
                 }
                 else
