@@ -49,12 +49,12 @@ namespace TPC_Equipo_4A
         protected void dgvMedicos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int index = Convert.ToInt32(e.CommandArgument);
-            GridViewRow row = dgvMedicos.Rows[index];
-            int id_usuario = int.Parse(row.Cells[0].Text);
+            //GridViewRow row = dgvMedicos.Rows[index];
+            //int id_usuario = int.Parse(row.Cells[0].Text);
             string id_medico = dgvMedicos.DataKeys[index].Value.ToString();
             Medico aux = new Medico();
-            aux.Id_Medico = int.Parse(id_medico);
-    
+            aux = medicoNegocio.buscarMedicoID(int.Parse(id_medico));
+            aux.Id_Medico = int.Parse(id_medico); 
             medicoNegocio.EditarMedico(aux);
             Response.Redirect("MedicosABM.aspx", false);
 
