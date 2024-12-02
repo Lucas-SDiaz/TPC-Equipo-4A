@@ -2,10 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container text-center">
-        <%--<form class="row g-3">--%>
         <div class="row align-items-center">
             <div class="col">
-
                 <h4>Solicitar turno</h4>
                 <div class="col-md-6">
                     <div class="mb-3 text-start">
@@ -20,12 +18,9 @@
                         <label for="lblMedico" class="form-label">Medico</label>
                         <asp:DropDownList ID="ddlMedico" runat="server" CssClass="form-control" required="true" OnSelectedIndexChanged="ddlMedico_SelectedIndexChanged"></asp:DropDownList>
                     </div>
-
                 </div>
             </div>
-
             <div class="col">
-
                 <div class="col-md-6">
                     <h4></h4>
                     <div class="mb-3 text-start">
@@ -40,11 +35,7 @@
             </div>
         </div>
     </div>
-
-
     <div class="col-12 text-center">
         <asp:Button ID="btnAceptar" runat="server" Text="Solicitar Turno" CssClass="btn btn-primary mt-4" OnClick="btnAceptar_Click" />
     </div>
-    <%--</form>--%>
-   
 </asp:Content>

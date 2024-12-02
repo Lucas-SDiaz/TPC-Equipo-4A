@@ -36,11 +36,6 @@ namespace TPC_Equipo_4A
             }
         }
 
-        protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
         protected void btnSeleccionar_Click(object sender, EventArgs e)
         {
@@ -101,6 +96,84 @@ namespace TPC_Equipo_4A
                 }
             }
         }
+        protected void GvTurnos_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            // Verificamos si es una fila de datos
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Buscar el Label en la columna de "Estado"
+                Label lblEstado = (Label)e.Row.FindControl("lblEstado");
+                if (lblEstado != null)
+                {
+                    // Obtener el valor original (número) desde el DataItem
+                    int estado = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Estado"));
 
+                    // Traducir el número al texto correspondiente
+                    switch (estado)
+                    {
+                        case 1:
+                            lblEstado.Text = "Pendiente";
+                            break;
+                        case 2:
+                            lblEstado.Text = "Cancelado";
+                            break;
+                        case 3:
+                            lblEstado.Text = "Reprogramado";
+                            break;
+                        case 4:
+                            lblEstado.Text = "Asistió";
+                            break;
+                        case 5:
+                            lblEstado.Text = "No asistió";
+                            break;
+                        default:
+                            lblEstado.Text = "Desconocido";
+                            break;
+                    }
+                }
+            }
+        }
+        protected void ddlEstados_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+        protected void dgvTurnosMedico_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            // Verificamos si es una fila de datos
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // Buscar el Label en la columna de "Estado"
+                Label lblEstado = (Label)e.Row.FindControl("lblEstado");
+                if (lblEstado != null)
+                {
+                    // Obtener el valor original (número) desde el DataItem
+                    int estado = Convert.ToInt32(DataBinder.Eval(e.Row.DataItem, "Estado"));
+
+                    // Traducir el número al texto correspondiente
+                    switch (estado)
+                    {
+                        case 1:
+                            lblEstado.Text = "Pendiente";
+                            break;
+                        case 2:
+                            lblEstado.Text = "Cancelado";
+                            break;
+                        case 3:
+                            lblEstado.Text = "Reprogramado";
+                            break;
+                        case 4:
+                            lblEstado.Text = "Asistió";
+                            break;
+                        case 5:
+                            lblEstado.Text = "No asistió";
+                            break;
+                        default:
+                            lblEstado.Text = "Desconocido";
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
