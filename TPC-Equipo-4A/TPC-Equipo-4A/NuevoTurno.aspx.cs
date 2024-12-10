@@ -24,7 +24,8 @@ namespace TPC_Equipo_4A
                 turnosAsignados = new List<Turno>();
 
 
-                if (Request.QueryString["id_p"] != null){
+                if (Request.QueryString["id_p"] != null)
+                {
                     PacienteNegocio negocio = new PacienteNegocio();
                     Paciente aux = new Paciente();
                     int id = int.Parse(Request.QueryString["id_p"]);
@@ -40,23 +41,29 @@ namespace TPC_Equipo_4A
         {
             try
             {
+                turnosAsignados = new List<Turno>();
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico medico = negocio.listarHorariosDeMedicosConSP(idMedico, txtFechaTurno.Text);
-                
-                for (double i = medico.HorariosLaborables.FirstOrDefault().HoraInicio.TotalHours; 
-                        i < medico.HorariosLaborables.FirstOrDefault().HoraFin.TotalHours; 
+
+                if (medico.HorariosLaborables == null)
+                {
+                    return;
+                }
+
+                for (double i = medico.HorariosLaborables.FirstOrDefault().HoraInicio.TotalHours;
+                        i < medico.HorariosLaborables.FirstOrDefault().HoraFin.TotalHours;
                         i++)
                 {
-                    //var turno = new Turno()
-                    //{
-                    //    Hora = new TimeSpan(int.Parse(i.ToString()), 0, 0)
-                    //};
+                    var turno = new Turno()
+                    {
+                        Hora = new TimeSpan(int.Parse(i.ToString()), 0, 0)
+                    };
 
                     if (!medico.TurnosAsignados.Any(x => x.Hora.TotalHours == i))
                     {
-                        // Setear estado para habilitra boton
+                        // Setear estado para habilitar boton
 
-                        //turno.Estado = 0;
+                        turno.Estado = 0;
 
                         ListItem aux = new ListItem(i.ToString() + ":00hs", i.ToString());
                         ddlHorario.Items.Add(aux);
@@ -64,11 +71,13 @@ namespace TPC_Equipo_4A
                     else
                     {
                         // Setear estado para deshabilitar boton
-                        //turno.Estado = 1;
+                        turno.Estado = 1;
                     }
 
-                    //turnosAsignados.Add(turno);
+                    turnosAsignados.Add(turno);
                 }
+
+                CrearBotonDinamico(idMedico);
             }
             catch (Exception)
             {
@@ -134,7 +143,7 @@ namespace TPC_Equipo_4A
         {
             Turno turno = new Turno();
             turno.Medico = new Medico();
-            turno.Paciente = new Paciente();    
+            turno.Paciente = new Paciente();
             TurnoNegocio negocio = new TurnoNegocio();
 
             try
@@ -142,14 +151,15 @@ namespace TPC_Equipo_4A
                 turno.Paciente.Id_Paciente = int.Parse(ddlPaciente.SelectedValue.ToString());
                 turno.Medico.Id_Medico = int.Parse(ddlMedico.SelectedValue.ToString());
                 turno.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());
-                turno.Hora = new TimeSpan(Convert.ToInt16(ddlHorario.SelectedValue),0,0);
+                turno.Hora = new TimeSpan(Convert.ToInt16(ddlHorario.SelectedValue), 0, 0);
 
                 if (Request.QueryString["id"] != null)
                 {
                     negocio.reprogramarTurno(turno);
                     Response.Redirect("Turnos.aspx");
                 }
-                else { 
+                else
+                {
                     negocio.agregarTurno(turno);
                     EnviarMailConfirmacion(turno);
 
@@ -186,7 +196,7 @@ namespace TPC_Equipo_4A
         }
 
         protected void txtFechaTurno_TextChanged(object sender, EventArgs e)
-        { 
+        {
             var fecha = Convert.ToDateTime(txtFechaTurno.Text);
             if (fecha < DateTime.Today)
             {
@@ -196,7 +206,6 @@ namespace TPC_Equipo_4A
 
             int idMedico = int.Parse(ddlMedico.SelectedItem.Value);
             CargarJornadasSegunMedico(idMedico);
-            CrearBotonDinamico(idMedico);
         }
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
@@ -263,25 +272,23 @@ namespace TPC_Equipo_4A
         // Método para crear botones dinámicamente
         private void CrearBotonDinamico(int idMedico)
         {
-            foreach (var item in turnosAsignados)
-            //for (int i = 1; i <= 5; i++) // Ejemplo: Crear 5 botones
+            for (int i = 1; i <= turnosAsignados.Count; i++)
             {
-                // Crear un botón
-                Button btn = new Button
+                Button botonHorario = new Button
                 {
-                    //Text = item.Hora.ToString("hh:mm"),
-                    //Text = GetButtonText(i),
-                    CssClass = "btn active",
-                  //  CssClass = "btn btn-primary mx-2 my-2", // Clases de Bootstrap
-                    //ID = $"btnDynamic{i}" // Asignar un ID único
+                    ID = $"btnHorarios{i}",
+                    Text = turnosAsignados[i].Hora.ToString(@"hh\:mm"),
+                    CommandArgument = turnosAsignados[i].Hora.ToString(),
+                    Enabled = turnosAsignados[i].Estado == 0 ? true : false
                 };
-
-                // Agregar evento al botón (si es necesario)
-                btn.Click += DynamicButton_Click;
-
-                // Agregar el botón al panel
-                PanelButtons.Controls.Add(btn);
+                botonHorario.Click += DynamicButton_Click;
+                botonHorario.CssClass = "btn btn-success";
+                botonHorario.OnClientClick = "return false;";
+                
+                PlaceholderButtons.Controls.Add(botonHorario);
+                PlaceholderButtons.Controls.Add(new Literal { Text = "<br/>" });
             }
+
         }
 
         // Evento manejador para los botones dinámicos

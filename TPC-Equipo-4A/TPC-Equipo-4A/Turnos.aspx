@@ -70,7 +70,6 @@
                   <asp:BoundField HeaderText="Médico" DataField="Medico.NombreCompleto" />
                   <asp:BoundField DataField="Fecha" HeaderText="Fecha" DataFormatString="{0:dd-MM-yyyy}" HtmlEncode="false" />
                   <asp:BoundField DataField="HoraFormateada" HeaderText="Hora" DataFormatString="{0:hh:mm}" HtmlEncode="false" />
-                  <asp:BoundField DataField="Estado" HeaderText="Estado" />
                   <asp:TemplateField HeaderText="Estado">
                       <ItemTemplate>
                           <asp:Label ID="lblEstado" runat="server"></asp:Label>

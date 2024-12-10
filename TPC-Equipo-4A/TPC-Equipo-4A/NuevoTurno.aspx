@@ -27,22 +27,13 @@
                         <label for="lblFechaTurno" class="form-label">Fecha</label>
                         <asp:TextBox ID="txtFechaTurno" runat="server" CssClass="form-control" TextMode="Date" required="true" AutoPostBack="true" OnTextChanged="txtFechaTurno_TextChanged"></asp:TextBox>
                     </div>
-
-<%--                    <%foreach (var item in turnosAsignados.Where(x => x.Estado == 0))
-                        { %>
-                            <%if (item.Estado == 0)
-                                {%>
-                    <asp:Button runat="server"  Text="<%item.Hora.ToString("hh:mm");%>" />
-                
-                          <%} %>  
-                       <% } %>--%>
-
-                    <asp:Panel ID="PanelButtons" runat="server" CssClass="mt-4"></asp:Panel>
-
-
-
                     <div class="mb-3 text-start">
                         <label for="lblHorario" class="form-label">Horario</label>
+                        <br />
+                        <div class="d-flex flex-wrap gap-2">
+                            <asp:PlaceHolder ID="PlaceholderButtons" runat="server"></asp:PlaceHolder>
+                        </div>
+                        <br />
                         <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
                     </div>
                 </div>
