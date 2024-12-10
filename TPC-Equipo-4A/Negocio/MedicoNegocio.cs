@@ -223,9 +223,6 @@ namespace Negocio
                 Console.WriteLine("Error obteniendo lista de medicos desde capa de negocio");
             }
 
-
-
-
             return medico;
         }
         public int TraerUltimoIDMedico()

@@ -12,6 +12,7 @@ namespace TPC_Equipo_4A
 {
     public partial class NuevoTurno : System.Web.UI.Page
     {
+        public List<Turno> turnosAsignados;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -19,6 +20,10 @@ namespace TPC_Equipo_4A
                 CargarPacientes();
                 CargarEspecialidades();
                 CargarMedicos();
+
+                turnosAsignados = new List<Turno>();
+
+
                 if (Request.QueryString["id_p"] != null){
                     PacienteNegocio negocio = new PacienteNegocio();
                     Paciente aux = new Paciente();
@@ -42,11 +47,27 @@ namespace TPC_Equipo_4A
                         i < medico.HorariosLaborables.FirstOrDefault().HoraFin.TotalHours; 
                         i++)
                 {
+                    //var turno = new Turno()
+                    //{
+                    //    Hora = new TimeSpan(int.Parse(i.ToString()), 0, 0)
+                    //};
+
                     if (!medico.TurnosAsignados.Any(x => x.Hora.TotalHours == i))
                     {
+                        // Setear estado para habilitra boton
+
+                        //turno.Estado = 0;
+
                         ListItem aux = new ListItem(i.ToString() + ":00hs", i.ToString());
                         ddlHorario.Items.Add(aux);
                     }
+                    else
+                    {
+                        // Setear estado para deshabilitar boton
+                        //turno.Estado = 1;
+                    }
+
+                    //turnosAsignados.Add(turno);
                 }
             }
             catch (Exception)
@@ -175,6 +196,7 @@ namespace TPC_Equipo_4A
 
             int idMedico = int.Parse(ddlMedico.SelectedItem.Value);
             CargarJornadasSegunMedico(idMedico);
+            CrearBotonDinamico(idMedico);
         }
 
         protected void ddlMedico_SelectedIndexChanged(object sender, EventArgs e)
@@ -229,6 +251,47 @@ namespace TPC_Equipo_4A
             {
                 Session.Add("error", ex);
             }
+        }
+
+
+        // Función que devuelve textos para los botones
+        private string GetButtonText(int index)
+        {
+            return $"Botón {index}";
+        }
+
+        // Método para crear botones dinámicamente
+        private void CrearBotonDinamico(int idMedico)
+        {
+            foreach (var item in turnosAsignados)
+            //for (int i = 1; i <= 5; i++) // Ejemplo: Crear 5 botones
+            {
+                // Crear un botón
+                Button btn = new Button
+                {
+                    //Text = item.Hora.ToString("hh:mm"),
+                    //Text = GetButtonText(i),
+                    CssClass = "btn active",
+                  //  CssClass = "btn btn-primary mx-2 my-2", // Clases de Bootstrap
+                    //ID = $"btnDynamic{i}" // Asignar un ID único
+                };
+
+                // Agregar evento al botón (si es necesario)
+                btn.Click += DynamicButton_Click;
+
+                // Agregar el botón al panel
+                PanelButtons.Controls.Add(btn);
+            }
+        }
+
+        // Evento manejador para los botones dinámicos
+        protected void DynamicButton_Click(object sender, EventArgs e)
+        {
+            Button clickedButton = (Button)sender;
+            string buttonText = clickedButton.Text;
+
+            // Realiza alguna acción
+            Response.Write($"Hiciste clic en: {buttonText}");
         }
     }
 }
