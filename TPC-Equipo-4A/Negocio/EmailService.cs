@@ -29,7 +29,7 @@ namespace Negocio
             email.To.Add(emailDestino);
             email.Subject = "Nuevo Turno";
             email.IsBodyHtml = true;
-            email.Body = "<h1>Hola " + paciente + "</h1>" + "<b><h2>Tu turno ha sido registrado<b><h3>Feha: " + fecha.Day + "/" + fecha.Month + "/" + fecha.Year + " </h3><h3>Hora: " + hora + "</h3><h3>Especialista: " + doctor + "</h3><br><p>De no poder concurrir, rogamos notificar con anticipación</p><p> Mail generado automaticamento. No responder</p>";
+            email.Body = "<h1>Hola " + paciente + "</h1>" + "<b><h2>Tu turno ha sido registrado<b><h3>Feha: " + fecha.Day + "/" + fecha.Month + "/" + fecha.Year + " </h3><h3>Hora: " + hora.ToString(@"hh\:mm") + "hs" + "</h3><h3>Especialista: " + doctor + "</h3><br><p>De no poder concurrir, rogamos notificar con anticipación</p><p> Mail generado automaticamento. No responder</p>";
         }
 
         public void enviarEmail()

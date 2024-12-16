@@ -28,14 +28,18 @@
                         <asp:TextBox ID="txtFechaTurno" runat="server" CssClass="form-control" TextMode="Date" required="true" AutoPostBack="true" OnTextChanged="txtFechaTurno_TextChanged"></asp:TextBox>
                     </div>
                     <div class="mb-3 text-start">
-                        <label for="lblHorario" class="form-label">Horario</label>
-                        <br />
+                        <label for="lblHorario" class="form-label">Horarios</label>
                         <div class="d-flex flex-wrap gap-2">
                             <asp:PlaceHolder ID="PlaceholderButtons" runat="server"></asp:PlaceHolder>
                         </div>
-                        <br />
-                        <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
                     </div>
+                    <div class="mb-3 text-start">
+                        <label for="lblHorarioSelecionado" class="form-label">Horario Selecionado</label>
+                        <asp:TextBox ID="txtHorario" runat="server" CssClass="form-control" Enabled="false"></asp:TextBox>
+                    </div>
+                    <%--<div class="mb-3 text-start">                        
+                        <asp:DropDownList ID="ddlHorario" runat="server" CssClass="form-control" required="true"></asp:DropDownList>
+                    </div>--%>
                 </div>
             </div>
         </div>

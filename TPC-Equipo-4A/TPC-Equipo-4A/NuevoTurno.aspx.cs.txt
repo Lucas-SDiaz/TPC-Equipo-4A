@@ -21,8 +21,7 @@ namespace TPC_Equipo_4A
                 CargarEspecialidades();
                 CargarMedicos();
 
-                if (Request.QueryString["id_p"] != null)
-                {
+                if (Request.QueryString["id_p"] != null){
                     PacienteNegocio negocio = new PacienteNegocio();
                     Paciente aux = new Paciente();
                     int id = int.Parse(Request.QueryString["id_p"]);
@@ -43,8 +42,8 @@ namespace TPC_Equipo_4A
                         CrearBoton(
                             int.Parse(botonData.Key.Replace("btnDinamico", "")),
                             botonData.Value,
-                            botonData.Value,
-                            true
+                            botonData.Value, 
+                            true 
                         );
                     }
                 }
@@ -59,14 +58,14 @@ namespace TPC_Equipo_4A
                 turnosAsignados = new List<Turno>();
                 MedicoNegocio negocio = new MedicoNegocio();
                 Medico medico = negocio.listarHorariosDeMedicosConSP(idMedico, txtFechaTurno.Text);
-
+                
                 if (medico.HorariosLaborables == null)
                 {
                     return;
                 }
 
-                for (double i = medico.HorariosLaborables.FirstOrDefault().HoraInicio.TotalHours;
-                        i < medico.HorariosLaborables.FirstOrDefault().HoraFin.TotalHours;
+                for (double i = medico.HorariosLaborables.FirstOrDefault().HoraInicio.TotalHours; 
+                        i < medico.HorariosLaborables.FirstOrDefault().HoraFin.TotalHours; 
                         i++)
                 {
                     var turno = new Turno()
@@ -158,7 +157,7 @@ namespace TPC_Equipo_4A
         {
             Turno turno = new Turno();
             turno.Medico = new Medico();
-            turno.Paciente = new Paciente();
+            turno.Paciente = new Paciente();    
             TurnoNegocio negocio = new TurnoNegocio();
 
             try
@@ -166,16 +165,14 @@ namespace TPC_Equipo_4A
                 turno.Paciente.Id_Paciente = int.Parse(ddlPaciente.SelectedValue.ToString());
                 turno.Medico.Id_Medico = int.Parse(ddlMedico.SelectedValue.ToString());
                 turno.Fecha = DateTime.Parse(txtFechaTurno.Text.ToString());
-                turno.Hora = TimeSpan.Parse(txtHorario.Text.ToString());
-                
+                //turno.Hora = new TimeSpan(Convert.ToInt16(ddlHorario.SelectedValue),0,0);
 
                 if (Request.QueryString["id"] != null)
                 {
                     negocio.reprogramarTurno(turno);
                     Response.Redirect("Turnos.aspx");
                 }
-                else
-                {
+                else { 
                     negocio.agregarTurno(turno);
                     EnviarMailConfirmacion(turno);
 
@@ -212,7 +209,7 @@ namespace TPC_Equipo_4A
         }
 
         protected void txtFechaTurno_TextChanged(object sender, EventArgs e)
-        {
+        { 
             var fecha = Convert.ToDateTime(txtFechaTurno.Text);
             if (fecha < DateTime.Today)
             {

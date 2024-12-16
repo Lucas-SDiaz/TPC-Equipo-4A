@@ -60,13 +60,13 @@ namespace TPC_Equipo_4A
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceholderButtons;
 
         /// <summary>
-        /// Control ddlHorario.
+        /// Control txtHorario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlHorario;
+        protected global::System.Web.UI.WebControls.TextBox txtHorario;
 
         /// <summary>
         /// Control btnAceptar.

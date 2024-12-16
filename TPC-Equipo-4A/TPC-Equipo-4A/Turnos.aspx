@@ -6,18 +6,22 @@
 
     <%    if (((Dominio.Usuario)Session["Usuario"]).Perfil == Dominio.Perfil.PersonalAdministrativo)
         {%>
-            <div class="d-flex">
-                <asp:DropDownList ID="ddlEstados" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlEstados_SelectedIndexChanged">
-                    <asp:ListItem Text="Todos" Value="0" />
-                    <asp:ListItem Text="Pendiente" Value="1" />
-                    <asp:ListItem Text="Cancelado" Value="2" />
-                    <asp:ListItem Text="Reprogramado" Value="3" />
-                    <asp:ListItem Text="Asistió" Value="3" />
-                    <asp:ListItem Text="No Asistió" Value="3" />
-                </asp:DropDownList>
-                <asp:TextBox ID="TxtFecha" runat="server" CssClass="form-control" TextMode="Date" required="true" AutoPostBack="true"></asp:TextBox>
-            </div>
-            <div>
+    <div class="row">
+        <div class="col">
+            <asp:DropDownList ID="ddlEstados" runat="server" CssClass="form-select" AutoPostBack="True" OnSelectedIndexChanged="ddlEstados_SelectedIndexChanged">
+                <asp:ListItem Text="Todos" Value="0" />
+                <asp:ListItem Text="Pendiente" Value="1" />
+                <asp:ListItem Text="Cancelado" Value="2" />
+                <asp:ListItem Text="Reprogramado" Value="3" />
+                <asp:ListItem Text="Asistió" Value="3" />
+                <asp:ListItem Text="No Asistió" Value="3" />
+            </asp:DropDownList>
+        </div>
+        <div class="col">
+            <asp:TextBox ID="TxtFecha" runat="server" CssClass="form-control" TextMode="Date" required="true" AutoPostBack="true"></asp:TextBox>
+        </div>
+        <div>
+            <br />
         <%}  %>
         <%} %>
         <%if (Session["Usuario"] != null)
